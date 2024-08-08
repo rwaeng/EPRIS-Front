@@ -1,0 +1,39 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+
+* {
+  margin: 0;
+  padding: 0;
+
+  font-family: Pretendard;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 100%;
+
+  background-color: var(--black);
+
+  /* 1rem=10px로 */
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+:root {
+  /* color */
+  --black: #17171b;
+  --grey500: #30303b;
+  --grey300: #82828f;
+  --grey100: #cfd1da;
+  --white: #f7f8fc;
+  --red: #ee3d59;
+}
