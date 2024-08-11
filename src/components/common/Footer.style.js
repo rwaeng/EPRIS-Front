@@ -11,9 +11,7 @@ const S = {
     align-items: flex-start;
     border-top: 1px solid var(--grey500, #30303b);
     background: var(--black, #17171b);
-    /* @media (max-width: 749px) {
-      float: left;
-    } */
+
     @media (max-width: 749px) {
       flex-direction: column;
     }
@@ -30,9 +28,6 @@ const S = {
   InfoContainer: styled.div`
     margin-right: auto;
     margin-left: 1.75rem;
-    /* @media (max-width: 749px) {
-      height: 80%;
-    } */
   `,
   NameWrapper: styled.div`
     color: var(--grey100, #cfd1da);
