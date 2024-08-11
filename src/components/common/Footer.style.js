@@ -28,6 +28,9 @@ const S = {
   InfoContainer: styled.div`
     margin-right: auto;
     margin-left: 1.75rem;
+    @media (max-width: 749px) {
+      margin-left: 0.8844rem;
+    }
   `,
   NameWrapper: styled.div`
     color: var(--grey100, #cfd1da);
@@ -66,11 +69,11 @@ const S = {
   IconWrapper: styled.div`
     width: var(--R, 3rem);
     height: var(--R, 3rem);
-    padding-left: 1.25rem;
+    /* padding-left: 1.25rem; */
     @media (max-width: 749px) {
       width: var(--xs, 1.5rem);
       height: var(--xs, 1.5rem);
-      padding-left: 0.3125rem;
+      /* padding-left: 0.3125rem; */
     }
   `,
 };
