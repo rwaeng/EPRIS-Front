@@ -3,7 +3,7 @@ import { bold24, m_bold24 } from '../../../styles/font';
 
 export const S = {};
 
-S.JoinUsContainer = styled.div`
+S.JoinUsContainer = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,8 @@ S.JoinUsContainer = styled.div`
   gap: 0.625rem;
 
   border-radius: 5rem;
-  background-color: var(--red);
+  background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : 'var(--red)')};
+  border: ${({ $border }) => ($border ? $border : '0')};
 
   .btn-text {
     ${bold24};
@@ -25,7 +26,7 @@ S.JoinUsContainer = styled.div`
   }
 
   @media screen and (max-width: 1280px) {
-    padding: 0.75rem 2.25rem 0.75rem 3.375rem;
+    padding: 0.5rem 1.25rem 0.5rem 1.875rem;
 
     .btn-text {
       ${m_bold24}
@@ -37,7 +38,7 @@ S.JoinUsContainer = styled.div`
   }
 `;
 
-S.UpdateContainer = styled.div`
+S.UpdateContainer = styled.button`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -45,6 +46,7 @@ S.UpdateContainer = styled.div`
   padding: 1rem 3.75rem;
   gap: 0.625rem;
 
+  border: none;
   border-radius: 5rem;
   background-color: ${({ isActive }) =>
     isActive ? 'var(--red)' : 'var(--grey300)'};
@@ -52,10 +54,5 @@ S.UpdateContainer = styled.div`
   .btn-text {
     ${bold24};
     color: var(--black);
-  }
-
-  .image {
-    width: 2.25rem;
-    height: 2.25rem;
   }
 `;
