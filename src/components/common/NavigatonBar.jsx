@@ -1,62 +1,61 @@
 import { useState } from 'react';
-import { S } from './NavigatonBar.style';
-
+import { S, M } from './NavigatonBar.style';
+import { useNavigate } from 'react-router-dom';
 const NavigationBar = () => {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const clickMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <S.NavigationBarLayout>
-      <S.NavigationBarContainer>
-        <S.LogoContainer />
-        <S.NavWrapper>
-          <S.NavContainer to='/' activeClassName='active'>
+    <S.Layout>
+      <S.Container>
+        <S.LogoImg onClick={() => navigate('/')} />
+        <S.NavContainer>
+          <S.NavLinkWrapper to='/' activeClassName='active'>
             About
-          </S.NavContainer>
-          <S.NavContainer to='/eprian' activeClassName='active'>
-            EPRian
-          </S.NavContainer>
-          <S.NavContainer to='/activity' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/eprians' activeClassName='active'>
+            EPRians
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/activity' activeClassName='active'>
             Activity
-          </S.NavContainer>
-          <S.NavContainer to='/join' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/join' activeClassName='active'>
             Join us
-          </S.NavContainer>
-          <S.NavContainer to='/recruitment' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/recruitment' activeClassName='active'>
             Recruitment
-          </S.NavContainer>
-          <S.NavContainer to='/contact' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/contact' activeClassName='active'>
             Contact
-          </S.NavContainer>
-        </S.NavWrapper>
-        <S.MobileNavMenu isMenuOpen={isMenuOpen} onClick={clickMenu} />
-      </S.NavigationBarContainer>
+          </S.NavLinkWrapper>
+        </S.NavContainer>
+        <M.NavMenu $isMenuOpen={isMenuOpen} onClick={clickMenu} />
+      </S.Container>
       {isMenuOpen && (
-        <S.MobileNavWrapper>
-          <S.NavContainer to='/' activeClassName='active'>
+        <M.NavContainer>
+          <S.NavLinkWrapper to='/' activeClassName='active'>
             About
-          </S.NavContainer>
-          <S.NavContainer to='/eprian' activeClassName='active'>
-            EPRian
-          </S.NavContainer>
-          <S.NavContainer to='/activity' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/eprians' activeClassName='active'>
+            EPRians
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/activity' activeClassName='active'>
             Activity
-          </S.NavContainer>
-          <S.NavContainer to='/join' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/join' activeClassName='active'>
             Join us
-          </S.NavContainer>
-          <S.NavContainer to='/recruitment' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/recruitment' activeClassName='active'>
             Recruitment
-          </S.NavContainer>
-          <S.NavContainer to='/contact' activeClassName='active'>
+          </S.NavLinkWrapper>
+          <S.NavLinkWrapper to='/contact' activeClassName='active'>
             Contact
-          </S.NavContainer>
-        </S.MobileNavWrapper>
+          </S.NavLinkWrapper>
+        </M.NavContainer>
       )}
-    </S.NavigationBarLayout>
+    </S.Layout>
   );
 };
-
 export default NavigationBar;

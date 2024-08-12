@@ -3,106 +3,84 @@ import { NavLink } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/logo/Logo.svg';
 import { ReactComponent as NavMobile } from '../../assets/NavBar/MobileNavMenu.svg';
 import { ReactComponent as NavMobileX } from '../../assets/NavBar/x.svg';
+import { bold18, m_bold18 } from '../../styles/font';
 
 const S = {
-  NavigationBarLayout: styled.div`
+  Layout: styled.nav`
     display: flex;
     flex-direction: column;
-    padding-top: 1.5vh;
-    padding-bottom: 0.9vw;
+    padding: 1rem 10rem;
+    @media (max-width: 749px) {
+      padding: 1rem 1.25rem;
+    }
+    @media (min-width: 750px) and (max-width: 1279px) {
+      width: 44.375rem;
+      padding: 1rem 1.25rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 1440px) {
+      width: 70rem;
+      margin: 0 auto;
+    }
   `,
-  NavigationBarContainer: styled.div`
+  Container: styled.div`
     display: flex;
-    align-items: center;
     justify-content: space-between;
-
-    @media (max-width: 749px) {
-      padding: 1rem;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    @media (min-width: 750px) and (max-width: 1279px) {
-      padding: 0 5vw;
-    }
-
-    @media (min-width: 1440px) {
-      padding: 0 10vw;
-    }
+    align-items: center;
   `,
-  LogoContainer: styled(Logo)`
-    margin-left: 9vw;
-    @media (min-width: 750px) and (max-width: 1279px) {
-      margin-right: 5vw;
-    }
-
-    @media (max-width: 749px) {
-      margin-left: 1rem;
-    }
-    @media (min-width: 1440px) {
-      margin-left: 0;
-    }
+  LogoImg: styled(Logo)`
+    cursor: pointer;
   `,
-  NavWrapper: styled.div`
+  NavContainer: styled.ul`
     display: flex;
     align-items: center;
-    margin-right: 9vw;
+    gap: 0.5rem;
 
-    @media (max-width: 375px) {
+    @media (max-width: 1279px) {
       display: none;
     }
   `,
-  NavContainer: styled(NavLink)`
-    padding-left: 0.8vw;
-    padding-right: 0.8vw;
-    font-size: 1.5rem;
-    font-weight: 600;
-    font-family: 'Pretendard', sans-serif;
-    color: white;
+  NavLinkWrapper: styled(NavLink)`
+    padding: 0.75rem;
+    ${bold18}
+    color: var(--white);
     text-decoration: none;
     cursor: pointer;
     &.active {
-      color: red;
+      color: var(--red);
     }
-
-    @media (max-width: 375px) {
-      font-size: 1rem;
-    }
-
     :hover {
-      color: red;
+      color: var(--red);
     }
-  `,
+    @media (max-width: 1279px) {
+      padding: 1rem 0.125rem;
 
-  MobileNavMenu: styled(NavMobile).attrs(props => ({
-    as: props.isMenuOpen ? NavMobileX : NavMobile,
-  }))`
-    display: none;
-    width: 2rem;
-    height: 2rem;
-    margin-left: 5vw;
-    cursor: pointer;
-
-    @media (max-width: 375px) {
-      display: block;
-    }
-  `,
-
-  MobileNavWrapper: styled.div`
-    display: none;
-
-    @media (max-width: 375px) {
-      display: block;
-      display: flex;
-      flex-direction: column;
-
-      align-items: start;
-      margin-left: 9vw;
-      margin-top: 3vw;
-
-      gap: 3vw;
+      ${m_bold18}
     }
   `,
 };
 
-export { S };
+const M = {
+  NavMenu: styled(NavMobile).attrs(props => ({
+    as: props.$isMenuOpen ? NavMobileX : NavMobile,
+  }))`
+    display: none;
+    @media (max-width: 1279px) {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      cursor: pointer;
+    }
+  `,
+  NavContainer: styled.div`
+    display: none;
+    cursor: pointer;
+    @media (max-width: 1279px) {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      margin-top: 1rem;
+    }
+  `,
+};
+export { S, M };
