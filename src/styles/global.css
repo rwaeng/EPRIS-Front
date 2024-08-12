@@ -14,8 +14,6 @@ body {
 
   background-color: var(--black);
 
-  /* 1rem=10px로 */
-  font-size: 62.5%;
   overflow-x: hidden;
 }
 
