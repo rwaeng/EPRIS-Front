@@ -46,7 +46,6 @@ S.UpdateContainer = styled.button`
   padding: 1rem 3.75rem;
   gap: 0.625rem;
 
-  border: none;
   border-radius: 5rem;
   background-color: ${({ isActive }) =>
     isActive ? 'var(--red)' : 'var(--grey300)'};
