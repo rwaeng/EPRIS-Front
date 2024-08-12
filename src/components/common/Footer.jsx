@@ -9,7 +9,7 @@ import { ReactComponent as SmallInstagram } from '../../assets/Footer/instagram_
 import { useMediaQuery } from 'react-responsive';
 
 const Footer = () => {
-  const isMobile = useMediaQuery({ maxWidth: 749 });
+  const isMobile = useMediaQuery({ maxWidth: 1279 });
 
   return (
     <S.FooterLayout>
@@ -19,15 +19,9 @@ const Footer = () => {
         </S.LogoWrapper>
 
         <S.InfoContainer>
-          <S.NameWrapper>
-            이화여자대학교 유일 PR 학회
-            <br />
-            EPRIS
-          </S.NameWrapper>
+          <S.NameWrapper>{`이화여자대학교 유일 PR 학회\nEPRIS`}</S.NameWrapper>
           <S.InfoWrapper>
-            Copyright 2024. EPRIS. All rights reserved.
-            <br />
-            Developed by EFUB 4th as a collaborative project.
+            {`Copyright 2024. EPRIS. All rights reserved.\nDeveloped by EFUB 4th as a collaborative project.`}
           </S.InfoWrapper>
         </S.InfoContainer>
       </S.FooterContainer>
@@ -38,6 +32,11 @@ const Footer = () => {
         </S.IconWrapper>
         <S.IconWrapper>{isMobile ? <SmallMail /> : <Mail />}</S.IconWrapper>
         <S.IconWrapper>{isMobile ? <SmallBlog /> : <Blog />}</S.IconWrapper>
+        {/* <S.IconWrapper>
+          <Instagram />
+        </S.IconWrapper>
+        <S.IconWrapper src={Mail} />
+        <S.IconWrapper src={Blog} /> */}
       </S.IconContainer>
     </S.FooterLayout>
   );
