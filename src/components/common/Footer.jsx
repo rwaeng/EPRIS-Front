@@ -1,16 +1,10 @@
 import { S } from './Footer.style.js';
 import { ReactComponent as Logo } from '../../assets/Footer/logo_circle.svg';
-import { ReactComponent as Instagram } from '../../assets/Footer/instagram.svg';
-import { ReactComponent as Mail } from '../../assets/Footer/mail.svg';
-import { ReactComponent as Blog } from '../../assets/Footer/blog.svg';
-import { ReactComponent as SmallMail } from '../../assets/Footer/mail_small.svg';
-import { ReactComponent as SmallBlog } from '../../assets/Footer/blog_small.svg';
-import { ReactComponent as SmallInstagram } from '../../assets/Footer/instagram_small.svg';
-import { useMediaQuery } from 'react-responsive';
+import Instagram from '../../assets/Footer/instagram.svg';
+import Mail from '../../assets/Footer/mail.svg';
+import Blog from '../../assets/Footer/blog.svg';
 
 const Footer = () => {
-  const isMobile = useMediaQuery({ maxWidth: 1279 });
-
   return (
     <S.FooterLayout>
       <S.FooterContainer>
@@ -25,18 +19,10 @@ const Footer = () => {
           </S.InfoWrapper>
         </S.InfoContainer>
       </S.FooterContainer>
-
       <S.IconContainer>
-        <S.IconWrapper>
-          {isMobile ? <SmallInstagram /> : <Instagram />}
-        </S.IconWrapper>
-        <S.IconWrapper>{isMobile ? <SmallMail /> : <Mail />}</S.IconWrapper>
-        <S.IconWrapper>{isMobile ? <SmallBlog /> : <Blog />}</S.IconWrapper>
-        {/* <S.IconWrapper>
-          <Instagram />
-        </S.IconWrapper>
+        <S.IconWrapper src={Instagram} />
         <S.IconWrapper src={Mail} />
-        <S.IconWrapper src={Blog} /> */}
+        <S.IconWrapper src={Blog} />
       </S.IconContainer>
     </S.FooterLayout>
   );

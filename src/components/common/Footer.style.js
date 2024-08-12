@@ -75,7 +75,7 @@ const S = {
       padding-top: 2rem;
     }
   `,
-  IconWrapper: styled.div`
+  IconWrapper: styled.img`
     width: var(--R, 3rem);
     height: var(--R, 3rem);
 
