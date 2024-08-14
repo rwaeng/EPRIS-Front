@@ -41,8 +41,8 @@ const NavigationBar = () => {
           <S.NavLinkWrapper to='/eprians' activeClassName='active'>
             EPRians
           </S.NavLinkWrapper>
-          <S.NavLinkWrapper to='/activity' activeClassName='active'>
-            Activity
+          <S.NavLinkWrapper to='/activities' activeClassName='active'>
+            Activities
           </S.NavLinkWrapper>
           <S.NavLinkWrapper to='/join' activeClassName='active'>
             Join us
