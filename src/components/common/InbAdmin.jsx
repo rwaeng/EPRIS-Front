@@ -11,7 +11,12 @@ const InbAdmin = ({ menuList = [], clicked, setClicked }) => {
   return (
     <S.Layout>
       {menuList.map((it, idx) => (
-        <S.Button id={idx} $isActive={clicked === it} onClick={handleClickMenu}>
+        <S.Button
+          key={idx}
+          id={idx}
+          $isActive={clicked === it}
+          onClick={handleClickMenu}
+        >
           {it}
         </S.Button>
       ))}
