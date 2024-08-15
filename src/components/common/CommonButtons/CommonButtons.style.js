@@ -17,7 +17,7 @@ S.JoinUsContainer = styled.button`
 
   .btn-text {
     ${bold24};
-    color: var(--black);
+    color: ${({ $color }) => ($color ? $color : 'var(--black)')};
   }
 
   .image {
@@ -36,6 +36,11 @@ S.JoinUsContainer = styled.button`
       height: 1.5rem;
     }
   }
+`;
+
+S.Span = styled.span`
+  ${bold24};
+  color: ${({ $color }) => ($color ? $color : 'var(--black)')};
 `;
 
 S.UpdateContainer = styled.button`
