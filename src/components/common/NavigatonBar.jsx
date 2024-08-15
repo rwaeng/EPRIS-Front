@@ -12,7 +12,7 @@ const NavigationBar = () => {
       <S.Container>
         <S.LogoImg onClick={() => navigate('/')} />
         <S.NavContainer>
-          <S.NavLinkWrapper to='/' activeClassName='active'>
+          <S.NavLinkWrapper to='/about' activeClassName='active'>
             About
           </S.NavLinkWrapper>
           <S.NavLinkWrapper to='/eprians' activeClassName='active'>
@@ -35,7 +35,7 @@ const NavigationBar = () => {
       </S.Container>
       {isMenuOpen && (
         <M.NavContainer>
-          <S.NavLinkWrapper to='/' activeClassName='active'>
+          <S.NavLinkWrapper to='/about' activeClassName='active'>
             About
           </S.NavLinkWrapper>
           <S.NavLinkWrapper to='/eprians' activeClassName='active'>
