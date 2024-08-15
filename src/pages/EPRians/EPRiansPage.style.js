@@ -27,29 +27,30 @@ S.TitleContainer = styled.div`
   background-image: url(${backgroundImg});
   background-size: cover;
 
-  .title {
-    ${font.bold56}
-    color: var(--white);
-
-    margin-bottom: 2rem;
-  }
-  .gen {
-    ${font.bold36}
-    color: var(--white);
-  }
-
   @media (max-width: 1279px) {
     max-width: 46.875rem;
     height: 15.95444rem;
+  }
+`;
 
-    .title {
-      ${font.m_bold36}
-      margin-bottom: 1rem;
-    }
+S.MainTitle = styled.div`
+  ${font.bold56}
+  color: var(--white);
 
-    .gen {
-      ${font.m_bold24}
-    }
+  margin-bottom: 2rem;
+
+  @media (max-width: 1279px) {
+    ${font.m_bold36}
+    margin-bottom: 1rem;
+  }
+`;
+
+S.Gen = styled.div`
+  ${font.bold36}
+  color: var(--white);
+
+  @media (max-width: 1279px) {
+    ${font.m_bold24}
   }
 `;
 
@@ -64,27 +65,27 @@ S.ActingContainer = styled.div`
 
   background-color: var(--black);
 
-  .title {
-    ${font.bold36}
-    color: var(--grey100);
-  }
-
-  .subtitle {
-    ${font.reg18}
-    color: var(--grey300)
-  }
-
   @media (max-width: 1279px) {
     width: 100%;
     padding: 5rem 1.25rem;
+  }
+`;
 
-    .title {
-      ${font.m_bold36}
-    }
+S.Title = styled.div`
+  ${font.bold36}
+  color: ${props => props.$color};
 
-    .subtitle {
-      ${font.m_reg18}
-    }
+  @media (max-width: 1279px) {
+    ${font.m_bold36}
+  }
+`;
+
+S.Subtitle = styled.div`
+  ${font.reg18}
+  color: var(--grey300);
+
+  @media (max-width: 1279px) {
+    ${font.m_reg18}
   }
 `;
 
@@ -99,28 +100,10 @@ S.AlumniContainer = styled.div`
 
   background-color: var(--white);
 
-  .title {
-    ${font.bold36}
-    color: var(--black);
-  }
-
-  .subtitle {
-    ${font.reg18}
-    color: var(--grey300)
-  }
-
   @media (max-width: 1279px) {
     width: 100%;
     align-items: center;
     padding: 5rem 1.25rem;
-
-    .title {
-      ${font.m_bold36}
-    }
-
-    .subtitle {
-      ${font.m_reg18}
-    }
   }
 `;
 
@@ -140,15 +123,16 @@ S.DropdownContainer = styled.div`
   width: 100%;
   margin-top: 4rem;
 
-  .description {
-    ${font.reg18};
-  }
-
   @media (max-width: 1279px) {
     margin-top: 2rem;
-    .description {
-      ${font.m_reg18}
-    }
+  }
+`;
+
+S.Description = styled.div`
+  ${font.reg18};
+
+  @media (max-width: 1279px) {
+    ${font.m_reg18}
   }
 `;
 
@@ -161,36 +145,11 @@ S.Card = styled.div`
   padding: 1.25rem 1.25rem 2.5rem 1.25rem;
   gap: 1.25rem;
 
-  background-color: var(--grey500);
+  background-color: ${props => props.$bgColor || 'var(--grey500)'};
   border-radius: 1rem;
+  box-shadow: ${props =>
+    props.$shadow && '0px 0px 32px 0px rgba(130, 130, 143, 0.1);'};
   box-sizing: border-box;
-  .image {
-    width: 100%;
-    border-radius: 0.5rem;
-
-    background: lightgray 50% / cover no-repeat;
-  }
-
-  .role {
-    ${font.reg18}
-    color: var(--grey300);
-  }
-
-  .name {
-    ${font.bold18}
-    color: var(--white);
-  }
-
-  .info {
-    ${font.reg14}
-    color: var(--grey300);
-  }
-
-  &.executive {
-    .role {
-      color: var(--red);
-    }
-  }
 
   @media (max-width: 1279px) {
     &.desktop-only {
@@ -205,6 +164,28 @@ S.Card = styled.div`
   }
 `;
 
+S.CardImage = styled.img`
+  width: 100%;
+  border-radius: 0.5rem;
+
+  background: lightgray 50% / cover no-repeat;
+`;
+
+S.CardRole = styled.div`
+  ${font.reg18}
+  color: ${props => props.$color || 'var(--grey300)'}
+`;
+
+S.CardName = styled.div`
+  ${font.bold18}
+  color: ${props => props.$color || 'var(--white)'}
+`;
+
+S.CardInfo = styled.div`
+  ${font.reg14}
+  color: var(--grey300);
+`;
+
 S.MemberContainer = styled.div`
   display: flex;
   align-items: center;
@@ -214,28 +195,8 @@ S.MemberContainer = styled.div`
   width: 70rem;
   gap: 1.75rem;
 
-  &.acting {
-    margin-top: 4rem;
-    margin-bottom: 7.5rem;
-  }
-
-  &.alumni {
-    margin-top: 3rem;
-    margin-bottom: 10rem;
-
-    ${S.Card} {
-      background-color: var(--white);
-      box-shadow: 0px 0px 32px 0px rgba(130, 130, 143, 0.1);
-
-      .name {
-        color: var(--black);
-      }
-    }
-
-    @media (max-width: 1279px) {
-      margin-bottom: 5rem;
-    }
-  }
+  margin-top: ${props => (props.$member === 'alumni' ? '3rem' : '4rem')};
+  margin-bottom: ${props => (props.$member === 'alumni' ? '10rem' : '7.5rem')};
 
   @media (max-width: 1279px) {
     width: 100%;

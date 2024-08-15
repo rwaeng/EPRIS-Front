@@ -9,39 +9,7 @@ S.Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 7rem;
-
   position: relative;
-
-  @media (max-width: 749px) {
-    width: 6.18rem;
-  }
-`;
-
-S.DropdownButton = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 7rem;
-  padding: 0.625rem 0.625rem 0.625rem 1.25rem;
-  gap: 0.25rem;
-  box-sizing: border-box;
-
-  border-radius: 5rem;
-  border: 2px solid var(--grey300);
-
-  cursor: pointer;
-  .gen {
-    ${reg24}
-    color: var(--grey300);
-    text-align: center;
-  }
-
-  .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
 
   @media (min-width: 1280px) {
     &.mobile-only {
@@ -50,14 +18,40 @@ S.DropdownButton = styled.div`
   }
 
   @media (max-width: 1279px) {
-    .gen {
-      ${m_reg24}
-    }
-
     &.desktop-only {
       display: none;
     }
   }
+`;
+
+S.DropdownButton = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.625rem 0.625rem 0.625rem 1.25rem;
+  gap: 0.25rem;
+  box-sizing: border-box;
+
+  border-radius: 5rem;
+  border: 2px solid var(--grey300);
+
+  cursor: pointer;
+`;
+
+S.Gen = styled.div`
+  ${reg24}
+  color: var(--grey300);
+  text-align: center;
+
+  @media (max-width: 1279px) {
+    ${m_reg24}
+  }
+`;
+
+S.Icon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
 `;
 
 S.DropdownList = styled.div`

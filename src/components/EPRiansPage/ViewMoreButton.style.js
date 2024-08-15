@@ -17,24 +17,23 @@ S.Container = styled.button`
 
   background-color: inherit;
 
-  .text {
-    ${font.bold18}
-    text-align: center;
-    color: var(--grey100);
-  }
-
-  .icon {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
   @media (min-width: 1280px) {
     &.mobile-only {
       display: none;
     }
   }
-
   @media (max-width: 1279px) {
     margin: 0;
   }
+`;
+
+S.Text = styled.div`
+  ${font.bold18}
+  text-align: center;
+  color: var(--grey100);
+`;
+
+S.Icon = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
 `;

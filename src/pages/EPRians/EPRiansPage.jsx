@@ -29,6 +29,7 @@ const brandDummyArr = [
   brandExample,
 ];
 
+const executiveDummyArr = [1, 1, 1, 1];
 const actingDummyArr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 const alumniDummyArr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
@@ -127,54 +128,38 @@ const EPRiansPage = () => {
     <S.Layout>
       <NavigationBar />
       <S.TitleContainer>
-        <div className='title'>EPRians</div>
-        <div className='gen'>Now 37th</div>
+        <S.MainTitle>EPRians</S.MainTitle>
+        <S.Gen>Now 37th</S.Gen>
       </S.TitleContainer>
       <S.ActingContainer>
-        <div className='title'>Acting Members</div>
-        <div className='subtitle'>활동 학회원</div>
+        <S.Title $color='var(--grey100)'>Acting Members</S.Title>
+        <S.Subtitle>활동 학회원</S.Subtitle>
 
         <S.MemberContainer className='acting'>
-          <S.Card className='executive'>
-            <img className='image' src={profileBasic} />
-            <div className='role'>직위</div>
-            <div className='name'>이름</div>
-            <div className='info'>학번 및 소속</div>
-          </S.Card>
-          <S.Card className='executive'>
-            <img className='image' src={profileBasic} />
-            <div className='role'>직위</div>
-            <div className='name'>이름</div>
-            <div className='info'>학번 및 소속</div>
-          </S.Card>
-          <S.Card className='executive'>
-            <img className='image' src={profileBasic} />
-            <div className='role'>직위</div>
-            <div className='name'>이름</div>
-            <div className='info'>학번 및 소속</div>
-          </S.Card>
-          <S.Card className='executive'>
-            <img className='image' src={profileBasic} />
-            <div className='role'>직위</div>
-            <div className='name'>이름</div>
-            <div className='info'>학번 및 소속</div>
-          </S.Card>
+          {executiveDummyArr.map((_, index) => (
+            <S.Card key={index} className='executive'>
+              <S.CardImage src={profileBasic} />
+              <S.CardRole $color='var(--red)'>직위</S.CardRole>
+              <S.CardName>이름</S.CardName>
+              <S.CardInfo>학번 및 소속</S.CardInfo>
+            </S.Card>
+          ))}
           {actingList.map((_, index) => (
             <S.Card key={index} className='mobile-only'>
-              <img className='image' src={profileBasic} />
-              <div className='role'>직위</div>
-              <div className='name'>이름</div>
-              <div className='info'>학번 및 소속</div>
+              <S.CardImage src={profileBasic} />
+              <S.CardRole>직위</S.CardRole>
+              <S.CardName>이름</S.CardName>
+              <S.CardInfo>학번 및 소속</S.CardInfo>
             </S.Card>
           ))}
 
           <S.RowLine />
           {actingDummyArr.map((_, index) => (
             <S.Card key={index} className='desktop-only'>
-              <img className='image' src={profileBasic} />
-              <div className='role'>직위</div>
-              <div className='name'>이름</div>
-              <div className='info'>학번 및 소속</div>
+              <S.CardImage src={profileBasic} />
+              <S.CardRole>직위</S.CardRole>
+              <S.CardName>이름</S.CardName>
+              <S.CardInfo>학번 및 소속</S.CardInfo>
             </S.Card>
           ))}
           <ViewMoreButton
@@ -188,37 +173,42 @@ const EPRiansPage = () => {
       <S.AlumniContainer>
         <S.SubtitleContainer>
           <div>
-            <div className='title'>Alumni</div>
-            <div className='subtitle'>수료 학회원</div>
+            <S.Title $color='var(--black)'>Alumni</S.Title>
+            <S.Subtitle>수료 학회원</S.Subtitle>
           </div>
           <Dropdown className='mobile-only' />
         </S.SubtitleContainer>
         <S.DropdownContainer>
-          <div className='description'>
+          <S.Description>
             EPRIS가 배출한 선배님들은 학회 활동을 통해 축적한 역량을 대기업,
             외국계, 학업/학계 등 다양한 분야에서 발휘하고 계십니다.
             <br />
             EPRIS Alumni는 EPRIS만이 가질 수 있는 강력한 경쟁력으로 학회원들의
             소중한 길잡이가 되어줍니다.
-          </div>
+          </S.Description>
           <Dropdown className='desktop-only' />
         </S.DropdownContainer>
-        <S.MemberContainer className='alumni'>
+        <S.MemberContainer $member='alumni'>
           {alumniList.map((_, index) => (
-            <S.Card key={index} className='mobile-only'>
-              <img className='image' src={profileBasic} />
-              <div className='role'>직위</div>
-              <div className='name'>이름</div>
-              <div className='info'>학번 및 소속</div>
+            <S.Card
+              key={index}
+              className='mobile-only'
+              $bgColor='var(--white)'
+              $shadow={true}
+            >
+              <S.CardImage src={profileBasic} />
+              <S.CardRole>직위</S.CardRole>
+              <S.CardName $color='var(--black)'>이름</S.CardName>
+              <S.CardInfo>학번 및 소속</S.CardInfo>
             </S.Card>
           ))}
 
           {alumniDummyArr.map((_, index) => (
             <S.Card key={index} className='desktop-only'>
-              <img className='image' src={profileBasic} />
-              <div className='role'>직위</div>
-              <div className='name'>이름</div>
-              <div className='info'>학번 및 소속</div>
+              <S.CardImage src={profileBasic} />
+              <S.CardRole>직위</S.CardRole>
+              <S.CardName>이름</S.CardName>
+              <S.CardInfo>학번 및 소속</S.CardInfo>
             </S.Card>
           ))}
           <ViewMoreButton

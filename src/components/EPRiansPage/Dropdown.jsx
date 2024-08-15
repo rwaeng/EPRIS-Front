@@ -26,10 +26,10 @@ const Dropdown = ({ className }) => {
   const options = ['37th', '36th', '35th', '34th', '33th', '32th', '31th'];
 
   return (
-    <S.Container ref={dropdownRef}>
-      <S.DropdownButton className={className} onClick={handleDropdown}>
-        <div className='gen'>37th</div>
-        <img className='icon' src={chevronDown} />
+    <S.Container ref={dropdownRef} className={className}>
+      <S.DropdownButton onClick={handleDropdown}>
+        <S.Gen>37th</S.Gen>
+        <S.Icon src={chevronDown} />
       </S.DropdownButton>
       {isOpen && (
         <S.DropdownList>
