@@ -53,16 +53,20 @@ S.Header = styled.div`
 `;
 
 S.ImageContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
-  justify-content: space-between;
-  height: 11.25rem;
+  justify-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+
+  box-sizing: border-box;
+  min-height: 11.313rem;
   padding: 1rem 2.5rem;
   border-top: 1px solid var(--grey300);
 `;
 
 S.ImagePreview = styled.div`
-  visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   position: relative;
   width: 9.25rem;
   height: 9.25rem;
