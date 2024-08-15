@@ -1,14 +1,21 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
-// textarea 입력 시 높이 재조정
-const useResizeTextarea = () => {
+// textarea 입력 시 높이 조정
+const useResizeTextarea = text => {
   const ref = useRef();
-  const onInput = useCallback(() => {
-    ref.current.style.height = '0';
-    ref.current.style.height = ref.current.scrollHeight - 32 + 'px';
+
+  const resizeTextarea = useCallback(() => {
+    if (ref.current) {
+      ref.current.style.height = '0';
+      ref.current.style.height = ref.current.scrollHeight - 32 + 'px';
+    }
   }, []);
 
-  return { ref, onInput };
+  useEffect(() => {
+    resizeTextarea();
+  }, [text]);
+
+  return { ref, onInput: resizeTextarea };
 };
 
 export default useResizeTextarea;
