@@ -15,10 +15,8 @@ export const TextIconButton = ({
 
   return (
     <S.JoinUsContainer $bgColor={bgColor} $border={border} {...props}>
-      <S.Span $color={color}>
-        {text}
-      </S.Span>
-      <img className='image' src={icon} />
+      <S.Span $color={color}>{text}</S.Span>
+      <S.Icon src={icon} />
     </S.JoinUsContainer>
   );
 };
@@ -29,7 +27,7 @@ export const TextButton = ({ isActive, text, ...props }) => {
 
   return (
     <S.UpdateContainer isActive={isActive} {...props}>
-      <div className='btn-text'>{text}</div>
+      <S.Text>{text}</S.Text>
     </S.UpdateContainer>
   );
 };

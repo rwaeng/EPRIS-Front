@@ -15,32 +15,27 @@ S.JoinUsContainer = styled.button`
   background-color: ${({ $bgColor }) => ($bgColor ? $bgColor : 'var(--red)')};
   border: ${({ $border }) => ($border ? $border : '0')};
 
-  .btn-text {
-    ${bold24};
-    color: ${({ $color }) => ($color ? $color : 'var(--black)')};
-  }
-
-  .image {
-    width: 2.25rem;
-    height: 2.25rem;
-  }
-
   @media screen and (max-width: 1280px) {
     padding: 0.5rem 1.25rem 0.5rem 1.875rem;
-
-    .btn-text {
-      ${m_bold24}
-    }
-    .image {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
   }
 `;
 
 S.Span = styled.span`
   ${bold24};
   color: ${({ $color }) => ($color ? $color : 'var(--black)')};
+
+  @media (max-width: 1280px) {
+    ${m_bold24}
+  }
+`;
+
+S.Icon = styled.img`
+  width: 2.25rem;
+  height: 2.25rem;
+  @media (max-width: 1280px) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 `;
 
 S.UpdateContainer = styled.button`
@@ -54,9 +49,9 @@ S.UpdateContainer = styled.button`
   border-radius: 5rem;
   background-color: ${({ isActive }) =>
     isActive ? 'var(--red)' : 'var(--grey300)'};
+`;
 
-  .btn-text {
-    ${bold24};
-    color: var(--black);
-  }
+S.Text = styled.div`
+  ${bold24};
+  color: var(--black);
 `;

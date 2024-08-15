@@ -47,9 +47,9 @@ export const UploadComponent = ({ ratio = null, imageNum = null }) => {
   return (
     <S.Container>
       <S.Header>
-        <label className='plus-area' htmlFor='file-input'>
-          <img className='plus' src={PlusIcon} />
-        </label>
+        <S.PlusArea htmlFor='file-input'>
+          <S.Icon src={PlusIcon} />
+        </S.PlusArea>
 
         <input
           type='file'
@@ -57,30 +57,28 @@ export const UploadComponent = ({ ratio = null, imageNum = null }) => {
           onChange={handleImgPreview}
           style={{ display: 'none' }}
         />
-        <div className='upload-text'>사진 업로드</div>
-        <div className='ratio'>{ratio}</div>
-        <div className='file-name'>{fileName}</div>
+        <S.Title>사진 업로드</S.Title>
+        <S.Ratio>{ratio}</S.Ratio>
+        <S.FileName>{fileName}</S.FileName>
       </S.Header>
       <S.ImageContainer>
         {imageNum
           ? Array.from({ length: imageNum }).map((_, index) => (
               <S.ImagePreview key={index}>
-                <img
-                  className='xbox'
+                <S.XboxIcon
                   src={xBoxIcon}
                   onClick={() => handleDeletePreview(index)}
                 />
-                <img className='image' src={imgPreview[index] || null} />
+                <S.ImageBox className='image' src={imgPreview[index] || null} />
               </S.ImagePreview>
             ))
           : imgPreview.map((previewUrl, index) => (
               <S.ImagePreview key={index}>
-                <img
-                  className='xbox'
+                <S.XboxIcon
                   src={xBoxIcon}
                   onClick={() => handleDeletePreview(index)}
                 />
-                <img className='image' src={previewUrl || null} />
+                <S.ImageBox className='image' src={previewUrl || null} />
               </S.ImagePreview>
             ))}
       </S.ImageContainer>
