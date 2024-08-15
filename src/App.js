@@ -14,6 +14,7 @@ import AdminEPRiansPage from './pages/Admin/EPRiansPage';
 import RecruitmentPage from './pages/Admin/RecruitmentPage';
 
 import LayoutPage from './pages/LayoutPage';
+import AdminLayoutPage from './pages/AdminLayoutPage';
 
 const App = () => {
   return (
@@ -28,12 +29,13 @@ const App = () => {
       </Route>
 
       <Route path='/admin' element={<LoginPage />} />
-
       {/* private route */}
-      <Route path='/admin/activity' element={<AdminActivityPage />} />
+      {/* <Route element={<AdminLayoutPage/>}/> */}
+      <Route path='/admin/activities' element={<AdminActivityPage />} />
       <Route path='/admin/info' element={<ClassInfoPage />} />
       <Route path='/admin/eprians' element={<AdminEPRiansPage />} />
-      <Route path='/admin/recruit' element={<RecruitmentPage />} />
+      <Route path='/admin/recruitment' element={<RecruitmentPage />} />
+      {/* </Route> */}
 
       <Route path='*' element={<Navigate to='/' />} />
     </Routes>

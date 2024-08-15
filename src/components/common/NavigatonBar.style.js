@@ -9,8 +9,12 @@ const S = {
   Layout: styled.nav`
     display: flex;
     flex-direction: column;
+
     padding: 1rem 10rem;
+    width: calc(100% - 20rem);
+
     @media (max-width: 749px) {
+      width: calc(100% - 2.5rem);
       padding: 1rem 1.25rem;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
@@ -40,7 +44,7 @@ const S = {
       display: none;
     }
   `,
-  NavLinkWrapper: styled(NavLink)`
+  NavLink: styled(NavLink)`
     padding: 0.75rem;
     ${bold18}
     color: var(--white);
