@@ -1,8 +1,4 @@
 import styled from 'styled-components';
-import backgroundImage from '../../assets/AboutPage/about_background_img.svg';
-import { ReactComponent as Logo } from '../../assets/logo/Logo.svg';
-import { ReactComponent as LeftArrow } from '../../assets/AboutPage/left.svg';
-import { ReactComponent as RightArrow } from '../../assets/AboutPage/right.svg';
 import {
   bold18,
   bold24,
@@ -15,6 +11,10 @@ import {
   reg14,
   reg18,
 } from '../../styles/font';
+import { ReactComponent as Logo } from '../../assets/logo/Logo.svg';
+import { ReactComponent as LeftArrow } from '../../assets/AboutPage/left.svg';
+import { ReactComponent as RightArrow } from '../../assets/AboutPage/right.svg';
+import backgroundImage from '../../assets/AboutPage/about_background_img.svg';
 
 const S = {
   Layout: styled.div`
@@ -65,6 +65,7 @@ const S = {
     margin-bottom: 4rem;
     ${bold56}
     @media (max-width: 1279px) {
+      margin-bottom: 2rem;
       ${m_bold36}
     }
   `,
@@ -72,6 +73,7 @@ const S = {
     margin-bottom: 1.53rem;
     ${bold36}
     @media (max-width: 1279px) {
+      margin-bottom: 0.5rem;
       ${m_bold24}
     }
   `,
@@ -79,7 +81,8 @@ const S = {
   IntroductionTextWrapper: styled.div`
     ${reg18}
     @media (max-width: 1279px) {
-      width: 20.9375rem;
+      width: 20rem;
+      text-align: center;
       ${m_reg18}
     }
   `,
@@ -134,7 +137,7 @@ const S = {
     color: var(--grey100);
     @media (max-width: 1279px) {
       width: 20.625rem;
-      margin-bottom: 10rem;
+      margin-bottom: 0rem;
       ${m_reg18}
     }
   `,
@@ -177,6 +180,7 @@ const S = {
     color: var(--grey100);
     @media (max-width: 1279px) {
       width: 20.625rem;
+      margin-top: 10rem;
       ${m_bold36}
     }
   `,
