@@ -106,10 +106,10 @@ SNS 채널 활성화 및 팔로워 유입 방안 고안`,
           <S.LogoWrapper />
           <S.AboutPRContainer>
             <S.NameWrapper>
-              <S.RedTextWrapper>E</S.RedTextWrapper>WHA
-              <S.RedTextWrapper>P</S.RedTextWrapper>UBLIC
-              <S.RedTextWrapper>R</S.RedTextWrapper>ELATIONS
-              <S.RedTextWrapper>I</S.RedTextWrapper>N
+              <S.RedTextWrapper>E</S.RedTextWrapper>WHA{' '}
+              <S.RedTextWrapper>P</S.RedTextWrapper>UBLIC{' '}
+              <S.RedTextWrapper>R</S.RedTextWrapper>ELATIONS{' '}
+              <S.RedTextWrapper>I</S.RedTextWrapper>N{' '}
               <S.RedTextWrapper>S</S.RedTextWrapper>TUDY
             </S.NameWrapper>
             <S.HistoryWrapper>
