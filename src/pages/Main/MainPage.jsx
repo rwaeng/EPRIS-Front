@@ -1,5 +1,106 @@
+import { S } from './MainPage.style.js';
+import NavigationBar from '../../components/common/NavigatonBar';
+import Down from '../../assets/Main/arrow_down_circle.svg';
+import Logo from '../../assets/Main/logo.svg';
+import Admins from '../../assets/Main/adminImg.svg';
+import arrowIcon from '../../assets/Main/arrow_right.svg';
+import Greetings from '../../components/Main/Greetings.jsx';
+import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons.jsx';
 const MainPage = () => {
-  return <div></div>;
+  return (
+    <S.MainLayout>
+      <S.TopContainer>
+        <NavigationBar />
+        <S.HeadContainer>
+          <S.TitleWrapper>{`PR의 시각으로 \n세상을 보다`}</S.TitleWrapper>
+          <S.SubWrapper>
+            {`이화여자대학교 교내 유일 PR 학회\n EPRIS를 소개합니다`}
+          </S.SubWrapper>
+          <S.DownBtn src={Down} />
+        </S.HeadContainer>
+      </S.TopContainer>
+      <S.BodyContainer>
+        <S.ValueContainer>
+          <S.LogoWrapper src={Logo} />
+          <S.TextContainer>
+            <S.LittleLogoWrapper>
+              <S.Red>E</S.Red>
+              WHA <S.Red>P</S.Red>UBLIC <S.Red>R</S.Red>ELATIONS
+              <S.Red> I</S.Red>N <S.Red>S</S.Red>TUDY
+            </S.LittleLogoWrapper>
+            {`EPRIS는 2000년부터 시작된 교내 유일 PR학회로서 실전 경험을 바탕으로, PR을 통해 다양한 분야에서 리더십과 팔로워십을 발휘할 수 있는 인재를 양성합니다.\n\n더 넓은 시각으로 세상을 변화시킬 첫걸음, \nEPRIS와 함께하세요.`}
+          </S.TextContainer>
+        </S.ValueContainer>
+        <S.ContentContainer>
+          <S.ValueContainer>
+            {/* 나중에 api연결 시 컴포넌트로 분리할 예정 */}
+            <S.BlackBoxContainer>
+              <S.BlackTitle>설립년도</S.BlackTitle>
+              <S.BlackText>2000년</S.BlackText>
+            </S.BlackBoxContainer>
+            <S.BlackBoxContainer>
+              <S.BlackTitle>산학프로젝트</S.BlackTitle>
+              <S.BlackText>10개</S.BlackText>
+            </S.BlackBoxContainer>
+            <S.BlackBoxContainer>
+              <S.BlackTitle>수상이력</S.BlackTitle>
+              <S.BlackText>6회</S.BlackText>
+            </S.BlackBoxContainer>
+          </S.ValueContainer>
+        </S.ContentContainer>
+        <S.ContentContainer>
+          <S.TitleText>Key Values</S.TitleText>
+          <S.SubText>주요 가치</S.SubText>
+          <S.ValueContainer>
+            <S.GreyBoxContainer>
+              <S.GreyTitle>분석력</S.GreyTitle>
+              <S.GreyText>
+                다양한 시각으로 현상 및 문제를 체계적으로 분석하여 효과적인
+                커뮤니케이션을 위한 인사이트를 도출합니다. 이를 통해 효과적인
+                전략을 수립하고, 변화하는 환경에 빠르게 대응할 수 있는 기반을
+                마련합니다.
+              </S.GreyText>
+            </S.GreyBoxContainer>
+            <S.GreyBoxContainer>
+              <S.GreyTitle>창의력</S.GreyTitle>
+              <S.GreyText>
+                새로운 아이디어와 혁신적인 접근 방식은 PR 활동의 핵심
+                요소입니다. 다양한 관점을 수용하고, 창의적인 해결책을
+                모색함으로써 차별화된 가치를 제공합니다.
+              </S.GreyText>
+            </S.GreyBoxContainer>
+            <S.GreyBoxContainer>
+              <S.GreyTitle>성실성</S.GreyTitle>
+              <S.GreyText>
+                성실은 학회 활동의 기본 원칙으로 신뢰를 구축하는 데 필수입니다.
+                EPRian은 다른 학회원과 함께 동반의 성장을 이루며 열정적인 태도로
+                공동의 프로젝트에 임합니다.
+              </S.GreyText>
+            </S.GreyBoxContainer>
+          </S.ValueContainer>
+        </S.ContentContainer>
+        <S.ContentContainer>
+          <S.TitleText>Greetings</S.TitleText>
+          <S.SubText>인사말</S.SubText>
+          <S.GreetingsContainer>
+            <Greetings />
+            <Greetings />
+          </S.GreetingsContainer>
+        </S.ContentContainer>
+        <S.ContentContainer>
+          <S.TitleText>Administrators</S.TitleText>
+          <S.SubText>현 임원진</S.SubText>
+          <S.ValueContainer>
+            <S.AdministratorPhoto src={Admins} />
+          </S.ValueContainer>
+        </S.ContentContainer>
+        <S.BottomContainer>
+          <TextIconButton text='Join us' icon={arrowIcon} border='80px' />
+          <S.AnnounceText>리크루팅 공지 문구의 위치입니다.</S.AnnounceText>
+        </S.BottomContainer>
+      </S.BodyContainer>
+    </S.MainLayout>
+  );
 };
 
 export default MainPage;
