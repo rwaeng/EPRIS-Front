@@ -13,21 +13,20 @@ const S = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 124px;
+    gap: 7.75rem;
     @media (max-width: 1279px) {
       flex-direction: column;
-      gap: 24px;
+      gap: 1.5rem;
     }
   `,
   PhotoWrapper: styled.img`
-    width: 259px;
-    height: 345.333px;
-    flex-shrink: 0;
-    border-radius: var(--xxs, 16px);
+    width: 16.1875rem;
+    height: 21.5833rem;
+    border-radius: var(--xxs, 1rem);
     background: lightgray 50% / cover no-repeat;
     @media (max-width: 1279px) {
-      width: 335px;
-      height: 452px;
+      width: 20.9375rem;
+      height: 28.25rem;
     }
   `,
   MemberContainer: styled.div`
@@ -35,21 +34,21 @@ const S = {
     flex-direction: column;
   `,
   NameText: styled.div`
+    margin-bottom: 0.5rem;
     color: var(--grey100, #cfd1da);
     ${bold24}
-    margin-bottom:8px;
     @media (max-width: 1279px) {
+      margin-bottom: 0.3125rem;
       ${m_bold24}
-      margin-bottom:5px;
     }
   `,
   RoleText: styled.div`
+    margin-bottom: 3rem;
     color: var(--grey100, #cfd1da);
     ${bold18};
-    margin-bottom: 48px;
     @media (max-width: 1279px) {
-      ${m_bold18}
       margin-bottom: 24px;
+      ${m_bold18}
     }
   `,
   InfoText: styled.div`
