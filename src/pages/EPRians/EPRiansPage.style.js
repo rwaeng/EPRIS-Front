@@ -45,6 +45,10 @@ S.MainTitle = styled.div`
   }
 `;
 
+S.Ellipse31 = styled.img``;
+
+S.Ellipse32 = styled.img``;
+
 S.Gen = styled.div`
   ${font.bold36}
   color: var(--white);

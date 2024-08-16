@@ -1,8 +1,8 @@
 import { S } from './UploadComponent.style';
 import { useState, useEffect } from 'react';
 
-import PlusIcon from '../../../assets/plus.svg';
-import xBoxIcon from '../../../assets/xbox.svg';
+import PlusIcon from '../../../assets/commonComponents/plus.svg';
+import xBoxIcon from '../../../assets/commonComponents/xbox.svg';
 
 export const UploadComponent = ({ ratio = null, imageNum = null }) => {
   // ratio : 정해진 사진의 비율을 텍스트로 전달
