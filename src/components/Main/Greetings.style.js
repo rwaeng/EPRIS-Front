@@ -47,7 +47,7 @@ const S = {
     color: var(--grey100, #cfd1da);
     ${bold18};
     @media (max-width: 1279px) {
-      margin-bottom: 24px;
+      margin-bottom: 1.5rem;
       ${m_bold18}
     }
   `,
