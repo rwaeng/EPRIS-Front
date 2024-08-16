@@ -1,9 +1,94 @@
-import { S } from './AboutPage.style';
+import { useState } from 'react';
+import { M, S } from './AboutPage.style';
 import NavigationBar from '../../components/common/NavigatonBar';
+
 const AboutPage = () => {
+  const cardData = [
+    {
+      title: '기획부장',
+      subtitle: '기획부 총괄',
+      departmentname: '기획부',
+      mainDescription: '학회 전반의 커리큘럼 및 네트워킹 행사를 기획합니다',
+      details: [
+        {
+          title: 'Networking·Alumni DB 관리',
+          description: `Career Lecture (1학기) / 홈커밍데이(2학기) 기획
+EPRIS Alumni DB 관리 및 선배님 컨택 진행`,
+        },
+        {
+          title: '커리큘럼 및 세션 진행 관리',
+          description: `세션 활동 안내 PPT 제작 및 다음 세션 공지
+산학 협력 세션 활동 및 팀별 상호 평가지 제작 및 관리
+학기말 활동 학회원 대상 커리큘럼 만족도 설문조사`,
+        },
+      ],
+    },
+
+    {
+      title: '운영부장',
+      subtitle: '운영부 총괄',
+      departmentname: '운영부',
+      mainDescription: '학회원 명단 및 학회의 재정, 세션 운영을 관리합니다',
+      details: [
+        {
+          title: '학회원 명단 관리',
+          description: `출결 및 세션 과제물 업로드 관리
+네임택 및 수료증 제작`,
+        },
+        {
+          title: '세션 운영 관리',
+          description: `케이스 스터디, 이슈/트렌드 브리핑
+세션 활동 평가지 제작 및 관리
+행사 및 세션 진행 장소 대여`,
+        },
+        {
+          title: '재정 관리',
+          description: `학회 예산 및 회계 내역 관리 및 공유`,
+        },
+      ],
+    },
+    {
+      title: '홍보부장',
+      subtitle: '홍보부 총괄',
+      departmentname: '홍보부',
+      mainDescription:
+        'SNS 채널 및 리크루팅 운영을 관리하며, 활동 내역을 아카이빙합니다',
+      details: [
+        {
+          title: 'SNS 채널 운영 관리',
+          description: `활동 사진 촬영 및 아카이빙
+세션 활동 카드뉴스 제작 및 SNS 업로드
+네이버 카페, 네이버 블로그, 인스타그램 운영
+SNS 채널 활성화 및 팔로워 유입 방안 고안`,
+        },
+        {
+          title: '리쿠르팅 운영 관리',
+          description: `리쿠르팅 홍보자료(카드뉴스· 포스터) 제작
+리쿠르팅 진행 및 홍보물 업로드 관리`,
+        },
+      ],
+    },
+    { title: '회장', subtitle: '학회 총괄' },
+  ];
+
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+
+  const handlePrevClick = () => {
+    setCurrentCardIndex(prevIndex =>
+      prevIndex === 0 ? cardData.length - 1 : prevIndex - 1,
+    );
+  };
+
+  const handelNextClick = () => {
+    setCurrentCardIndex(prevIndex =>
+      prevIndex === cardData.length - 1 ? 0 : prevIndex + 1,
+    );
+  };
+
+  const currentCard = cardData[currentCardIndex];
+
   return (
     <S.Layout>
-      <NavigationBar />
       <S.BcakgroundImageContainer>
         <S.AboutTextContainer>
           <S.TitleWrapper>About</S.TitleWrapper>
@@ -28,7 +113,7 @@ const AboutPage = () => {
               <S.RedTextWrapper>S</S.RedTextWrapper>TUDY
             </S.NameWrapper>
             <S.HistoryWrapper>
-              EPRIS는{' '}
+              EPRIS는
               <S.RedTextWrapper>
                 EWHA PUBLIC RELATIONS IN STUDY
               </S.RedTextWrapper>
@@ -76,7 +161,7 @@ EPRIS의 임원진은 회장, 기획부장, 운영부장, 홍보부장의 4인 �
             <S.SubTitleKrWrapper>부서 소개</S.SubTitleKrWrapper>
           </S.SubTitleContentContainer>
           <S.DepartmentContainer>
-            <S.CardContainer>
+            <S.HiddenCardContainer>
               <S.CardContentContainer>
                 <S.CardNameWrapper>기획부장</S.CardNameWrapper>
                 <S.SubTitleKrWrapper>기획부 총괄</S.SubTitleKrWrapper>
@@ -93,88 +178,135 @@ EPRIS의 임원진은 회장, 기획부장, 운영부장, 홍보부장의 4인 �
                 <S.CardNameWrapper>회장</S.CardNameWrapper>
                 <S.SubTitleKrWrapper>학회 총괄</S.SubTitleKrWrapper>
               </S.CardContentContainer>
-            </S.CardContainer>
-            <S.Triangle />
-            <S.DepartmentContentContainer>
-              <S.DepartmentNameWrapper>기획부</S.DepartmentNameWrapper>
-              <S.DepartmentMainDescriptionWrapper>
-                학회 전반의 커리큘럼 및 네트워킹 행사를 기획합니다
-              </S.DepartmentMainDescriptionWrapper>
-              <S.DepartmentDescriptionContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    Networking·Alumni DB 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>{`Career Lecture (1학기) / 홈커밍데이(2학기) 기획
+            </S.HiddenCardContainer>
+            <M.CardContainer>
+              <M.CardButtonContainer>
+                <M.LeftArrow onClick={handlePrevClick} />
+                <M.CardContentContainer>
+                  <S.CardNameWrapper>
+                    {cardData[currentCardIndex].title}
+                  </S.CardNameWrapper>
+                  <S.SubTitleKrWrapper>
+                    {cardData[currentCardIndex].subtitle}
+                  </S.SubTitleKrWrapper>
+                </M.CardContentContainer>
+                <M.RightArrow onClick={handelNextClick} />
+              </M.CardButtonContainer>
+            </M.CardContainer>
+            <S.Conatiner>
+              <S.Triangle />
+              <S.DepartmentContentContainer>
+                <S.DepartmentNameWrapper>기획부</S.DepartmentNameWrapper>
+                <S.DepartmentMainDescriptionWrapper>
+                  학회 전반의 커리큘럼 및 네트워킹 행사를 기획합니다
+                </S.DepartmentMainDescriptionWrapper>
+                <S.DepartmentDescriptionContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      Networking·Alumni DB 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>{`Career Lecture (1학기) / 홈커밍데이(2학기) 기획
 EPRIS Alumni DB 관리 및 선배님 컨택 진행`}</S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    커리큘럼 및 세션 진행 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>{`세션 활동 안내 PPT 제작 및 다음 세션 공지
+                  </S.DepartmentDetailsContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      커리큘럼 및 세션 진행 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>{`세션 활동 안내 PPT 제작 및 다음 세션 공지
 산학 협력 세션 활동 및 팀별 상호 평가지 제작 및 관리
 학기말 활동 학회원 대상 커리큘럼 만족도 설문조사`}</S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-              </S.DepartmentDescriptionContainer>
-            </S.DepartmentContentContainer>
-            <S.Triangle marginLeft='12.25rem' />
-            <S.DepartmentContentContainer marginLeft='12.25rem'>
-              <S.DepartmentNameWrapper>운영부</S.DepartmentNameWrapper>
-              <S.DepartmentMainDescriptionWrapper>
-                학회원 명단 및 학회의 재정, 세션 운영을 관리합니다
-              </S.DepartmentMainDescriptionWrapper>
-              <S.DepartmentDescriptionContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    학회원 명단 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>{`출결 및 세션 과제물 업로드 관리
+                  </S.DepartmentDetailsContainer>
+                </S.DepartmentDescriptionContainer>
+              </S.DepartmentContentContainer>
+
+              <S.Triangle marginLeft='12.25rem' />
+              <S.DepartmentContentContainer marginLeft='12.25rem'>
+                <S.DepartmentNameWrapper>운영부</S.DepartmentNameWrapper>
+                <S.DepartmentMainDescriptionWrapper>
+                  학회원 명단 및 학회의 재정, 세션 운영을 관리합니다
+                </S.DepartmentMainDescriptionWrapper>
+                <S.DepartmentDescriptionContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      학회원 명단 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>{`출결 및 세션 과제물 업로드 관리
 네임택 및 수료증 제작`}</S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    세션 운영 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>{`케이스 스터디, 이슈/트렌드 브리핑
+                  </S.DepartmentDetailsContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      세션 운영 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>{`케이스 스터디, 이슈/트렌드 브리핑
 세션 활동 평가지 제작 및 관리
 행사 및 세션 진행 장소 대여`}</S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    재정 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>
-                    학회 예산 및 회계 내역 관리 및 공유
-                  </S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-              </S.DepartmentDescriptionContainer>
-            </S.DepartmentContentContainer>
-            <S.Triangle marginLeft='24.5rem' />
-            <S.DepartmentContentContainer marginLeft='25.5rem'>
-              <S.DepartmentNameWrapper>홍보부</S.DepartmentNameWrapper>
-              <S.DepartmentMainDescriptionWrapper>
-                SNS 채널 및 리크루팅 운영을 관리하며, 활동 내역을 아카이빙합니다
-              </S.DepartmentMainDescriptionWrapper>
-              <S.DepartmentDescriptionContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    SNS 채널 운영 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>{`활동 사진 촬영 및 아카이빙
+                  </S.DepartmentDetailsContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      재정 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>
+                      학회 예산 및 회계 내역 관리 및 공유
+                    </S.DepartmentDetailsWrapper>
+                  </S.DepartmentDetailsContainer>
+                </S.DepartmentDescriptionContainer>
+              </S.DepartmentContentContainer>
+              <S.Triangle marginLeft='24.5rem' />
+              <S.DepartmentContentContainer marginLeft='25.5rem'>
+                <S.DepartmentNameWrapper>홍보부</S.DepartmentNameWrapper>
+                <S.DepartmentMainDescriptionWrapper>
+                  SNS 채널 및 리크루팅 운영을 관리하며, 활동 내역을
+                  아카이빙합니다
+                </S.DepartmentMainDescriptionWrapper>
+                <S.DepartmentDescriptionContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      SNS 채널 운영 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>{`활동 사진 촬영 및 아카이빙
 세션 활동 카드뉴스 제작 및 SNS 업로드
 네이버 카페, 네이버 블로그, 인스타그램 운영
 SNS 채널 활성화 및 팔로워 유입 방안 고안`}</S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-                <S.DepartmentDetailsContainer>
-                  <S.DepartmentDetailsTitleWrapper>
-                    리쿠르팅 운영 관리
-                  </S.DepartmentDetailsTitleWrapper>
-                  <S.DepartmentDetailsWrapper>{`리쿠르팅 홍보자료(카드뉴스· 포스터) 제작
+                  </S.DepartmentDetailsContainer>
+                  <S.DepartmentDetailsContainer>
+                    <S.DepartmentDetailsTitleWrapper>
+                      리쿠르팅 운영 관리
+                    </S.DepartmentDetailsTitleWrapper>
+                    <S.DepartmentDetailsWrapper>{`리쿠르팅 홍보자료(카드뉴스· 포스터) 제작
 리쿠르팅 진행 및 홍보물 업로드 관리`}</S.DepartmentDetailsWrapper>
-                </S.DepartmentDetailsContainer>
-              </S.DepartmentDescriptionContainer>
-            </S.DepartmentContentContainer>
+                  </S.DepartmentDetailsContainer>
+                </S.DepartmentDescriptionContainer>
+              </S.DepartmentContentContainer>
+            </S.Conatiner>
+
+            <M.Conatiner>
+              {currentCard.departmentname && (
+                <>
+                  <S.Triangle />
+                  <M.DepartmentContentContainer>
+                    <S.DepartmentNameWrapper>
+                      {currentCard.departmentname}
+                    </S.DepartmentNameWrapper>
+                    <S.DepartmentMainDescriptionWrapper>
+                      {currentCard.mainDescription}
+                    </S.DepartmentMainDescriptionWrapper>
+                    <S.DepartmentDescriptionContainer>
+                      {currentCard.details &&
+                        currentCard.details.map((detail, index) => (
+                          <S.DepartmentDetailsContainer key={index}>
+                            <S.DepartmentDetailsTitleWrapper>
+                              {detail.title}
+                            </S.DepartmentDetailsTitleWrapper>
+                            <S.DepartmentDetailsWrapper>
+                              {detail.description}
+                            </S.DepartmentDetailsWrapper>
+                          </S.DepartmentDetailsContainer>
+                        ))}
+                    </S.DepartmentDescriptionContainer>
+                  </M.DepartmentContentContainer>{' '}
+                </>
+              )}
+            </M.Conatiner>
           </S.DepartmentContainer>
         </S.SubTitleContainer>
       </S.IntroducctionContainer>
