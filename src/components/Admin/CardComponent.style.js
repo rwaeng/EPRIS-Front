@@ -6,8 +6,8 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 737px;
-    gap: 24px;
+    width: 46.0625rem;
+    gap: 1.5rem;
   `,
   CardText: styled.div`
     align-self: flex-start;
@@ -30,10 +30,10 @@ const S = {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 3.75rem;
 
-    padding: var(--micro, 8px) 20px;
-    gap: 4px;
+    padding: var(--micro, 0.5rem) 1.25rem;
+    gap: 0.25rem;
 
     cursor: pointer;
   `,
@@ -43,12 +43,12 @@ const S = {
     ${bold18}
   `,
   DeleteImg: styled.img`
-    width: var(--xs, 24px);
-    height: var(--xs, 24px);
+    width: var(--xs, 1.5rem);
+    height: var(--xs, 1.5rem);
   `,
   BtnWrapper: styled.div`
-    width: 162px;
-    height: 64px;
+    width: 10.125rem;
+    height: 4rem;
   `,
 };
 
