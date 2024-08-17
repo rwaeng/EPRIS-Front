@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import * as font from '../../styles/font';
-import toggleOff from '../../assets/Admin_EPRiansPage/toggle-off.svg';
-import toggleOn from '../../assets/Admin_EPRiansPage/toggle-on.svg';
 
 export const S = {};
 
@@ -96,7 +94,10 @@ S.TdContainer = styled.div`
   justify-content: space-between;
 `;
 
-S.Checkbox = styled.input`
+S.CheckboxWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 50%;
 `;
 

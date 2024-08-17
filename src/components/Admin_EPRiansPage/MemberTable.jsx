@@ -3,9 +3,16 @@ import { S } from './MemberTable.style';
 import plusIcon from '../../assets/Admin_EPRiansPage/ps-mini.svg';
 import addRowIcon from '../../assets/Admin_EPRiansPage/ps-row.svg';
 import deleteRowIcon from '../../assets/Admin_EPRiansPage/ms.svg';
+import CustomCheckbox from './CustomCheckbox';
 
 const MemberTable = ({ memberNum, handleDeleteMembers }) => {
   const [rows, setRows] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
+  const [checked, setChecked] = useState(false);
+
+  const handleCheckbox = () => {
+    console.log('실행');
+    setChecked(!checked);
+  };
 
   const handleAddRow = () => {
     setRows([...rows, { id: rows.length + 1 }]);
@@ -64,8 +71,12 @@ const MemberTable = ({ memberNum, handleDeleteMembers }) => {
               </S.Td>
               <S.Td $right='none'>
                 <S.TdContainer>
-                  <S.Checkbox type='checkbox' />
-
+                  <S.CheckboxWrapper>
+                    <CustomCheckbox
+                      checked={checked}
+                      onChange={handleCheckbox}
+                    />
+                  </S.CheckboxWrapper>
                   <S.DeleteButton
                     onClick={() => {
                       handleDeleteRow(row.id);
