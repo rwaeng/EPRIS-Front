@@ -7,7 +7,7 @@ import {
   TextButton,
   TextIconButton,
 } from '../../components/common/CommonButtons/CommonButtons';
-import { S } from './EPRiansPage.stye';
+import { S } from './EPRiansPage.style';
 
 import plusIcon from '../../assets/Admin_EPRiansPage/ps.svg';
 import MemberTable from '../../components/Admin_EPRiansPage/MemberTable';
@@ -61,7 +61,7 @@ const EPRiansPage = () => {
             bgColor='inherit'
             color='var(--grey300)'
             border='2.4px solid var(--grey300);'
-            handlebutton={handleAddMembers}
+            onClick={handleAddMembers}
           />
         </S.MembersContainer>
       ) : (
@@ -70,7 +70,11 @@ const EPRiansPage = () => {
           <S.UploadComponentWrapper>
             <UploadComponent imageNum={null} ratio='5:3' />
           </S.UploadComponentWrapper>
-          <TextButton text='저장' isActive={isLogoChanged} />
+          <TextButton
+            text='저장'
+            isActive={isLogoChanged}
+            disabled={!isLogoChanged}
+          />
         </S.AlumniBrandsContainer>
       )}
     </S.Container>
