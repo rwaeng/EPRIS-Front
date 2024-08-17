@@ -1,5 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 
+// 사용을 원하는 컴포넌트에서 아래처럼 작성해주면 됩니다
+//  const animation = useScrollFadeIn();
+//  <S.Container {...animation}></S.Container>
+
 const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
   const ref = useRef();
 
