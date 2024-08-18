@@ -23,7 +23,7 @@ const S = {
   PhotoWrapper: styled.img`
     width: 16.1875rem;
     height: 21.5833rem;
-    border-radius: var(--xxs, 1rem);
+    border-radius: 1rem;
     background: lightgray 50% / cover no-repeat;
     @media (max-width: 1279px) {
       width: 20.9375rem;
@@ -37,7 +37,7 @@ const S = {
   `,
   NameText: styled.div`
     margin-bottom: 0.5rem;
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${bold24}
     @media (max-width: 1279px) {
       margin-bottom: 0.3125rem;
@@ -46,7 +46,7 @@ const S = {
   `,
   RoleText: styled.div`
     margin-bottom: 3rem;
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${bold18};
     @media (max-width: 1279px) {
       margin-bottom: 1.5rem;
@@ -54,7 +54,7 @@ const S = {
     }
   `,
   InfoText: styled.div`
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${reg18};
     white-space: pre-line;
     @media (max-width: 1279px) {

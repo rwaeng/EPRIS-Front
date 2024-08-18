@@ -11,7 +11,7 @@ const S = {
   `,
   CardText: styled.div`
     align-self: flex-start;
-    color: var(--white, #f7f8fc);
+    color: var(--white);
     ${bold24};
   `,
   InfoInput: styled.input`
@@ -32,19 +32,19 @@ const S = {
     align-items: center;
     width: 3.75rem;
 
-    padding: var(--micro, 0.5rem) 1.25rem;
+    padding: 0.5rem 1.25rem;
     gap: 0.25rem;
 
     cursor: pointer;
   `,
   DeleteText: styled.div`
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     text-align: center;
     ${bold18}
   `,
   DeleteImg: styled.img`
-    width: var(--xs, 1.5rem);
-    height: var(--xs, 1.5rem);
+    width: 1.5rem;
+    height: 1.5rem;
   `,
   BtnWrapper: styled.div`
     width: 10.125rem;

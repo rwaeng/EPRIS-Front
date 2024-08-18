@@ -12,15 +12,15 @@ const S = {
   `,
   AddCardBtn: styled.div`
     display: flex;
-    padding: var(--xxs, 1rem) 2.5rem var(--xxs, 1rem) 3.75rem;
+    padding: 1rem 2.5rem 1rem 3.75rem;
     justify-content: center;
     align-items: center;
     gap: 0.625rem;
-    border-radius: var(--L, 5rem);
-    border: 0.15rem solid var(--grey300, #82828f);
+    border-radius: 5rem;
+    border: 0.15rem solid var(--grey300);
   `,
   BtnText: styled.div`
-    color: var(--grey300, #82828f);
+    color: var(--grey300);
     text-align: center;
     ${bold24}
   `,

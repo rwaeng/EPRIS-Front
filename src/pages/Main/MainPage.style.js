@@ -81,7 +81,7 @@ const S = {
     margin-top: 1rem;
     margin-bottom: 3rem;
 
-    color: var(--white, #f7f8fc);
+    color: var(--white);
     ${reg24}
     white-space: pre-line;
     @media (max-width: 1279px) {
@@ -124,7 +124,7 @@ const S = {
     flex-direction: column;
     padding-bottom: 2.5rem;
 
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${reg18}
 
     white-space: pre-line;
@@ -140,7 +140,7 @@ const S = {
   `,
   LittleLogoWrapper: styled.div`
     margin-bottom: 4rem;
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${bold24}
 
     @media (max-width: 1279px) {
@@ -149,7 +149,7 @@ const S = {
     }
   `,
   Red: styled.span`
-    color: var(--red, #ee3d59);
+    color: var(--red);
   `,
   ContentContainer: styled.div`
     display: flex;
@@ -183,15 +183,15 @@ const S = {
     justify-content: space-between;
     align-items: center;
 
-    padding: var(--R, 3rem) 2.5rem;
+    padding: 3rem 2.5rem;
 
-    border-radius: var(--xxs, 1rem);
-    border: 0.6px solid var(--grey500, #30303b);
-    background: var(--black, #17171b);
+    border-radius: 1rem;
+    border: 0.6px solid var(--grey500);
+    background: var(--black);
 
     box-shadow: -4px -4px 10px 2px rgba(125, 125, 125, 0.16),
       10px 10px 40px 4px rgba(0, 0, 0, 0.4);
-    gap: var(--xs, 1.5rem);
+    gap: 1.5rem;
     box-sizing: border-box;
     flex: 1 0 0;
     @media (max-width: 1279px) {
@@ -199,12 +199,12 @@ const S = {
     }
   `,
   BlackTitle: styled.div`
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${bold24}
   `,
   BlackText: styled.div`
     align-self: stretch;
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     text-align: center;
     ${bold56}
   `,
@@ -214,22 +214,22 @@ const S = {
     justify-content: flex-start;
     align-items: center;
 
-    padding: 2.5rem var(--xs, 1.5rem);
+    padding: 2.5rem 1.5rem;
 
-    border-radius: var(--xxs, 1rem);
-    background: var(--grey500, #30303b);
+    border-radius: 1rem;
+    background: var(--grey500);
 
-    gap: var(--xs, 1.5rem);
+    gap: 1.5rem;
     flex: 1 0 0;
     align-self: stretch;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
   `,
   GreyTitle: styled.div`
-    color: var(--white, #f7f8fc);
+    color: var(--white);
     ${bold24}
   `,
   GreyText: styled.div`
-    color: var(--white, #f7f8fc);
+    color: var(--white);
     ${reg18}
     align-self: stretch;
     text-align: center;
@@ -238,7 +238,7 @@ const S = {
     }
   `,
   TitleText: styled.div`
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${bold36}
     margin-bottom: 0.5rem;
     @media (max-width: 1279px) {
@@ -247,7 +247,7 @@ const S = {
   `,
   SubText: styled.div`
     margin-bottom: 4rem;
-    color: var(--grey300, #82828f);
+    color: var(--grey300);
     ${reg18}
     @media (max-width: 1279px) {
       margin-bottom: 2rem;
@@ -266,7 +266,7 @@ const S = {
     max-width: 70rem;
     width: 100%;
 
-    border-radius: var(--xxs, 16px);
+    border-radius: 16px;
     background: lightgray 50% / cover no-repeat;
     @media (max-width: 1279px) {
       width: 100%;
@@ -282,7 +282,7 @@ const S = {
     }
   `,
   AnnounceText: styled.div`
-    color: var(--grey100, #cfd1da);
+    color: var(--grey100);
     ${reg24};
     @media (max-width: 1279px) {
       ${m_reg24}
