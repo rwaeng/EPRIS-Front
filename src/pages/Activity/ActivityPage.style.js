@@ -74,12 +74,12 @@ const S = {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 4.75rem;
+    gap: 4rem;
 
     height: auto;
 
-    @media screen and (min-width: 1280px) {
-      gap: 10rem;
+    @media screen and (max-width: 1279px) {
+      gap: 5rem;
     }
   `,
   TitleContainer: styled.div`
