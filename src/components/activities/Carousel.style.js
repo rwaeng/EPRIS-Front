@@ -24,7 +24,7 @@ const S = {
   `,
   RightButton,
   ImgHidingContainer: styled.div`
-    width: 46.0625rem;
+    max-width: 46.0625rem;
 
     overflow: hidden;
 

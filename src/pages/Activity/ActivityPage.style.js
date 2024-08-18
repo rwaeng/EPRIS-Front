@@ -80,8 +80,6 @@ const S = {
 
     @media screen and (min-width: 1280px) {
       gap: 10rem;
-
-      width: 70rem;
     }
   `,
   TitleContainer: styled.div`
@@ -148,7 +146,7 @@ const S = {
   ContentContainer: styled.div`
     display: flex;
     position: relative;
-    justify-content: flex-end;
+    justify-content: space-between;
     height: auto;
     overflow: hidden;
 
