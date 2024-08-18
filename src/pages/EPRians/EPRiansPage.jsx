@@ -9,6 +9,7 @@ import arrowUp from '../../assets/EPRiansPage/arrow_upward.svg';
 import ViewMoreButton from '../../components/EPRiansPage/ViewMoreButton';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { ActingCard, AlumniCard } from '../../components/EPRiansPage/Card';
 
 const brandDummyArr = [
   brandExample,
@@ -141,32 +142,36 @@ const EPRiansPage = () => {
 
         <S.MemberContainer className='acting'>
           {executiveDummyArr.map((_, index) => (
-            <S.Card key={index} className='executive'>
-              <S.CardImage src={profileBasic} />
-              <S.CardRole $color='var(--red)'>직위</S.CardRole>
-              <S.CardName>이름</S.CardName>
-              <S.CardInfo>학번 및 소속</S.CardInfo>
-            </S.Card>
+            <ActingCard
+              key={index}
+              profImg={profileBasic}
+              role='직위'
+              name='이름'
+              info='학번 및 소속'
+              $color='var(--red)'
+            />
           ))}
           {isMobile &&
             actingList.map((_, index) => (
-              <S.Card key={index}>
-                <S.CardImage src={profileBasic} />
-                <S.CardRole>직위</S.CardRole>
-                <S.CardName>이름</S.CardName>
-                <S.CardInfo>학번 및 소속</S.CardInfo>
-              </S.Card>
+              <ActingCard
+                key={index}
+                profImg={profileBasic}
+                role='직위'
+                name='이름'
+                info='학번 및 소속'
+              />
             ))}
 
           <S.RowLine />
           {isDesktop &&
             actingDummyArr.map((_, index) => (
-              <S.Card key={index}>
-                <S.CardImage src={profileBasic} />
-                <S.CardRole>직위</S.CardRole>
-                <S.CardName>이름</S.CardName>
-                <S.CardInfo>학번 및 소속</S.CardInfo>
-              </S.Card>
+              <ActingCard
+                key={index}
+                profImg={profileBasic}
+                role='직위'
+                name='이름'
+                info='학번 및 소속'
+              />
             ))}
           {isMobile && (
             <ViewMoreButton
@@ -198,22 +203,24 @@ const EPRiansPage = () => {
         <S.MemberContainer $member='alumni'>
           {isMobile &&
             alumniList.map((_, index) => (
-              <S.Card key={index} $bgColor='var(--white)' $shadow={true}>
-                <S.CardImage src={profileBasic} />
-                <S.CardRole>직위</S.CardRole>
-                <S.CardName $color='var(--black)'>이름</S.CardName>
-                <S.CardInfo>학번 및 소속</S.CardInfo>
-              </S.Card>
+              <AlumniCard
+                key={index}
+                profImg={profileBasic}
+                role='직위'
+                name='이름'
+                info='학번 및 소속'
+              />
             ))}
 
           {isDesktop &&
             alumniDummyArr.map((_, index) => (
-              <S.Card key={index}>
-                <S.CardImage src={profileBasic} />
-                <S.CardRole>직위</S.CardRole>
-                <S.CardName>이름</S.CardName>
-                <S.CardInfo>학번 및 소속</S.CardInfo>
-              </S.Card>
+              <AlumniCard
+                key={index}
+                profImg={profileBasic}
+                role='직위'
+                name='이름'
+                info='학번 및 소속'
+              />
             ))}
           {isMobile && (
             <ViewMoreButton
