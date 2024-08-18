@@ -16,6 +16,7 @@ const S = {
     gap: 7.75rem;
     @media (max-width: 1279px) {
       flex-direction: column;
+      align-items: center;
       gap: 1.5rem;
     }
   `,
@@ -32,6 +33,7 @@ const S = {
   MemberContainer: styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
   `,
   NameText: styled.div`
     margin-bottom: 0.5rem;
