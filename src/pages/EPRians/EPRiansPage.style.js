@@ -107,7 +107,7 @@ S.AlumniContainer = styled.div`
   @media (max-width: 1279px) {
     width: 100%;
     align-items: center;
-    padding: 5rem 1.25rem;
+    padding: 5rem 1.25rem 8.94rem;
   }
 `;
 
@@ -154,18 +154,6 @@ S.Card = styled.div`
   box-shadow: ${props =>
     props.$shadow && '0px 0px 32px 0px rgba(130, 130, 143, 0.1);'};
   box-sizing: border-box;
-
-  @media (max-width: 1279px) {
-    &.desktop-only {
-      display: none;
-    }
-  }
-
-  @media (min-width: 1280px) {
-    &.mobile-only {
-      display: none;
-    }
-  }
 `;
 
 S.CardImage = styled.img`
@@ -208,7 +196,7 @@ S.MemberContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    margin-bottom: 10rem;
+    margin-bottom: 5rem;
   }
 `;
 

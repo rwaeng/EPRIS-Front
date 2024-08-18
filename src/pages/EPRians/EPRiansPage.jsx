@@ -8,6 +8,7 @@ import arrowDown from '../../assets/EPRiansPage/arrow_downward.svg';
 import arrowUp from '../../assets/EPRiansPage/arrow_upward.svg';
 import ViewMoreButton from '../../components/EPRiansPage/ViewMoreButton';
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 const brandDummyArr = [
   brandExample,
@@ -48,6 +49,9 @@ const EPRiansPage = () => {
   const [currentAlumniIndex, setCurrentAlumniIndex] = useState(0);
   const [hasMoreAlumni, setHasMoreAlumni] = useState(true);
   const AlumniPerPage = 4;
+
+  const isMobile = useMediaQuery({ query: '(max-width: 1279px)' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   useEffect(() => {
     handleBrandViewMore();
@@ -144,30 +148,33 @@ const EPRiansPage = () => {
               <S.CardInfo>학번 및 소속</S.CardInfo>
             </S.Card>
           ))}
-          {actingList.map((_, index) => (
-            <S.Card key={index} className='mobile-only'>
-              <S.CardImage src={profileBasic} />
-              <S.CardRole>직위</S.CardRole>
-              <S.CardName>이름</S.CardName>
-              <S.CardInfo>학번 및 소속</S.CardInfo>
-            </S.Card>
-          ))}
+          {isMobile &&
+            actingList.map((_, index) => (
+              <S.Card key={index}>
+                <S.CardImage src={profileBasic} />
+                <S.CardRole>직위</S.CardRole>
+                <S.CardName>이름</S.CardName>
+                <S.CardInfo>학번 및 소속</S.CardInfo>
+              </S.Card>
+            ))}
 
           <S.RowLine />
-          {actingDummyArr.map((_, index) => (
-            <S.Card key={index} className='desktop-only'>
-              <S.CardImage src={profileBasic} />
-              <S.CardRole>직위</S.CardRole>
-              <S.CardName>이름</S.CardName>
-              <S.CardInfo>학번 및 소속</S.CardInfo>
-            </S.Card>
-          ))}
-          <ViewMoreButton
-            className='mobile-only'
-            onClick={handleActingViewMore}
-            text={hasMoreActing ? 'view more' : 'close'}
-            icon={hasMoreActing ? arrowDown : arrowUp}
-          />
+          {isDesktop &&
+            actingDummyArr.map((_, index) => (
+              <S.Card key={index}>
+                <S.CardImage src={profileBasic} />
+                <S.CardRole>직위</S.CardRole>
+                <S.CardName>이름</S.CardName>
+                <S.CardInfo>학번 및 소속</S.CardInfo>
+              </S.Card>
+            ))}
+          {isMobile && (
+            <ViewMoreButton
+              onClick={handleActingViewMore}
+              text={hasMoreActing ? 'view more' : 'close'}
+              icon={hasMoreActing ? arrowDown : arrowUp}
+            />
+          )}
         </S.MemberContainer>
       </S.ActingContainer>
       <S.AlumniContainer>
@@ -176,7 +183,7 @@ const EPRiansPage = () => {
             <S.Title $color='var(--black)'>Alumni</S.Title>
             <S.Subtitle>수료 학회원</S.Subtitle>
           </div>
-          <Dropdown className='mobile-only' />
+          {isMobile && <Dropdown />}
         </S.SubtitleContainer>
         <S.DropdownContainer>
           <S.Description>
@@ -186,37 +193,35 @@ const EPRiansPage = () => {
             EPRIS Alumni는 EPRIS만이 가질 수 있는 강력한 경쟁력으로 학회원들의
             소중한 길잡이가 되어줍니다.
           </S.Description>
-          <Dropdown className='desktop-only' />
+          {isDesktop && <Dropdown />}
         </S.DropdownContainer>
         <S.MemberContainer $member='alumni'>
-          {alumniList.map((_, index) => (
-            <S.Card
-              key={index}
-              className='mobile-only'
-              $bgColor='var(--white)'
-              $shadow={true}
-            >
-              <S.CardImage src={profileBasic} />
-              <S.CardRole>직위</S.CardRole>
-              <S.CardName $color='var(--black)'>이름</S.CardName>
-              <S.CardInfo>학번 및 소속</S.CardInfo>
-            </S.Card>
-          ))}
+          {isMobile &&
+            alumniList.map((_, index) => (
+              <S.Card key={index} $bgColor='var(--white)' $shadow={true}>
+                <S.CardImage src={profileBasic} />
+                <S.CardRole>직위</S.CardRole>
+                <S.CardName $color='var(--black)'>이름</S.CardName>
+                <S.CardInfo>학번 및 소속</S.CardInfo>
+              </S.Card>
+            ))}
 
-          {alumniDummyArr.map((_, index) => (
-            <S.Card key={index} className='desktop-only'>
-              <S.CardImage src={profileBasic} />
-              <S.CardRole>직위</S.CardRole>
-              <S.CardName>이름</S.CardName>
-              <S.CardInfo>학번 및 소속</S.CardInfo>
-            </S.Card>
-          ))}
-          <ViewMoreButton
-            className='mobile-only'
-            onClick={handleAlumniViewMore}
-            text={hasMoreAlumni ? 'view more' : 'close'}
-            icon={hasMoreAlumni ? arrowDown : arrowUp}
-          />
+          {isDesktop &&
+            alumniDummyArr.map((_, index) => (
+              <S.Card key={index}>
+                <S.CardImage src={profileBasic} />
+                <S.CardRole>직위</S.CardRole>
+                <S.CardName>이름</S.CardName>
+                <S.CardInfo>학번 및 소속</S.CardInfo>
+              </S.Card>
+            ))}
+          {isMobile && (
+            <ViewMoreButton
+              onClick={handleAlumniViewMore}
+              text={hasMoreAlumni ? 'view more' : 'close'}
+              icon={hasMoreAlumni ? arrowDown : arrowUp}
+            />
+          )}
         </S.MemberContainer>
         <S.BrandContainer>
           {brandList.map((brand, index) => (

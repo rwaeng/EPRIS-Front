@@ -10,18 +10,6 @@ S.Container = styled.div`
   justify-content: center;
 
   position: relative;
-
-  @media (min-width: 1280px) {
-    &.mobile-only {
-      display: none;
-    }
-  }
-
-  @media (max-width: 1279px) {
-    &.desktop-only {
-      display: none;
-    }
-  }
 `;
 
 S.DropdownButton = styled.div`

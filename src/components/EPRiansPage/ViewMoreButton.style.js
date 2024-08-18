@@ -17,11 +17,6 @@ S.Container = styled.button`
 
   background-color: inherit;
 
-  @media (min-width: 1280px) {
-    &.mobile-only {
-      display: none;
-    }
-  }
   @media (max-width: 1279px) {
     margin: 0;
   }
