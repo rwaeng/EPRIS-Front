@@ -14,14 +14,20 @@ const S = {
     color: var(--white);
     ${bold24};
   `,
-  InfoInput: styled.input`
+  InfoTextarea: styled.textarea`
     width: 100%;
+    min-height: 3.875rem;
     padding: 1rem 2.5rem;
     background: var(--grey500);
     border: none;
     ${reg18};
     color: var(--white);
     box-sizing: border-box;
+    resize: none;
+    white-space: pre-line;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     &::placeholder {
       color: var(--grey100);
     }
