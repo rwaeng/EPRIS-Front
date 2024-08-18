@@ -12,6 +12,7 @@ import {
   m_reg18,
 } from '../../styles/font';
 import BackImg from '../../assets/Main/background_img.svg';
+import m_BackImg from '../../assets/Main/m_background_img.svg';
 
 const S = {
   MainLayout: styled.div`
@@ -20,6 +21,9 @@ const S = {
     position: relative;
     @media (max-width: 1279px) {
       max-width: 46.875rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 1440px) {
       margin: 0 auto;
     }
   `,
@@ -35,7 +39,9 @@ const S = {
       ),
       linear-gradient(180deg, rgba(0, 0, 0, 0) 24.71%, rgba(0, 0, 0, 0.6) 100%),
       url(${BackImg}) no-repeat center center;
-
+    @media (max-width: 375px) {
+      background: url(${m_BackImg}) no-repeat center center;
+    }
     @media (min-width: 750px) and (max-width: 1279px) {
       margin: 0 auto;
     }
@@ -64,7 +70,7 @@ const S = {
     }
   `,
   TitleWrapper: styled.div`
-    color: var(--white, #f7f8fc);
+    color: var(--white);
     ${bold56}
     @media (max-width: 1279px) {
       ${m_bold56};
@@ -95,10 +101,14 @@ const S = {
   BodyContainer: styled.div`
     display: flex;
     flex-direction: column;
+    max-width: 90rem;
     padding: 10rem;
     @media (max-width: 1279px) {
       align-items: center;
       padding: 5rem 1.25rem 5rem 1.25rem;
+    }
+    @media (min-width: 1440px) {
+      margin: 0 auto;
     }
   `,
   LogoWrapper: styled.img`
