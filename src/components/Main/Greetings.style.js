@@ -33,7 +33,9 @@ const S = {
   MemberContainer: styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center;
+    @media (max-width: 1279px) {
+      align-items: center;
+    }
   `,
   NameText: styled.div`
     margin-bottom: 0.5rem;
