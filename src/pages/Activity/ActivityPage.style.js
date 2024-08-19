@@ -11,6 +11,19 @@ import {
 } from '../../styles/font';
 import backgroundImg from '../../assets/activity/background.svg';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4rem;
+
+  height: auto;
+
+  @media screen and (max-width: 1279px) {
+    gap: 5rem;
+  }
+`;
+
 const S = {
   ImgContainer: styled.div`
     ${flexCenter}
@@ -70,16 +83,10 @@ const S = {
       margin: 0 auto;
     }
   `,
-  Container: styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 4rem;
-
-    height: auto;
-
+  Container,
+  BottomContainer: styled(Container)`
     @media screen and (max-width: 1279px) {
-      gap: 5rem;
+      gap: 2rem;
     }
   `,
   TitleContainer: styled.div`
