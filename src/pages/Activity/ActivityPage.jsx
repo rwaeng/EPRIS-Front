@@ -1,18 +1,21 @@
 import { S } from '../Activity/ActivityPage.style';
 import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import useScroll from '../../hooks/useScroll.js';
 import AwardCard from '../../components/activities/AwardCard.jsx';
 import ProjectCard from '../../components/activities/ProjectCard.jsx';
 import ActivityCard from '../../components/activities/ActivityCard.jsx';
 import NavigationBar from '../../components/common/NavigatonBar.jsx';
 import CorporateCard from '../../components/activities/CorporateCard.jsx';
 import FloatingButton from '../../components/activities/FloatingButton.jsx';
+import { getProjectList } from '../../api/activities.js';
 
 const ActivityPage = () => {
-  const [achievementList, setAchievementList] = useState([
-    {
-      year: '~2022',
-      info: `대통령 직속청년위원회 축제기획
+  const [achievementList, setAchievementList] = useState(
+    [
+      {
+        year: '~2022',
+        info: `대통령 직속청년위원회 축제기획
           해프닝 소셜 앱 PR 프로젝트 기획
           여의도 IFC MALL PR 전략기획
           대구경북과학 DGIST 프로젝트 기획
@@ -25,20 +28,21 @@ const ActivityPage = () => {
           2022 DCA 대학생광고대상 공모전출품
           2022 듀라셀리튬코인배터리 PR 기획
           2022 네이버ZX슈퍼캣 메타버스 Zep 전략기획`,
-    },
-    {
-      year: '2023',
-      info: `네이버Z 제페토 산학협력 : 제페토 USP 셀링 마케팅 기획
+      },
+      {
+        year: '2023',
+        info: `네이버Z 제페토 산학협력 : 제페토 USP 셀링 마케팅 기획
           프리닉스 산학협력 : Kodak 포토프린터 브랜딩 IMC 기획
           교보라이프플래닛생명 산학협력 : 디지털마케팅 전략 기획
           초이스포우먼_리무브 산학협력 : 스킨브라 브랜딩 IMC 기획
           대한적십자사 산학협력 : 브랜드 캠페인 기획`,
-    },
-    {
-      year: '2024',
-      info: '빙그레 산학협력 : 부라보콘 매출 증대 및 포지셔닝 강화 기획\n넥서스 산학협력 : 도서 시리즈 및 프로그램 전략 기획\n우버택시 산학협력 : 국내 인지도 강화 및 포지셔닝 확립 캠페인 기획',
-    },
-  ]);
+      },
+      {
+        year: '2024',
+        info: '빙그레 산학협력 : 부라보콘 매출 증대 및 포지셔닝 강화 기획\n넥서스 산학협력 : 도서 시리즈 및 프로그램 전략 기획\n우버택시 산학협력 : 국내 인지도 강화 및 포지셔닝 확립 캠페인 기획',
+      },
+    ].reverse(),
+  );
   const [awardData, setAwardData] =
     useState(`<신정부 정책 전략회> 정부주제 대회 ‘대상’
                   KEB하나은행 마케팅크루 ‘대상‘
@@ -51,22 +55,22 @@ const ActivityPage = () => {
       '매 학기 초, PR CASE STUDY를 통해 학회원들과 함께 PR에 대한 이해를 높이는 활동을 하고 있습니다.\n\n언론PR, 정부PR, 위기관리PR, 국제PR, 마케팅PR, CSR 등 다양한 PR의 이론을 실제 사례를 통해 명확히 이해하고, 활용 가능한 지식으로 발전시키고자 합니다.',
     imgList: [
       {
-        imageId: 11,
+        imageId: 113,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 12,
+        imageId: 124,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 11,
+        imageId: 131,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 12,
+        imageId: 132,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
@@ -75,12 +79,12 @@ const ActivityPage = () => {
   const [issueData, setIssueData] = useState({
     imgList: [
       {
-        imageId: 11,
+        imageId: 21,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 12,
+        imageId: 22,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
@@ -89,12 +93,12 @@ const ActivityPage = () => {
   const [trendData, setTrendData] = useState({
     imgList: [
       {
-        imageId: 11,
+        imageId: 111,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 12,
+        imageId: 112,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
@@ -134,6 +138,7 @@ const ActivityPage = () => {
     corporate: null,
     network: null,
   });
+  const { state } = useScroll();
 
   const onFocusSession = () => {
     sessionRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -149,32 +154,47 @@ const ActivityPage = () => {
     setClicked(e.target.id);
   };
 
-  // const getAbsoluteLocation = element => {
-  //   if (!element) return null;
+  const getAbsoluteLocation = element => {
+    if (!element) return null;
 
-  //   const rect = element.getBoundingClientRect();
-  //   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const rect = element.getBoundingClientRect();
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  //   return rect.top + scrollTop;
-  // }
+    return rect.top + scrollTop;
+  };
+
+  useEffect(() => {
+    if (!isBig) return;
+
+    const updateLocations = () => {
+      const locations = [
+        'sessionContainer',
+        'corporateContainer',
+        'networkContainer',
+      ].reduce((acc, id) => {
+        const element = document.getElementById(id);
+        acc[id.replace('Container', '')] = getAbsoluteLocation(element);
+        return acc;
+      }, {});
+
+      setLocations(locations);
+    };
+
+    updateLocations();
+  }, [isBig, state]);
+
+  // const readProjectList = async () => {
+  //   try {
+  //     const res = await getProjectList();
+  //     console.log(res.data);
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   // useEffect(() => {
-  //   if (isBig) {
-  //     const container = document.getElementById('container');
-  //     const session = document.getElementById('sessionContainer');
-  //     const corporate = document.getElementById('corporateContainer');
-  //     const network = document.getElementById('networkContainer');
-  //     const title = document.getElementById('title');
-
-  //     setLocations({
-  //       container: getAbsoluteLocation(container),
-  //       session: getAbsoluteLocation(session),
-  //       corporate: getAbsoluteLocation(corporate),
-  //       network: getAbsoluteLocation(network),
-  //       title: getAbsoluteLocation(title),
-  //     });
-  //   }
-  // }, [isBig]);
+  //   readProjectList();
+  // }, []);
 
   return (
     <>
@@ -199,8 +219,9 @@ const ActivityPage = () => {
             <S.ProjectContainer>
               <S.H3 $isRed={true}>프로젝트</S.H3>
               <S.CardWrapper>
-                {achievementList.reverse().map((it, idx) => (
+                {achievementList.map((it, idx) => (
                   <ProjectCard
+                    key={idx + 'project'}
                     year={it.year}
                     info={it.info}
                     isRed={idx === 0}
@@ -214,15 +235,14 @@ const ActivityPage = () => {
             </S.ProjectContainer>
           </S.CardContainer>
         </S.Container>
-        <S.Container>
-          <S.TitleContainer id='title'>
+        <S.BottomContainer>
+          <S.TitleContainer>
             <S.H2>Activities</S.H2>
             <S.Reg18>활동 내용</S.Reg18>
           </S.TitleContainer>
           <S.ContentContainer>
             <FloatingButton
               locations={locations}
-              containerTop={locations.container}
               clicked={clicked}
               setClicked={setClicked}
               handleClickFloatingBtn={handleClickFloatingBtn}
@@ -230,7 +250,7 @@ const ActivityPage = () => {
               onFocusNetwork={onFocusNetwork}
               onFocusSession={onFocusSession}
             />
-            <S.CardContainer id='container'>
+            <S.CardContainer>
               <S.SessionCardWrapper
                 id='sessionContainer'
                 ref={sessionRef}
@@ -280,7 +300,7 @@ const ActivityPage = () => {
               </S.NetworkCardWrapper>
             </S.CardContainer>
           </S.ContentContainer>
-        </S.Container>
+        </S.BottomContainer>
       </S.Layout>
     </>
   );

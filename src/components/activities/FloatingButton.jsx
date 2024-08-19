@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import { S } from './FloatingButton.style';
+import { useEffect, useState } from 'react';
+import { throttle } from 'lodash';
 import { useMediaQuery } from 'react-responsive';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import useScroll from '../../hooks/useScroll';
@@ -18,96 +19,70 @@ const FloatingButton = ({
   });
   const animation = useScrollFadeIn();
   const { state } = useScroll();
-  const [location, setLocation] = useState({});
+  const [position, setPosition] = useState('static');
 
-  // const getAbsoluteLocation = element => {
-  //   if (!element) return null;
+  const handleScroll = throttle(() => {
+    if (locations.session && window.scrollY + 32 >= locations.session) {
+      setPosition('fixed');
+    } else {
+      setPosition('static');
+    }
+  }, 1000);
 
-  //   const rect = element.getBoundingClientRect();
-  //   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  //   const absoluteTop = rect.top + scrollTop;
+  useEffect(() => {
+    if (isBig) {
+      handleScroll();
+    }
+  }, [state, isBig]);
 
-  //   if (location.scrollLeft) {
-  //     setLocation({ ...location, absoluteTop: absoluteTop });
-  //     return;
-  //   } else {
-  //     const scrollLeft =
-  //       window.pageXOffset || document.documentElement.scrollLeft;
-  //     const absoluteLeft = rect.left + scrollLeft;
-
-  //     const absoluteBottom = rect.bottom + scrollTop;
-
-  //     setLocation({
-  //       absoluteTop: absoluteTop,
-  //       absoluteLeft: absoluteLeft,
-  //       absoluteBottom: absoluteBottom,
-  //     });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   console.log(locations);
-  //   console.log(location);
-  //   if (isBig) {
-  //     const element = document.getElementById('float');
-  //     getAbsoluteLocation(element);
-  //   }
-  // }, [state, isBig]);
-
-  // useEffect(() => {
-  //   if (isBig) {
-  //     if (locations.corporate - 300 > location.absoluteTop) {
-  //       setClicked('session');
-  //     } else if (locations.network > location.absoluteTop) {
-  //       setClicked('corporate');
-  //     } else {
-  //       setClicked('network');
-  //     }
-  //   }
-  // }, [location, isBig]);
+  useEffect(() => {
+    if (isBig) {
+      if (window.scrollY < locations.corporate - 200) {
+        setClicked('session');
+      } else if (window.scrollY < locations.network - 200) {
+        setClicked('corporate');
+      } else {
+        setClicked('network');
+      }
+    }
+  }, [locations, isBig]);
 
   return (
-    <S.FloatingButtonContainer
-      id='float'
-      // $titleTop={locations.title - 160}
-      // $absoluteBottom={location.absoluteBottom}
-      // $containerTop={locations.container}
-      // $sessionTop={locations.session}
-      // $absoluteTop={location.absoluteTop}
-      // $absoluteLeft={location.absoluteLeft}
-      {...animation}
-    >
-      <S.Button
-        id='session'
-        $isActive={clicked === 'session'}
-        onClick={e => {
-          handleClickFloatingBtn(e);
-          onFocusSession();
-        }}
-      >
-        Session
-      </S.Button>
-      <S.Button
-        id='corporate'
-        $isActive={clicked === 'corporate'}
-        onClick={e => {
-          handleClickFloatingBtn(e);
-          onFocusCorporate();
-        }}
-      >
-        {'Corporate\nProject'}
-      </S.Button>
-      <S.Button
-        id='network'
-        $isActive={clicked === 'network'}
-        onClick={e => {
-          handleClickFloatingBtn(e);
-          onFocusNetwork();
-        }}
-      >
-        Network
-      </S.Button>
-    </S.FloatingButtonContainer>
+    <div>
+      {isBig && <S.FloatingButtonContainer $height='0' />}
+      <S.FloatingButtonContainer id='float' $position={position} {...animation}>
+        <S.Button
+          id='session'
+          $isActive={clicked === 'session'}
+          onClick={e => {
+            handleClickFloatingBtn(e);
+            onFocusSession();
+          }}
+        >
+          Session
+        </S.Button>
+        <S.Button
+          id='corporate'
+          $isActive={clicked === 'corporate'}
+          onClick={e => {
+            handleClickFloatingBtn(e);
+            onFocusCorporate();
+          }}
+        >
+          {'Corporate\nProject'}
+        </S.Button>
+        <S.Button
+          id='network'
+          $isActive={clicked === 'network'}
+          onClick={e => {
+            handleClickFloatingBtn(e);
+            onFocusNetwork();
+          }}
+        >
+          Network
+        </S.Button>
+      </S.FloatingButtonContainer>
+    </div>
   );
 };
 

@@ -5,15 +5,11 @@ import { flexCenter } from '../../styles/common';
 const S = {
   FloatingButtonContainer: styled.div`
     display: flex;
-    // position: static;
-    // top: 2rem;
-    // left: 10rem;
     flex-direction: column;
     justify-content: space-between;
-    flex: 1 0 0;
     z-index: 999;
 
-    height: 17rem;
+    height: ${props => (props.$height ? props.$height : '17rem')};
 
     @media screen and (min-width: 750px) and (max-width: 1279px) {
       width: 44.375rem;
@@ -23,7 +19,14 @@ const S = {
       position: static;
       flex-direction: row;
       justify-content: center;
+      flex: 1 0 0;
       gap: 0.5rem;
+
+      max-height: 4.25rem;
+    }
+    @media screen and (min-width: 1280px) {
+      position: ${props => props.$position};
+      top: 2rem;
     }
   `,
   Button: styled.button`
