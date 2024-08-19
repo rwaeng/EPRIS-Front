@@ -35,27 +35,27 @@ const CorporateCard = (
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 1,
+        imageId: 6,
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt',
       },
       {
-        imageId: 2,
+        imageId: 7,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 3,
+        imageId: 8,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 4,
+        imageId: 9,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
       {
-        imageId: 5,
+        imageId: -1,
         imageUrl:
           'https://s3.ap-northeast-2.amazonaws.com//image/7f47796a-8dd2-41e0-97f5-cae9c7f13652.jpg',
       },
@@ -72,7 +72,7 @@ const CorporateCard = (
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt',
       },
       {
-        imageId: 1,
+        imageId: -3,
         imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF1IwK6-SxM83UpFVY6WtUZxXx-phss_gAUfdKbkTfau6VWVkt',
       },
@@ -119,8 +119,8 @@ const CorporateCard = (
         <S.InfoWrapper>{info}</S.InfoWrapper>
         <Carousel pageLength={projectImgList.length}>
           {projectImgList.map(it => (
-            <S.BigImgWrapper>
-              <S.BigImg key={it.imageId} src={it.imageUrl} />
+            <S.BigImgWrapper key={it.imageId}>
+              <S.BigImg src={it.imageUrl} />
             </S.BigImgWrapper>
           ))}
         </Carousel>
