@@ -34,7 +34,6 @@ export const UploadComponent = ({
 
   const handleImgUpload = e => {
     //사진 업로드 시 실행
-
     const currentImage = e.target.files; //선택한 이미지
     let previewUrl = [...imgPreview];
     let files = [...imgFile];
@@ -78,7 +77,7 @@ export const UploadComponent = ({
           style={{ display: 'none' }}
         />
         <S.Title>사진 업로드</S.Title>
-        <S.Ratio>{ratio}</S.Ratio>
+        <S.Ratio>{imageNum ? `(${ratio}, ${imageNum}장)` : ratio}</S.Ratio>
         <S.FileName>
           {imgFile.length > 0 && imgFile[imgFile.length - 1].name}
         </S.FileName>
