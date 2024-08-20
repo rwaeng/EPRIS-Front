@@ -1,4 +1,4 @@
-import { S } from './AboutPage.style';
+import { S } from '../../pages/About/AboutPage.style';
 
 export const cardData = [
   {

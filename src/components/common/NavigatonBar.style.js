@@ -23,7 +23,6 @@ const S = {
       margin: 0 auto;
     }
     @media (min-width: 1440px) {
-      width: 70rem;
       margin: 0 auto;
     }
   `,

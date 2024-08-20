@@ -35,7 +35,6 @@ const S = {
       padding-bottom: 10rem;
     }
     @media (min-width: 1440px) {
-      width: 70rem;
       margin: 0 auto;
     }
   `,
@@ -50,6 +49,7 @@ const S = {
     background-position: center;
     @media (max-width: 1279px) {
       width: 100%;
+      max-width: 44.375rem;
       margin-bottom: 5rem;
     }
   `,
@@ -105,24 +105,34 @@ const S = {
       flex-direction: column;
       align-items: center;
       width: 100%;
+      max-width: 44.375rem;
     }
   `,
   LogoWrapper: styled(Logo)`
     width: 100%;
-    height: auto;
+    max-width: 30rem;
+    height: 100%;
+    max-height: 7.97rem;
+    margin-left: 10rem;
+    box-sizing: border-box;
     @media (max-width: 1279px) {
       box-sizing: border-box;
       padding: 0 1.5rem;
+      margin-left: 0;
       margin-bottom: 5rem;
     }
   `,
   AboutPRContainer: styled.div`
     display: flex;
     flex-direction: column;
+    margin-right: 8.75;
+    box-sizing: border-box;
     gap: 4rem;
     @media (max-width: 1279px) {
       align-items: center;
       width: 100%;
+      max-width: 44.375rem;
+      margin-right: 0;
       gap: 2rem;
     }
   `,
@@ -134,30 +144,36 @@ const S = {
     color: var(--grey100);
     @media (max-width: 1279px) {
       display: flex;
-      width: 100%;
+      max-width: 44.375rem;
       ${m_bold24}
     }
   `,
   HistoryWrapper: styled.div`
     width: 34.125rem;
     margin-bottom: 17.5rem;
+    margin-right: 8.75rem;
+
     ${reg18};
     color: var(--grey100);
     @media (max-width: 1279px) {
       width: 100%;
-      margin-bottom: 0rem;
+      margin: 0;
       ${m_reg18}
     }
   `,
   SubTitleContainer: styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: calc(100% - 20rem);
+    box-sizing: border-box;
     gap: 3rem;
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
+      max-width: 44.375rem;
       gap: 2rem;
     }
 
@@ -254,6 +270,7 @@ const S = {
     width: 40.0625rem;
     margin-left: ${props => props.marginLeft || '0'};
     padding: 2.5rem 3rem;
+    border: none;
     border-radius: 1rem;
     background: #e3e6f0;
   `,
@@ -314,6 +331,7 @@ const S = {
     width: 0;
     height: 0;
     margin-top: 1.4rem;
+    margin-bottom: 0;
     margin-left: ${props =>
       props.marginLeft ? `calc(3.425rem + ${props.marginLeft})` : '3.425rem'};
     border-left: 1.875rem solid transparent;
@@ -327,7 +345,7 @@ const S = {
       border-bottom: 0.9375rem solid #e3e6f0;
     }
   `,
-  Conatiner: styled.div`
+  Container: styled.div`
     display: flex;
     flex-direction: column;
     @media (max-width: 1279px) {
@@ -337,14 +355,14 @@ const S = {
 };
 
 const M = {
-  Conatiner: styled.div`
+  Container: styled.div`
     display: none;
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
       width: 100%;
       margin-bottom: 5rem;
-      
+
       height: 19.8125rem;
     }
   `,
