@@ -59,30 +59,23 @@ const EPRiansPage = () => {
     getPrevImages();
   }, []);
 
-  const handleImageUploadButton = async () => {
-    //저장 버튼 클릭하였을 때 실행
+  const createLogos = async finalUrlList => {
     try {
-      const updatedUrlList = []; //추가될 presigned url
-
-      for (const file of imgFile) {
-        const res1 = await postPresignedURL(file); //presigned url 발급
-        await putPresignedURL(res1.data, file); //발급받은 presigned url에 이미지 업로드
-
-        const url = res1.data.split('?')[0]; //쿼리파라미터 제외 url 추출
-        updatedUrlList.push({ imageUrl: url });
+      const res = await postLogos('alumni', finalUrlList);
+      if (res) {
+        setImageUrlList(finalUrlList);
+        alert('저장되었습니다.');
       }
-
-      setImageUrlList(prevImageUrlList => {
-        //기존 presigned url 배열에 추가된 이미지 url 저장
-        const finalUrlList = [...prevImageUrlList, ...updatedUrlList];
-        postLogos('alumni', finalUrlList); // 백엔드로 이미지 URL 배열 전송
-        return finalUrlList;
-      });
-
-      alert('저장되었습니다.');
     } catch (err) {
       console.error(err);
     }
+  };
+
+  //저장 버튼 클릭하였을 때 실행
+  const handleImageUploadButton = async () => {
+    const updatedUrlList = await uploadImages(imgFile); // presigned url 발급
+    const finalUrlList = [...imageUrlList, ...updatedUrlList]; //기존 presigned url 배열에 추가된 이미지 url 저장
+    await createLogos(finalUrlList); // 백엔드로 이미지 URL 배열 전송
   };
 
   return (
