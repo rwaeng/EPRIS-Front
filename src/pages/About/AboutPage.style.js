@@ -344,6 +344,8 @@ const M = {
       flex-direction: column;
       width: 100%;
       margin-bottom: 5rem;
+      
+      height: 19.8125rem;
     }
   `,
   CardContainer: styled.div`
