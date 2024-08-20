@@ -27,7 +27,7 @@ const S = {
       padding: 1rem 1.25rem;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
-      width: 44.375rem;
+      width: calc(100% - 2.5rem);
       padding: 1rem 1.25rem;
       margin: 0 auto;
     }
@@ -49,7 +49,7 @@ const S = {
     background-size: cover;
     background-position: center;
     @media (max-width: 1279px) {
-      width: 23.4375rem;
+      width: 100%;
       margin-bottom: 5rem;
     }
   `,
@@ -94,24 +94,25 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   `,
   AboutContainer: styled.div`
     display: flex;
     justify-content: space-between;
-    width: 70rem;
+    width: 100%;
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 20.625rem;
+      width: 100%;
     }
   `,
   LogoWrapper: styled(Logo)`
-    width: 28.12488rem;
-    height: 7.97rem;
+    width: 100%;
+    height: auto;
     @media (max-width: 1279px) {
-      width: 20.625rem;
-
+      box-sizing: border-box;
+      padding: 0 1.5rem;
       margin-bottom: 5rem;
     }
   `,
@@ -120,6 +121,8 @@ const S = {
     flex-direction: column;
     gap: 4rem;
     @media (max-width: 1279px) {
+      align-items: center;
+      width: 100%;
       gap: 2rem;
     }
   `,
@@ -130,6 +133,8 @@ const S = {
     ${bold24}
     color: var(--grey100);
     @media (max-width: 1279px) {
+      display: flex;
+      width: 100%;
       ${m_bold24}
     }
   `,
@@ -139,7 +144,7 @@ const S = {
     ${reg18};
     color: var(--grey100);
     @media (max-width: 1279px) {
-      width: 20.625rem;
+      width: 100%;
       margin-bottom: 0rem;
       ${m_reg18}
     }
@@ -166,7 +171,7 @@ const S = {
     ${reg18};
     color: var(--grey100);
     @media (max-width: 1279px) {
-      width: 20.9375rem;
+      width: 100%;
       margin-top: 2rem;
       ${m_reg18}
     }
@@ -177,12 +182,15 @@ const S = {
     flex-direction: column;
     align-items: start;
     gap: 0.5rem;
+    @media (max-width: 1279px) {
+      width: 100%;
+    }
   `,
   SubTitle: styled.div`
     ${bold36}
     color: var(--grey100);
     @media (max-width: 1279px) {
-      width: 20.625rem;
+      width: 100%;
       margin-top: 10rem;
       ${m_bold36}
     }
@@ -200,6 +208,7 @@ const S = {
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
+      width: 100%;
     }
   `,
 
@@ -223,7 +232,7 @@ const S = {
     box-sizing: border-box;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
     @media (max-width: 1279px) {
-      width: 20.9rem;
+      width: 100%;
       padding: 2.5rem 3.75rem;
     }
   `,
@@ -234,6 +243,9 @@ const S = {
   DepartmentContainer: styled.div`
     display: flex;
     flex-direction: column;
+    @media (max-width: 1279px) {
+      width: 100%;
+    }
   `,
   DepartmentContentContainer: styled.div`
     display: flex;
@@ -251,6 +263,7 @@ const S = {
     margin-bottom: 0.52rem;
     @media (max-width: 1279px) {
       ${m_bold24};
+      width: 100%;
     }
   `,
   DepartmentMainDescription: styled.div`
@@ -259,6 +272,7 @@ const S = {
     color: var(--red);
     @media (max-width: 1279px) {
       ${m_bold18};
+      width: 100%;
     }
   `,
   DepartmentDescriptionContainer: styled.div`
@@ -277,6 +291,7 @@ const S = {
     flex-direction: column;
     gap: 0.5rem;
     @media (max-width: 1279px) {
+      width: 100%;
       gap: 0rem;
     }
   `,
@@ -327,6 +342,7 @@ const M = {
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
+      width: 100%;
       margin-bottom: 5rem;
     }
   `,
@@ -335,9 +351,8 @@ const M = {
 
     @media (max-width: 1279px) {
       display: flex;
-
-      display: flex;
       flex-direction: column;
+      width: 100%;
     }
   `,
   CardContentContainer: styled.div`
@@ -356,11 +371,12 @@ const M = {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
+      width: 100%;
       border-radius: 1rem;
       background-color: var(--grey500);
       box-sizing: border-box;
       box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
-      width: 20.9rem;
+
       padding: 2.5rem 0rem;
     }
   `,
@@ -392,11 +408,12 @@ const M = {
       display: flex;
       flex-direction: column;
       align-items: center;
-      border-radius: 1rem;
-      background: #e3e6f0;
-      width: 17.9rem;
+      width: 100%;
       margin-left: 0rem;
       padding: 1.25rem 1.5rem;
+      box-sizing: border-box;
+      border-radius: 1rem;
+      background: #e3e6f0;
     }
   `,
 };

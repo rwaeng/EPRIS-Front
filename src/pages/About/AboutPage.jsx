@@ -45,9 +45,9 @@ const AboutPage = () => {
           <S.LogoWrapper />
           <S.AboutPRContainer>
             <S.NameWrapper>
-              <S.RedText>E</S.RedText>WHA <S.RedText>P</S.RedText>UBLIC{' '}
-              <S.RedText>R</S.RedText>ELATIONS <S.RedText>I</S.RedText>N{' '}
-              <S.RedText>S</S.RedText>TUDY
+              <S.RedText>E</S.RedText>WHA&nbsp;<S.RedText>P</S.RedText>
+              UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
+              <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
             </S.NameWrapper>
             <S.HistoryWrapper>
               EPRIS는
