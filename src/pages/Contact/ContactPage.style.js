@@ -11,6 +11,7 @@ import { ReactComponent as Phone } from '../../assets/ContactPage/phone.svg';
 import { ReactComponent as Mail } from '../../assets/ContactPage/mail.svg';
 import { ReactComponent as Instagram } from '../../assets/ContactPage/instagram.svg';
 import { ReactComponent as Blog } from '../../assets/ContactPage/blog.svg';
+import { ReactComponent as Toast } from '../../assets/ContactPage/Group 21.svg';
 import Ellipse31 from '../../assets/ContactPage/Ellipse31.svg';
 import Ellipse32 from '../../assets/ContactPage/Ellipse32.svg';
 
@@ -25,15 +26,16 @@ const S = {
       width: calc(100% - 2.5rem);
       padding: 1rem 1.25rem;
     }
+
     @media (min-width: 750px) and (max-width: 1279px) {
-      width: 44.375rem;
+      max-width: 750px;
+      width: 100%;
       padding: 1rem 1.25rem;
       margin: 0 auto;
     }
-    /* @media (min-width: 1440px) {
-      width: 70rem;
+    @media (min-width: 1440px) {
       margin: 0 auto;
-    } */
+    }
   `,
 
   BackgroundImageContainer: styled.div`
@@ -48,7 +50,7 @@ const S = {
     }
   `,
 
-  Ellipse1Wrapper: styled.div`
+  Ellipse1: styled.div`
     position: absolute;
     width: 35rem;
     height: 35rem;
@@ -57,7 +59,7 @@ const S = {
     background-size: contain;
   `,
 
-  Ellipse2Wrapper: styled.div`
+  Ellipse2: styled.div`
     position: absolute;
     bottom: 3rem;
     right: -10rem;
@@ -78,14 +80,14 @@ const S = {
       margin-bottom: 5rem;
     }
   `,
-  TitleWrapper: styled.div`
+  Title: styled.div`
     ${bold56};
     color: var(--grey100);
     @media (max-width: 1279px) {
       ${m_bold56};
     }
   `,
-  SubTitleWrapper: styled.div`
+  SubTitle: styled.div`
     ${reg24};
     color: var(--grey300);
     @media (max-width: 1279px) {
@@ -144,14 +146,48 @@ const S = {
     height: 3rem;
     margin-bottom: 1.75rem;
   `,
-  SubTitleWrapper: styled.div`
+
+  CopySubTitle: styled.div`
     ${reg18};
     color: var(--grey300);
     margin-bottom: 0.5rem;
   `,
-  ContentWrapper: styled.div`
+  Content: styled.div`
     ${bold18};
     color: var(--grey100);
+  `,
+
+  ToastContainer: styled.div`
+    position: fixed;
+    top: 6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 46.0625rem;
+    padding: 0.625rem 2.5rem;
+    border-radius: 1.625rem;
+    background: var(--white);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+    gap: 1.25rem;
+
+    @media (max-width: 1279px) {
+      width: calc(100% - 2.5rem);
+    }
+  `,
+
+  ToastIcon: styled(Toast)`
+    width: 2rem;
+    height: 2rem;
+  `,
+
+  ToastText: styled.div`
+    ${reg18};
+    color: var(--black);
+    text-align: center;
   `,
 };
 

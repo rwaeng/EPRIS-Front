@@ -1,39 +1,65 @@
+import { useState } from 'react';
 import NavigationBar from '../../components/common/NavigatonBar';
 import { S } from './ContactPage.style';
 
 const ContactPage = () => {
+  const [toast, setToast] = useState('');
+
+  const clickCopy = text => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setToast(`클립보드에 복사되었습니다`);
+
+        setTimeout(() => {
+          setToast('');
+        }, 3000);
+      })
+      .catch(err => {
+        console.err('크립보드 복사 실패:', err);
+      });
+  };
+
   return (
     <S.Layout>
       <S.BackgroundImageContainer>
-        <S.Ellipse1Wrapper />
-        <S.Ellipse2Wrapper />
+        <S.Ellipse1 />
+        <S.Ellipse2 />
       </S.BackgroundImageContainer>
       <S.TitleContainer>
-        <S.TitleWrapper>Contact</S.TitleWrapper>
-        <S.SubTitleWrapper>연락 정보</S.SubTitleWrapper>
+        <S.Title>Contact</S.Title>
+        <S.SubTitle>연락 정보</S.SubTitle>
       </S.TitleContainer>
       <S.CardContainer>
-        <S.ContactCardContainer>
+        <S.ContactCardContainer onClick={() => clickCopy('010-4598-2934')}>
           <S.PhoneIcon />
-          <S.SubTitleWrapper>37th 회장 전유나</S.SubTitleWrapper>
-          <S.ContentWrapper>010-4598-2934</S.ContentWrapper>
+          <S.CopySubTitle>37th 회장 전유나</S.CopySubTitle>
+          <S.Content>010-4598-2934</S.Content>
         </S.ContactCardContainer>
-        <S.ContactCardContainer>
+        <S.ContactCardContainer
+          onClick={() => clickCopy('ewha_epris@naver.com')}
+        >
           <S.EmailIcon />
-          <S.SubTitleWrapper>E-mail</S.SubTitleWrapper>
-          <S.ContentWrapper>ewha_epris@naver.com</S.ContentWrapper>
+          <S.CopySubTitle>E-mail</S.CopySubTitle>
+          <S.Content>ewha_epris@naver.com</S.Content>
         </S.ContactCardContainer>
-        <S.ContactCardContainer>
+        <S.ContactCardContainer onClick={() => clickCopy('@epris_ewha')}>
           <S.InstagramIcon />
-          <S.SubTitleWrapper>Instagram</S.SubTitleWrapper>
-          <S.ContentWrapper>@epris_ewha</S.ContentWrapper>
+          <S.CopySubTitle>Instagram</S.CopySubTitle>
+          <S.Content>@epris_ewha</S.Content>
         </S.ContactCardContainer>
-        <S.ContactCardContainer>
+        <S.ContactCardContainer onClick={() => clickCopy('ewhaepris')}>
           <S.BlogIcon />
-          <S.SubTitleWrapper>Blog</S.SubTitleWrapper>
-          <S.ContentWrapper>ewhaepris</S.ContentWrapper>
+          <S.CopySubTitle>Blog</S.CopySubTitle>
+          <S.Content>ewhaepris</S.Content>
         </S.ContactCardContainer>
       </S.CardContainer>
+      {toast && (
+        <S.ToastContainer>
+          <S.ToastIcon />
+          <S.ToastText>{toast}</S.ToastText>
+        </S.ToastContainer>
+      )}
     </S.Layout>
   );
 };

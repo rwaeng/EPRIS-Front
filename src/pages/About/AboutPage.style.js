@@ -31,6 +31,9 @@ const S = {
       padding: 1rem 1.25rem;
       margin: 0 auto;
     }
+    @media (min-width: 1280px) {
+      padding-bottom: 10rem;
+    }
     @media (min-width: 1440px) {
       width: 70rem;
       margin: 0 auto;
@@ -61,7 +64,7 @@ const S = {
     width: 50rem;
     color: var(--white);
   `,
-  TitleWrapper: styled.div`
+  Title: styled.div`
     margin-bottom: 4rem;
     ${bold56}
     @media (max-width: 1279px) {
@@ -69,7 +72,7 @@ const S = {
       ${m_bold36}
     }
   `,
-  BackgroundSubTitleWrapper: styled.div`
+  BackgroundSubTitle: styled.div`
     margin-bottom: 1.53rem;
     ${bold36}
     @media (max-width: 1279px) {
@@ -78,7 +81,7 @@ const S = {
     }
   `,
 
-  IntroductionTextWrapper: styled.div`
+  IntroductionText: styled.div`
     ${reg18}
     @media (max-width: 1279px) {
       width: 20rem;
@@ -120,7 +123,7 @@ const S = {
       gap: 2rem;
     }
   `,
-  RedTextWrapper: styled.span`
+  RedText: styled.span`
     color: var(--red);
   `,
   NameWrapper: styled.div`
@@ -175,7 +178,7 @@ const S = {
     align-items: start;
     gap: 0.5rem;
   `,
-  SubTitleWrapper: styled.div`
+  SubTitle: styled.div`
     ${bold36}
     color: var(--grey100);
     @media (max-width: 1279px) {
@@ -184,7 +187,7 @@ const S = {
       ${m_bold36}
     }
   `,
-  SubTitleKrWrapper: styled.div`
+  SubTitleKr: styled.div`
     ${reg18}
     color: var(--grey300);
     @media (max-width: 1279px) {
@@ -213,8 +216,8 @@ const S = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 10.5rem;
-    height: 10.5rem;
+    width: 10.1875rem;
+    height: 10.1875rem;
     border-radius: 1rem;
     background-color: var(--grey500);
     box-sizing: border-box;
@@ -224,7 +227,7 @@ const S = {
       padding: 2.5rem 3.75rem;
     }
   `,
-  CardNameWrapper: styled.div`
+  CardName: styled.div`
     ${bold24}
     color:var(--white);
   `,
@@ -235,13 +238,14 @@ const S = {
   DepartmentContentContainer: styled.div`
     display: flex;
     flex-direction: column;
-    width: 46.0625rem;
+    max-width: 46.0625rem;
+    width: 40.0625rem;
     margin-left: ${props => props.marginLeft || '0'};
     padding: 2.5rem 3rem;
     border-radius: 1rem;
     background: #e3e6f0;
   `,
-  DepartmentNameWrapper: styled.div`
+  DepartmentName: styled.div`
     ${bold24};
     color: var(--black);
     margin-bottom: 0.52rem;
@@ -249,7 +253,7 @@ const S = {
       ${m_bold24};
     }
   `,
-  DepartmentMainDescriptionWrapper: styled.div`
+  DepartmentMainDescription: styled.div`
     margin-bottom: 1.5rem;
     ${bold18};
     color: var(--red);
@@ -276,14 +280,14 @@ const S = {
       gap: 0rem;
     }
   `,
-  DepartmentDetailsTitleWrapper: styled.div`
+  DepartmentDetailsTitle: styled.div`
     ${bold18};
     color: var(--black);
     @media (max-width: 1279px) {
       ${m_bold18};
     }
   `,
-  DepartmentDetailsWrapper: styled.div`
+  DepartmentDetails: styled.div`
     white-space: pre-wrap;
     ${reg14};
     color: var(--black);
