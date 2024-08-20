@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from 'react';
 
 // textarea 입력 시 높이 조정
-const useResizeTextarea = text => {
+const useResizeTextarea = () => {
   const ref = useRef();
 
   const resizeTextarea = useCallback(() => {
@@ -13,7 +13,7 @@ const useResizeTextarea = text => {
 
   useEffect(() => {
     resizeTextarea();
-  }, [text]);
+  }, []);
 
   return { ref, onInput: resizeTextarea };
 };
