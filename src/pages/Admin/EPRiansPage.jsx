@@ -11,7 +11,7 @@ import { S } from './EPRiansPage.style';
 
 import plusIcon from '../../assets/Admin_EPRiansPage/ps.svg';
 import MemberTable from '../../components/Admin_EPRiansPage/MemberTable';
-import { postPresignedURL, putPresignedURL } from '../../api/fileUpload';
+import { uploadImages } from '../../api/fileUpload';
 import { getLogos, postLogos } from '../../api/logo';
 
 const EPRiansPage = () => {
