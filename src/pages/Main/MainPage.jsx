@@ -7,27 +7,35 @@ import Logo from '../../assets/Main/logo.svg';
 import arrowIcon from '../../assets/Main/arrow_right.svg';
 import Greetings from '../../components/Main/Greetings.jsx';
 import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons.jsx';
-import { getStatsInfo, getClassInfo } from '../../api/main.js';
+import {
+  getStatsInfo,
+  getGreetingCards,
+  getClassInfo,
+} from '../../api/main.js';
 const MainPage = () => {
   const [data, setData] = useState(null);
+  const [greetingCards, setGreetingCards] = useState(null);
   const [classInfo, setClassInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [statsData, classData] = await Promise.all([
+        const [statsData, greetingCardData, classData] = await Promise.all([
           getStatsInfo(),
+          getGreetingCards(),
           getClassInfo(),
         ]);
         console.log('Fetched Stats data:', statsData); // 디버깅용 로그
+        console.log('Fetched Stats data:', greetingCardData); // 디버깅용 로그
         console.log('Fetched class data:', classData); // 디버깅용 로그
         setData(statsData);
+        setGreetingCards(greetingCardData.data);
         setClassInfo(classData);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
-        setIsLoading(false); // 데이터 요청 완료 후 로딩 상태 종료
+        setIsLoading(false);
       }
     };
 
@@ -37,14 +45,6 @@ const MainPage = () => {
   if (isLoading) {
     return <S.MainLayout></S.MainLayout>; // 로딩 중 표시
   }
-
-  console.log('Data:', data);
-  // console.log('Class Info:', classInfo);
-
-  const projectNum = data.projectNum;
-  const awardsNum = data.awardsNum;
-  const adminImg = classInfo.adminImg;
-
   return (
     <S.MainLayout>
       <S.TopContainer>
@@ -121,8 +121,16 @@ const MainPage = () => {
           <S.TitleText>Greetings</S.TitleText>
           <S.SubText>인사말</S.SubText>
           <S.GreetingsContainer>
-            <Greetings />
-            <Greetings />
+            {greetingCards.length > 0 ? (
+              greetingCards.map(greetingCard => (
+                <Greetings
+                  key={greetingCard.cardId}
+                  greetingCard={greetingCard}
+                />
+              ))
+            ) : (
+              <div></div>
+            )}
           </S.GreetingsContainer>
         </S.ContentContainer>
         <S.ContentContainer>

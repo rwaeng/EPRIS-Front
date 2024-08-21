@@ -30,9 +30,19 @@ export const getStatsInfo = async () => {
   }
 };
 
+//기수 정보 조회(현 임원진 사진 조회)
 export const getClassInfo = async () => {
   try {
     const response = await instance.get(`/class-info`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getGreetingCards = async () => {
+  try {
+    const response = await instance.get(`/cards`);
     return response;
   } catch (error) {
     throw error;
