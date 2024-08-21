@@ -23,8 +23,7 @@ const S = {
     align-items: center;
 
     @media (max-width: 749px) {
-      width: calc(100% - 2.5rem);
-      padding: 1rem 1.25rem;
+      width: 100%;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
       width: calc(100% - 2.5rem);
@@ -35,6 +34,7 @@ const S = {
       padding-bottom: 10rem;
     }
     @media (min-width: 1440px) {
+      width: 70rem;
       margin: 0 auto;
     }
   `,
@@ -90,11 +90,16 @@ const S = {
     }
   `,
 
-  IntroducctionContainer: styled.div`
+  IntroductionContainer: styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    @media (max-width: 749px) {
+      width: calc(100% - 2.5rem);
+      padding: 1rem 1.25rem;
+      box-sizing: border-box;
+    }
   `,
   AboutContainer: styled.div`
     display: flex;
@@ -113,8 +118,8 @@ const S = {
     max-width: 30rem;
     height: 100%;
     max-height: 7.97rem;
-    margin-left: 10rem;
     box-sizing: border-box;
+
     @media (max-width: 1279px) {
       box-sizing: border-box;
       padding: 0 1.5rem;
@@ -125,11 +130,12 @@ const S = {
   AboutPRContainer: styled.div`
     display: flex;
     flex-direction: column;
-    margin-right: 8.75;
     box-sizing: border-box;
+
     gap: 4rem;
+
     @media (max-width: 1279px) {
-      align-items: center;
+      align-items: start;
       width: 100%;
       max-width: 44.375rem;
       margin-right: 0;
@@ -143,7 +149,6 @@ const S = {
     ${bold24}
     color: var(--grey100);
     @media (max-width: 1279px) {
-      display: flex;
       max-width: 44.375rem;
       ${m_bold24}
     }
@@ -151,7 +156,6 @@ const S = {
   HistoryWrapper: styled.div`
     width: 34.125rem;
     margin-bottom: 17.5rem;
-    margin-right: 8.75rem;
 
     ${reg18};
     color: var(--grey100);
@@ -165,7 +169,6 @@ const S = {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: calc(100% - 20rem);
     box-sizing: border-box;
     gap: 3rem;
     @media (max-width: 1279px) {

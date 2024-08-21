@@ -42,7 +42,7 @@ const AboutPage = () => {
             </S.IntroductionText>
           </S.AboutTextContainer>
         </S.BcakgroundImageContainer>
-        <S.IntroducctionContainer>
+        <S.IntroductionContainer>
           <S.AboutContainer>
             <S.LogoWrapper />
             <S.AboutPRContainer>
@@ -164,7 +164,7 @@ EPRIS의 임원진은 회장, 기획부장, 운영부장, 홍보부장의 4인 �
               </M.Container>
             </S.DepartmentContainer>
           </S.SubTitleContainer>
-        </S.IntroducctionContainer>
+        </S.IntroductionContainer>
       </S.Layout>
     </>
   );
