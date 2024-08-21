@@ -5,15 +5,29 @@ import deleteImg from '../../assets/Admin/ps.svg';
 import { UploadComponent } from '../common/UploadComponent/UploadComponent.jsx';
 import { TextButton } from '../common/CommonButtons/CommonButtons.jsx';
 
-const CardComponent = () => {
-  const [name, setName] = useState('');
-  const [position, setPosition] = useState('');
-  const [text, setText] = useState('');
-
+const CardComponent = ({ card, index, isNew, handleSaveCard }) => {
+  const [name, setName] = useState(card.name);
+  const [position, setPosition] = useState(card.position);
+  const [text, setText] = useState(card.introduce);
+  const [cardImg, setCardImg] = useState(card.cardImg);
   const textResize = useResizeTextarea(text);
+
+  const handleSave = async () => {
+    try {
+      if (isNew) {
+        await handleSaveCard(isNew, name, position, text, cardImg); // 카드 생성
+      } else {
+        await handleSaveCard(card.cardId, name, position, text, cardImg); // 카드 수정
+      }
+      console.log('Card saved successfully');
+    } catch (error) {
+      console.error('Error saving card:', error);
+    }
+  };
+
   return (
     <S.CardLayout>
-      <S.CardText>Card 1</S.CardText>
+      <S.CardText>Card {index + 1}</S.CardText>
       <S.InfoInput
         placeholder='이름'
         value={name}
@@ -38,7 +52,7 @@ const CardComponent = () => {
         <S.DeleteImg src={deleteImg} />
       </S.DeleteContainer>
       <S.BtnWrapper>
-        <TextButton isActive={true} text='저장' />
+        <TextButton isActive={true} text='저장' onClick={handleSave} />
       </S.BtnWrapper>
     </S.CardLayout>
   );
