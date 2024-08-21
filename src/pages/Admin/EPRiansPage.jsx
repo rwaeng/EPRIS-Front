@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import NavigationBar from '../../components/common/NavigatonBar';
 import InbAdmin from '../../components/common/InbAdmin';
@@ -11,6 +11,8 @@ import { S } from './EPRiansPage.style';
 
 import plusIcon from '../../assets/Admin_EPRiansPage/ps.svg';
 import MemberTable from '../../components/Admin_EPRiansPage/MemberTable';
+import { uploadImages } from '../../api/fileUpload';
+import { getLogos, postLogos } from '../../api/logo';
 
 const EPRiansPage = () => {
   const menuList = ['Members', 'Alumni Brands'];
@@ -36,6 +38,45 @@ const EPRiansPage = () => {
 
   //Alumni Brands
   const [isLogoChanged, setIsLogoChanged] = useState(false);
+  const [imgFile, setImgFile] = useState([]); //실제 이미지 파일
+  const [imgPreview, setImgPreview] = useState([]); //프리뷰로 띄울 이미지 url
+  const [imageUrlList, setImageUrlList] = useState([]); //백엔드에 보낼 presigned url
+
+  useEffect(() => {
+    const getPrevImages = async () => {
+      //기존에 저장되어있던 이미지를 불러와서 프리뷰 + presigned url 배열에 저장
+      try {
+        const res = await getLogos('alumni');
+
+        const prevUrlList = res.map(item => item.imageUrl);
+        setImgPreview(prevUrlList);
+        setImageUrlList(prevUrlList.map(url => ({ imageUrl: url })));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getPrevImages();
+  }, []);
+
+  const createLogos = async finalUrlList => {
+    try {
+      const res = await postLogos('alumni', finalUrlList);
+      if (res) {
+        setImageUrlList(finalUrlList);
+        alert('저장되었습니다.');
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  //저장 버튼 클릭하였을 때 실행
+  const handleImageUploadButton = async () => {
+    const updatedUrlList = await uploadImages(imgFile); // presigned url 발급
+    const finalUrlList = [...imageUrlList, ...updatedUrlList]; //기존 presigned url 배열에 추가된 이미지 url 저장
+    await createLogos(finalUrlList); // 백엔드로 이미지 URL 배열 전송
+  };
 
   return (
     <S.Container>
@@ -68,12 +109,22 @@ const EPRiansPage = () => {
         <S.AlumniBrandsContainer>
           <S.Title>Corporate Logo</S.Title>
           <S.UploadComponentWrapper>
-            <UploadComponent imageNum={null} ratio='5:3' />
+            <UploadComponent
+              imageNum={null}
+              ratio='5:3'
+              imgFile={imgFile}
+              setImgFile={setImgFile}
+              imgPreview={imgPreview}
+              setImgPreview={setImgPreview}
+              setImageUrlList={setImageUrlList}
+              setIsChanged={setIsLogoChanged}
+            />
           </S.UploadComponentWrapper>
           <TextButton
             text='저장'
             isActive={isLogoChanged}
             disabled={!isLogoChanged}
+            onClick={handleImageUploadButton}
           />
         </S.AlumniBrandsContainer>
       )}
