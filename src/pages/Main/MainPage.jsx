@@ -1,12 +1,50 @@
 import { S } from './MainPage.style.js';
+import { useEffect, useState } from 'react';
 import NavigationBar from '../../components/common/NavigatonBar';
 import Down from '../../assets/Main/arrow_down_circle.svg';
 import Logo from '../../assets/Main/logo.svg';
-import Admins from '../../assets/Main/adminImg.svg';
+// import Admins from '../../assets/Main/adminImg.svg';
 import arrowIcon from '../../assets/Main/arrow_right.svg';
 import Greetings from '../../components/Main/Greetings.jsx';
 import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons.jsx';
+import { getStatsInfo, getClassInfo } from '../../api/main.js';
 const MainPage = () => {
+  const [data, setData] = useState(null);
+  const [classInfo, setClassInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [statsData, classData] = await Promise.all([
+          getStatsInfo(),
+          getClassInfo(),
+        ]);
+        console.log('Fetched Stats data:', statsData); // 디버깅용 로그
+        console.log('Fetched class data:', classData); // 디버깅용 로그
+        setData(statsData);
+        setClassInfo(classData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false); // 데이터 요청 완료 후 로딩 상태 종료
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (isLoading) {
+    return <S.MainLayout></S.MainLayout>; // 로딩 중 표시
+  }
+
+  console.log('Data:', data);
+  // console.log('Class Info:', classInfo);
+
+  const projectNum = data.projectNum;
+  const awardsNum = data.awardsNum;
+  const adminImg = classInfo.adminImg;
+
   return (
     <S.MainLayout>
       <S.TopContainer>
@@ -40,11 +78,11 @@ const MainPage = () => {
             </S.BlackBoxContainer>
             <S.BlackBoxContainer>
               <S.BlackTitle>산학프로젝트</S.BlackTitle>
-              <S.BlackText>10개</S.BlackText>
+              <S.BlackText>{`${data.data.projectNum}개`}</S.BlackText>
             </S.BlackBoxContainer>
             <S.BlackBoxContainer>
               <S.BlackTitle>수상이력</S.BlackTitle>
-              <S.BlackText>6회</S.BlackText>
+              <S.BlackText>{`${data.data.awardsNum}회`}</S.BlackText>
             </S.BlackBoxContainer>
           </S.ValueContainer>
         </S.ContentContainer>
@@ -91,7 +129,7 @@ const MainPage = () => {
           <S.TitleText>Administrators</S.TitleText>
           <S.SubText>현 임원진</S.SubText>
           <S.ValueContainer>
-            <S.AdministratorPhoto src={Admins} />
+            <S.AdministratorPhoto src={classInfo.data.adminImg} />
           </S.ValueContainer>
         </S.ContentContainer>
         <S.BottomContainer>
