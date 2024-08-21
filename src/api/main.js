@@ -40,9 +40,20 @@ export const getClassInfo = async () => {
   }
 };
 
+//Greetings 조회
 export const getGreetingCards = async () => {
   try {
     const response = await instance.get(`/cards`);
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//모집 정보 조회(공지 문구 조회)
+export const getRecruitmentInfo = async () => {
+  try {
+    const response = await instance.get(`/recruitment`);
     return response;
   } catch (error) {
     throw error;

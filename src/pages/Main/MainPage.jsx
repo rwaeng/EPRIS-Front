@@ -11,27 +11,34 @@ import {
   getStatsInfo,
   getGreetingCards,
   getClassInfo,
+  getRecruitmentInfo,
 } from '../../api/main.js';
 const MainPage = () => {
   const [data, setData] = useState(null);
   const [greetingCards, setGreetingCards] = useState(null);
   const [classInfo, setClassInfo] = useState(null);
+  const [recruitmentInfo, setRecruitmentInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [statsData, greetingCardData, classData] = await Promise.all([
-          getStatsInfo(),
-          getGreetingCards(),
-          getClassInfo(),
-        ]);
+        const [statsData, greetingCardData, classData, recruitmentData] =
+          await Promise.all([
+            getStatsInfo(),
+            getGreetingCards(),
+            getClassInfo(),
+            getRecruitmentInfo(),
+          ]);
         console.log('Fetched Stats data:', statsData); // 디버깅용 로그
         console.log('Fetched Stats data:', greetingCardData); // 디버깅용 로그
         console.log('Fetched class data:', classData); // 디버깅용 로그
-        setData(statsData);
+        console.log('Fetched class data:', recruitmentData); // 디버깅용 로그
+
+        setData(statsData.data);
         setGreetingCards(greetingCardData.data);
-        setClassInfo(classData);
+        setClassInfo(classData.data);
+        setRecruitmentInfo(recruitmentData.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -71,18 +78,17 @@ const MainPage = () => {
         </S.ValueContainer>
         <S.ContentContainer>
           <S.ValueContainer>
-            {/* 나중에 api연결 시 컴포넌트로 분리할 예정 */}
             <S.BlackBoxContainer>
               <S.BlackTitle>설립년도</S.BlackTitle>
               <S.BlackText>2000년</S.BlackText>
             </S.BlackBoxContainer>
             <S.BlackBoxContainer>
               <S.BlackTitle>산학프로젝트</S.BlackTitle>
-              <S.BlackText>{`${data.data.projectNum}개`}</S.BlackText>
+              <S.BlackText>{`${data.projectNum}개`}</S.BlackText>
             </S.BlackBoxContainer>
             <S.BlackBoxContainer>
               <S.BlackTitle>수상이력</S.BlackTitle>
-              <S.BlackText>{`${data.data.awardsNum}회`}</S.BlackText>
+              <S.BlackText>{`${data.awardsNum}회`}</S.BlackText>
             </S.BlackBoxContainer>
           </S.ValueContainer>
         </S.ContentContainer>
@@ -137,12 +143,12 @@ const MainPage = () => {
           <S.TitleText>Administrators</S.TitleText>
           <S.SubText>현 임원진</S.SubText>
           <S.ValueContainer>
-            <S.AdministratorPhoto src={classInfo.data.adminImg} />
+            <S.AdministratorPhoto src={classInfo.adminImg} />
           </S.ValueContainer>
         </S.ContentContainer>
         <S.BottomContainer>
           <TextIconButton text='Join us' icon={arrowIcon} border='80px' />
-          <S.AnnounceText>리크루팅 공지 문구의 위치입니다.</S.AnnounceText>
+          <S.AnnounceText>{recruitmentInfo.notice}</S.AnnounceText>
         </S.BottomContainer>
       </S.BodyContainer>
     </S.MainLayout>
