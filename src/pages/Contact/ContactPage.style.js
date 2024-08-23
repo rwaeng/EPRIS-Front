@@ -153,6 +153,9 @@ const S = {
     margin-bottom: 0.5rem;
   `,
   Content: styled.div`
+    display: flex;
+    justify-content: center;
+    width: 85%;
     ${bold18};
     color: var(--grey100);
   `,
