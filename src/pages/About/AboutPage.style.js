@@ -34,7 +34,7 @@ const S = {
       padding-bottom: 10rem;
     }
     @media (min-width: 1440px) {
-      width: 70rem;
+      width: 1440px;
       margin: 0 auto;
     }
   `,
@@ -51,6 +51,9 @@ const S = {
       width: 100%;
       max-width: 44.375rem;
       margin-bottom: 5rem;
+    }
+    @media (min-width: 1440px) {
+      width: 1440px;
     }
   `,
   AboutTextContainer: styled.div`
@@ -95,6 +98,8 @@ const S = {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    padding: 0 10rem;
+    box-sizing: border-box;
     @media (max-width: 749px) {
       width: calc(100% - 2.5rem);
       padding: 1rem 1.25rem;

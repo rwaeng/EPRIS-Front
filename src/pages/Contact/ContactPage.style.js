@@ -159,7 +159,7 @@ const S = {
 
   ToastContainer: styled.div`
     position: fixed;
-    top: 6rem;
+    top: 50%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 100;
