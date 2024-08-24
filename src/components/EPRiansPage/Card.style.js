@@ -20,10 +20,12 @@ S.Card = styled.div`
 `;
 
 S.CardImage = styled.img`
-  width: 100%;
+  width: 13.6875rem;
+  height: 13.6875rem;
   border-radius: 0.5rem;
 
-  background: lightgray 50% / cover no-repeat;
+  object-fit: contain;
+  background: lightgray 50%;
 `;
 
 S.CardRole = styled.div`

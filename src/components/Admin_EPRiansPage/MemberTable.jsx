@@ -1,32 +1,57 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { S } from './MemberTable.style';
-import plusIcon from '../../assets/Admin_EPRiansPage/ps-mini.svg';
+
 import addRowIcon from '../../assets/Admin_EPRiansPage/ps-row.svg';
 import deleteRowIcon from '../../assets/Admin_EPRiansPage/ms.svg';
-import CustomCheckbox from './CustomCheckbox';
 
-const MemberTable = ({ memberNum, handleDeleteMembers }) => {
-  const [rows, setRows] = useState([{ id: 1 }, { id: 2 }, { id: 3 }]);
-  const [checked, setChecked] = useState(false);
+import TableRow from './TableRow';
 
-  const handleCheckbox = () => {
-    console.log('실행');
-    setChecked(!checked);
-  };
+const MemberTable = ({
+  info,
+  memberNum,
+  handleDeleteTable,
+  addId,
+  setAddId,
+}) => {
+  const [memberList, setMemberList] = useState(info.memberList);
+  const [memberGen, setMemberGen] = useState(info.num);
+
+  useEffect(() => {
+    if (memberGen < 1) {
+      setMemberGen('');
+    }
+  }, []);
 
   const handleAddRow = () => {
-    setRows([...rows, { id: rows.length + 1 }]);
+    setMemberList([
+      ...memberList,
+      {
+        num: memberGen,
+        memberId: addId,
+        name: '',
+        position: '',
+        memberInfo: '',
+        profileUrl: '',
+        isActive: true,
+      },
+    ]);
+    setAddId(prev => prev - 1);
   };
-  const handleDeleteRow = id => {
-    if (rows.length > 1) {
-      setRows(rows.filter(row => row.id !== id));
-    }
+
+  const handleChangeText = e => {
+    const { value } = e.target;
+    setMemberGen(value);
   };
 
   return (
     <S.Container>
       <S.MemberNum>{`Members ${memberNum}`}</S.MemberNum>
-      <S.GenInput type='text' placeholder='기수' />
+      <S.GenInput
+        type='text'
+        placeholder='기수 (ex. 37th)'
+        value={memberGen}
+        onChange={handleChangeText}
+      />
       <S.Table>
         <thead>
           <tr>
@@ -47,59 +72,23 @@ const MemberTable = ({ memberNum, handleDeleteMembers }) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map(row => (
-            <tr key={row.id}>
-              <S.Td $left='0'>
-                <S.TInput type='text' placeholder='이름' />
-              </S.Td>
-              <S.Td>
-                <S.TInput type='text' placeholder='직위' />
-              </S.Td>
-              <S.Td>
-                <S.TInput type='text' placeholder='학번 및 소속' />
-              </S.Td>
-              <S.Td $right='1.75rem solid var(--black)'>
-                <S.TFileInput htmlFor='file-input'>
-                  <img src={plusIcon} />
-                  <div>사진 업로드</div>
-                </S.TFileInput>
-                <input
-                  type='file'
-                  id='file-input'
-                  style={{ display: 'none' }}
-                />
-              </S.Td>
-              <S.Td $right='none'>
-                <S.TdContainer>
-                  <S.CheckboxWrapper>
-                    <CustomCheckbox
-                      checked={checked}
-                      onChange={handleCheckbox}
-                    />
-                  </S.CheckboxWrapper>
-                  <S.DeleteButton
-                    onClick={() => {
-                      handleDeleteRow(row.id);
-                    }}
-                  >
-                    제거
-                  </S.DeleteButton>
-                </S.TdContainer>
-              </S.Td>
-              <td>
-                <S.SaveButton>저장</S.SaveButton>
-              </td>
-            </tr>
+          {memberList.map(mem => (
+            <TableRow
+              key={mem.memberId}
+              mem={mem}
+              setMemberList={setMemberList}
+              num={memberGen}
+            />
           ))}
         </tbody>
       </S.Table>
       <S.ButtonTab>
-        <S.RowButton onClick={() => handleDeleteMembers(memberNum)}>
+        <S.RowButton onClick={() => handleDeleteTable(memberGen, info.num)}>
           <div>삭제</div>
           <img src={deleteRowIcon} />
         </S.RowButton>
         <S.RowButton onClick={handleAddRow}>
-          <div>열 추가하기</div>
+          <div>행 추가하기</div>
           <img src={addRowIcon} />
         </S.RowButton>
       </S.ButtonTab>

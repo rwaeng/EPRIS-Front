@@ -47,12 +47,14 @@ export const UploadComponent = ({
         //imageNum보다 많은 수의 사진 업로드를 막음
         previewUrl = previewUrl.slice(0, imageNum);
         files = files.slice(0, imageNum);
+      } else {
+        setImgPreview(previewUrl);
+        setImgFile(files);
+        setIsChanged(true);
       }
-
-      setImgPreview(previewUrl);
-      setImgFile(files);
-      setIsChanged(true);
     }
+
+    e.target.value = ''; //동일한 사진 연속 업로드되도록 초기화
   };
 
   const handleDeleteImage = id => {
@@ -77,7 +79,13 @@ export const UploadComponent = ({
           style={{ display: 'none' }}
         />
         <S.Title>사진 업로드</S.Title>
-        <S.Ratio>{imageNum ? `(${ratio}, ${imageNum}장)` : ratio}</S.Ratio>
+        <S.Ratio>
+          {imageNum
+            ? ratio
+              ? `(${ratio}, ${imageNum}장)`
+              : `${imageNum}장`
+            : ratio}
+        </S.Ratio>
         <S.FileName>
           {imgFile.length > 0 && imgFile[imgFile.length - 1].name}
         </S.FileName>
