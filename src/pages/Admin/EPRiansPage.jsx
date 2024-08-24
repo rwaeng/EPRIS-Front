@@ -13,26 +13,60 @@ import plusIcon from '../../assets/Admin_EPRiansPage/ps.svg';
 import MemberTable from '../../components/Admin_EPRiansPage/MemberTable';
 import { uploadImages } from '../../api/fileUpload';
 import { getLogos, postLogos } from '../../api/logo';
+import { deleteGeneration, getMembers } from '../../api/member';
 
 const EPRiansPage = () => {
+  //INB
   const menuList = ['Members', 'Alumni Brands'];
   const [clicked, setClicked] = useState(menuList[0]);
 
   //Members
-  const [members, setMembers] = useState([{ id: 1 }]);
+  const [memberTable, setMemberTable] = useState([]);
+  const [addId, setAddId] = useState(0);
+
+  useEffect(() => {
+    const getPrevMembers = async () => {
+      try {
+        const res = await getMembers();
+        res.sort((a, b) => {
+          // 'th' 제거 후 정수로 변환
+          const numA = parseInt(a.num.replace('th', ''), 10);
+          const numB = parseInt(b.num.replace('th', ''), 10);
+
+          // 내림차순 정렬
+          return numA - numB;
+        });
+
+        setMemberTable(res);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getPrevMembers();
+  }, []);
 
   const handleAddMembers = () => {
-    setMembers([...members, { id: members.length + 1 }]);
+    setMemberTable([...memberTable, { num: addId, memberList: [] }]);
+    setAddId(prev => prev - 1);
   };
 
-  const handleDeleteMembers = id => {
-    if (members.length > 1) {
-      const updatedMembers = members.filter(mem => mem.id !== id);
-      const reindexedMembers = updatedMembers.map((mem, index) => ({
-        ...mem,
-        id: index + 1,
-      }));
-      setMembers(reindexedMembers);
+  const handleDeleteTable = async (gen, num) => {
+    try {
+      if (num < 1) {
+        setMemberTable(prev => prev.filter(table => table.num !== num));
+      } else {
+        const res = await deleteGeneration(gen);
+
+        if (res.status === 200) {
+          alert('삭제되었습니다.');
+          setMemberTable(prev => prev.filter(table => table.num !== gen));
+        } else {
+          alert('오류가 발생했습니다. 다시 시도해주세요.');
+        }
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -62,9 +96,12 @@ const EPRiansPage = () => {
   const createLogos = async finalUrlList => {
     try {
       const res = await postLogos('alumni', finalUrlList);
-      if (res) {
+      if (res.status === 200) {
         setImageUrlList(finalUrlList);
         alert('저장되었습니다.');
+        setIsLogoChanged(false);
+      } else {
+        alert('오류가 발생했습니다. 다시 시도해주세요.');
       }
     } catch (err) {
       console.error(err);
@@ -84,11 +121,14 @@ const EPRiansPage = () => {
       <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
       {clicked === menuList[0] ? (
         <S.MembersContainer>
-          {members.map(mem => (
+          {memberTable.map((mem, index) => (
             <MemberTable
-              key={mem.id}
-              memberNum={mem.id}
-              handleDeleteMembers={handleDeleteMembers}
+              key={mem.num}
+              memberNum={index + 1}
+              info={mem}
+              handleDeleteTable={handleDeleteTable}
+              addId={addId}
+              setAddId={setAddId}
             />
           ))}
 

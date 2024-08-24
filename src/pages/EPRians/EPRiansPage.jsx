@@ -2,51 +2,35 @@ import NavigationBar from '../../components/common/NavigatonBar';
 import { S } from './EPRiansPage.style';
 import Dropdown from '../../components/EPRiansPage/Dropdown';
 
-import profileBasic from '../../assets/EPRiansPage/profile_basic.png';
-import brandExample from '../../assets/EPRiansPage/brand_example.svg';
 import arrowDown from '../../assets/EPRiansPage/arrow_downward.svg';
 import arrowUp from '../../assets/EPRiansPage/arrow_upward.svg';
 import ViewMoreButton from '../../components/EPRiansPage/ViewMoreButton';
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { ActingCard, AlumniCard } from '../../components/EPRiansPage/Card';
-
-const brandDummyArr = [
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-  brandExample,
-];
-
-const executiveDummyArr = [1, 1, 1, 1];
-const actingDummyArr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
-const alumniDummyArr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+import { getMembers, getMembersActive, getMembersExe } from '../../api/member';
+import { getLogos } from '../../api/logo';
 
 const EPRiansPage = () => {
   const [brandList, setBrandList] = useState([]);
+  const [pagedBrandList, setPagedBrandList] = useState([]); //한 페이지에 들어갈 브랜드 리스트
   const [currentBrandIndex, setCurrentBrandIndex] = useState(0);
   const [hasMoreBrands, setHasMoreBrands] = useState(true);
   const brandsPerPage = 12;
 
-  const [actingList, setActingList] = useState([]);
+  const [genList, setGenList] = useState([]); //기수 리스트
+
+  const [executiveList, setExecutiveList] = useState([]); //운영진 리스트
+
+  const [actingList, setActingList] = useState([]); //활동회원 리스트
+  const [pagedActingList, setPagedActingList] = useState([]); //한 페이지에 들어갈 활동회원 리스트
   const [currentActingIndex, setCurrentActingIndex] = useState(0);
   const [hasMoreActing, setHasMoreActing] = useState(true);
   const actingPerPage = 4;
 
-  const [alumniList, setAlumniList] = useState([]);
+  const [alumniList, setAlumniList] = useState([]); //수료회원 리스트
+  const [pagedAlumniList, setPagedAlumniList] = useState([]); //한 페이지에 들어갈 수료회원 리스트
+
   const [currentAlumniIndex, setCurrentAlumniIndex] = useState(0);
   const [hasMoreAlumni, setHasMoreAlumni] = useState(true);
   const AlumniPerPage = 4;
@@ -55,20 +39,61 @@ const EPRiansPage = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   useEffect(() => {
-    handleBrandViewMore();
-    handleAlumniViewMore();
+    const fetchData = async () => {
+      try {
+        // API 호출
+        const [memberRes, executiveRes, actingRes, brandRes] =
+          await Promise.all([
+            getMembers(),
+            getMembersExe(),
+            getMembersActive(),
+            getLogos(),
+          ]);
+
+        const sortedGen = memberRes
+          .map(item => item.num)
+          .sort((a, b) => {
+            const numA = parseInt(a.replace('th', ''), 10);
+            const numB = parseInt(b.replace('th', ''), 10);
+            return numB - numA; // 내림차순 정렬
+          });
+
+        // 데이터 설정
+        setGenList(sortedGen);
+        setExecutiveList(executiveRes);
+        setActingList(actingRes);
+        setBrandList(brandRes);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchData();
   }, []);
+
+  useEffect(() => {
+    if (brandList.length > 0) {
+      handleBrandViewMore();
+    }
+  }, [brandList]);
+
+  useEffect(() => {
+    if (alumniList.length > 0) {
+      handleAlumniViewMore();
+    }
+  }, [alumniList]);
 
   // 브랜드 목록을 업데이트하는 함수
   const updateBrandList = () => {
-    const newBrands = brandDummyArr.slice(0, currentBrandIndex + brandsPerPage);
-    setBrandList(newBrands);
+    const newBrands = brandList.slice(0, currentBrandIndex + brandsPerPage);
+    setPagedBrandList(newBrands);
   };
 
   const handleBrandViewMore = () => {
+    console.log('실행');
     const newIndex = currentBrandIndex + brandsPerPage;
     // 현재 페이지의 끝에 도달했는지 확인
-    if (newIndex < brandDummyArr.length) {
+    if (newIndex < brandList.length) {
       // 더 많은 브랜드를 로드
       setHasMoreBrands(true);
       setCurrentBrandIndex(newIndex);
@@ -82,17 +107,14 @@ const EPRiansPage = () => {
   };
 
   const updateActingList = () => {
-    const newActing = actingDummyArr.slice(
-      0,
-      currentActingIndex + actingPerPage,
-    );
-    setActingList(newActing);
+    const newActing = actingList.slice(0, currentActingIndex + actingPerPage);
+    setPagedActingList(newActing);
   };
 
   const handleActingViewMore = () => {
     const newIndex = currentActingIndex + actingPerPage;
     // 현재 페이지의 끝에 도달했는지 확인
-    if (newIndex < actingDummyArr.length) {
+    if (newIndex < actingList.length) {
       // 더 많은 브랜드를 로드
       setHasMoreActing(true);
       setCurrentActingIndex(newIndex);
@@ -106,17 +128,14 @@ const EPRiansPage = () => {
   };
 
   const updateAlumniList = () => {
-    const newAlumni = alumniDummyArr.slice(
-      0,
-      currentAlumniIndex + AlumniPerPage,
-    );
-    setAlumniList(newAlumni);
+    const newAlumni = alumniList.slice(0, currentAlumniIndex + AlumniPerPage);
+    setPagedAlumniList(newAlumni);
   };
 
   const handleAlumniViewMore = () => {
     const newIndex = currentAlumniIndex + AlumniPerPage;
     // 현재 페이지의 끝에 도달했는지 확인
-    if (newIndex < alumniDummyArr.length) {
+    if (newIndex < alumniList.length) {
       // 더 많은 브랜드를 로드
       setHasMoreAlumni(true);
       setCurrentAlumniIndex(newIndex);
@@ -141,36 +160,36 @@ const EPRiansPage = () => {
         <S.Subtitle>활동 학회원</S.Subtitle>
 
         <S.MemberContainer className='acting'>
-          {executiveDummyArr.map((_, index) => (
+          {executiveList.map((mem, index) => (
             <ActingCard
-              key={index}
-              profImg={profileBasic}
-              role='직위'
-              name='이름'
-              info='학번 및 소속'
+              key={mem.memberId}
+              profImg={mem.profileUrl}
+              role={mem.position}
+              name={mem.name}
+              info={mem.memberInfo}
               $color='var(--red)'
             />
           ))}
           {isMobile &&
-            actingList.map((_, index) => (
+            pagedActingList.map((mem, index) => (
               <ActingCard
-                key={index}
-                profImg={profileBasic}
-                role='직위'
-                name='이름'
-                info='학번 및 소속'
+                key={mem.memberId}
+                profImg={mem.profileUrl}
+                role={mem.position}
+                name={mem.name}
+                info={mem.memberInfo}
               />
             ))}
 
           <S.RowLine />
           {isDesktop &&
-            actingDummyArr.map((_, index) => (
+            actingList.map((mem, index) => (
               <ActingCard
-                key={index}
-                profImg={profileBasic}
-                role='직위'
-                name='이름'
-                info='학번 및 소속'
+                key={mem.memberId}
+                profImg={mem.profileUrl}
+                role={mem.position}
+                name={mem.name}
+                info={mem.memberInfo}
               />
             ))}
           {isMobile && (
@@ -188,7 +207,12 @@ const EPRiansPage = () => {
             <S.Title $color='var(--black)'>Alumni</S.Title>
             <S.Subtitle>수료 학회원</S.Subtitle>
           </div>
-          {isMobile && <Dropdown />}
+          {isMobile && (
+            <Dropdown
+              options={genList.slice(1)}
+              setAlumniList={setAlumniList}
+            />
+          )}
         </S.SubtitleContainer>
         <S.DropdownContainer>
           <S.Description>
@@ -198,28 +222,33 @@ const EPRiansPage = () => {
             EPRIS Alumni는 EPRIS만이 가질 수 있는 강력한 경쟁력으로 학회원들의
             소중한 길잡이가 되어줍니다.
           </S.Description>
-          {isDesktop && <Dropdown />}
+          {isDesktop && (
+            <Dropdown
+              options={genList.slice(1)}
+              setAlumniList={setAlumniList}
+            />
+          )}
         </S.DropdownContainer>
         <S.MemberContainer $member='alumni'>
           {isMobile &&
-            alumniList.map((_, index) => (
+            pagedAlumniList.map((mem, index) => (
               <AlumniCard
-                key={index}
-                profImg={profileBasic}
-                role='직위'
-                name='이름'
-                info='학번 및 소속'
+                key={mem.memberId}
+                profImg={mem.profileUrl}
+                role={mem.position}
+                name={mem.name}
+                info={mem.memberInfo}
               />
             ))}
 
           {isDesktop &&
-            alumniDummyArr.map((_, index) => (
+            alumniList.map((mem, index) => (
               <AlumniCard
-                key={index}
-                profImg={profileBasic}
-                role='직위'
-                name='이름'
-                info='학번 및 소속'
+                key={mem.memberId}
+                profImg={mem.profileUrl}
+                role={mem.position}
+                name={mem.name}
+                info={mem.memberInfo}
               />
             ))}
           {isMobile && (
@@ -231,11 +260,11 @@ const EPRiansPage = () => {
           )}
         </S.MemberContainer>
         <S.BrandContainer>
-          {brandList.map((brand, index) => (
-            <S.BrandCard key={index} src={brand} />
+          {pagedBrandList.map((brand, index) => (
+            <S.BrandCard key={index} src={brand.imageUrl} />
           ))}
         </S.BrandContainer>
-        {brandDummyArr.length > 12 && (
+        {brandList.length > 12 && (
           <ViewMoreButton
             onClick={handleBrandViewMore}
             text={hasMoreBrands ? 'view more' : 'close'}

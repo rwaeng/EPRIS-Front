@@ -84,9 +84,13 @@ const RecruitmentPage = () => {
         return;
       }
 
-      console.log('최종 업로드 내용 : ', updatedRecruitment);
-      setRecruitment(updatedRecruitment);
-      await putRecruitment(updatedRecruitment);
+      const res = await putRecruitment(updatedRecruitment);
+      if (res.status === 200) {
+        alert('저장되었습니다.');
+        setIsUpdated(false);
+      } else {
+        alert('오류가 발생했습니다. 다시 시도해주세요.');
+      }
     } catch (err) {
       console.error(err);
     }
