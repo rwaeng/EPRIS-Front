@@ -6,8 +6,34 @@ import { S } from './JoinusPage.style';
 import downloadIcon from '../../assets/JoinusPage/download.svg';
 import posterExample from '../../assets/JoinusPage/poster_img.png';
 import Question from '../../components/JoinusPage/Question';
+import { useEffect, useState } from 'react';
+import { getRecruitment } from '../../api/recruitment';
 
 const JoinusPage = () => {
+  const [recruitment, setRecruitment] = useState({});
+
+  useEffect(() => {
+    const getRecruitmentInfo = async () => {
+      try {
+        const res = await getRecruitment();
+        setRecruitment(res);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getRecruitmentInfo();
+  }, []);
+
+  const handleDownloadFile = () => {
+    const link = document.createElement('a');
+    link.href = recruitment.doc;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <S.Layout>
       <NavigationBar />
@@ -21,29 +47,30 @@ const JoinusPage = () => {
           <br />
           활동 가능한 학부생
         </S.MainDescription>
-        <TextIconButton text='지원서 다운로드' icon={downloadIcon} />
+        <TextIconButton
+          text='지원서 다운로드'
+          icon={downloadIcon}
+          onClick={handleDownloadFile}
+        />
       </S.TitleContainer>
       <S.ContentContainer>
         <S.TimelineContainer>
           <S.Title>Timeline</S.Title>
           <S.Description>모집 일정</S.Description>
           <S.ProcessContainer>
-            <ProcessBox
-              title='1. 지원서 접수'
-              desc={`0월 0일 00시\n접수마감`}
-            />
-            <ProcessBox title='2. 면접' desc={`00월 0일 ~ 0일\n대면 면접`} />
+            <ProcessBox title='1. 지원서 접수' desc={recruitment.deadline} />
+            <ProcessBox title='2. 면접' desc={recruitment.interview} />
             <ProcessBox
               title='3. 합격자 발표'
-              desc={`0월 0일\n합격자 개별 통보`}
+              desc={recruitment.announcement}
             />
             <ProcessBox
               title='4. 오리엔테이션'
-              desc={`0월 0일 00시\n필수 참석`}
+              desc={recruitment.orientation}
               isLast={true}
             />
           </S.ProcessContainer>
-          <S.Poster src={posterExample} />
+          <S.Poster src={recruitment.poster} />
         </S.TimelineContainer>
         <S.FAQContainer>
           <S.Title>FAQ</S.Title>
