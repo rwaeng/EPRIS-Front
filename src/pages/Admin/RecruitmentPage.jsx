@@ -89,7 +89,7 @@ const RecruitmentPage = () => {
         alert('저장되었습니다.');
         setIsUpdated(false);
       } else {
-        alert('오류가 발생했습니다. 다시 시도해주세요.');
+        alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       }
     } catch (err) {
       console.error(err);

@@ -36,7 +36,7 @@ const TableRow = ({ mem, setMemberList, num }) => {
         alert('삭제되었습니다.');
         setMemberList(prev => prev.filter(member => member.memberId !== id));
       } else {
-        alert('오류가 발생했습니다. 다시 시도해주세요.');
+        alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       }
     } catch (err) {
       console.error(err);
@@ -93,7 +93,7 @@ const TableRow = ({ mem, setMemberList, num }) => {
         alert('저장되었습니다.');
         setIsUpdated(false);
       } else {
-        alert('오류가 발생했습니다. 다시 시도해주세요.');
+        alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       }
     } catch (err) {
       console.error(err);
