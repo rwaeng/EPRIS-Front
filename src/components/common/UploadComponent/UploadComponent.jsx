@@ -13,6 +13,7 @@ export const UploadComponent = ({
   setImgPreview,
   setImageUrlList,
   setIsChanged,
+  upLoadItemId,
 }) => {
   // ratio : 정해진 사진의 비율을 텍스트로 전달
   // imageNum : 첨부해야하는 사진의 개수를 숫자로 전달
@@ -61,18 +62,22 @@ export const UploadComponent = ({
     setImgFile(prevState => prevState.filter((_, index) => index !== id));
     setImageUrlList(prevState => prevState.filter((_, index) => index !== id));
     setIsChanged(true);
+    // 이미지 삭제 후 동일한 이미지 재업로드 가능하도록
+    if (upLoadItemId) {
+      document.getElementById(upLoadItemId).value = '';
+    }
   };
 
   return (
     <S.Container>
       <S.Header>
-        <S.PlusArea htmlFor='file-input'>
+        <S.PlusArea htmlFor={upLoadItemId ? upLoadItemId : 'file-input'}>
           <S.Icon src={PlusIcon} />
         </S.PlusArea>
 
         <input
           type='file'
-          id='file-input'
+          id={upLoadItemId ? upLoadItemId : 'file-input'}
           onChange={handleImgUpload}
           style={{ display: 'none' }}
         />
