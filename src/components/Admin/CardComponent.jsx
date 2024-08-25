@@ -1,5 +1,5 @@
 import { S } from './CardComponent.style.js';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useResizeTextarea from '../../hooks/useResizeTextarea';
 import deleteImg from '../../assets/Admin/ps.svg';
 import { UploadComponent } from '../common/UploadComponent/UploadComponent.jsx';
@@ -16,7 +16,6 @@ const CardComponent = ({
   const [name, setName] = useState(card.name);
   const [position, setPosition] = useState(card.position);
   const [text, setText] = useState(card.introduce);
-  // const [cardImg, setCardImg] = useState(card.cardImg);
   const textResize = useResizeTextarea(text);
 
   //사진 업로드 state
@@ -26,7 +25,15 @@ const CardComponent = ({
     card.cardImg ? [card.cardImg] : [],
   ); //프리뷰로 띄울 이미지 url
   const [imageUrlList, setImageUrlList] = useState([]); //백엔드에 보낼 presigned url
-
+  const [isSaveEnabled, setIsSaveEnabled] = useState(false); // 저장 버튼 활성화 여부 상태
+  useEffect(() => {
+    // 이미지가 없거나 삭제된 경우 저장 버튼 비활성화
+    if (imgPreview.length === 0) {
+      setIsSaveEnabled(false);
+    } else {
+      setIsSaveEnabled(true);
+    }
+  }, [imgPreview]);
   const handleSave = async () => {
     try {
       let imageUrl = imgPreview[0] || '';
@@ -91,7 +98,7 @@ const CardComponent = ({
         <S.DeleteImg src={deleteImg} />
       </S.DeleteContainer>
       <S.BtnWrapper>
-        <TextButton isActive={true} text='저장' onClick={handleSave} />
+        <TextButton isActive={isSaveEnabled} text='저장' onClick={handleSave} />
       </S.BtnWrapper>
     </S.CardLayout>
   );
