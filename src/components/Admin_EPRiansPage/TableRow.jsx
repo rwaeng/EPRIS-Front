@@ -18,7 +18,6 @@ const TableRow = ({ mem, setMemberList, num }) => {
   }, [num]);
 
   const handleCheckbox = id => {
-    console.log(id);
     setMember({ ...member, isActive: !member.isActive });
     setIsUpdated(true);
   };

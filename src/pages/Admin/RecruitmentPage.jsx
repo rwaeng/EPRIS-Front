@@ -65,9 +65,7 @@ const RecruitmentPage = () => {
       const updatedRecruitment = { ...recruitment };
 
       if (imgFile.length > 0) {
-        console.log(`이미지 업로드 시작`);
         const imgUrl = await getPresignedURL(imgFile[0]);
-        console.log(imgUrl);
         updatedRecruitment.poster = imgUrl;
       }
       if (applyFile) {
@@ -98,7 +96,6 @@ const RecruitmentPage = () => {
 
   return (
     <S.Layout>
-      <NavigationBar type='admin' />
       <S.Container>
         <S.UploadContainer>
           <S.Title>지원서</S.Title>

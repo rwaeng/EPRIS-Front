@@ -96,7 +96,6 @@ const EPRiansPage = () => {
   };
 
   const handleBrandViewMore = () => {
-    console.log('실행');
     const newIndex = currentBrandIndex + brandsPerPage;
     // 현재 페이지의 끝에 도달했는지 확인
     if (newIndex < brandList.length) {

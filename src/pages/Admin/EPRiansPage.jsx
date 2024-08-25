@@ -117,7 +117,6 @@ const EPRiansPage = () => {
 
   return (
     <S.Container>
-      <NavigationBar type='admin' />
       <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
       {clicked === menuList[0] ? (
         <S.MembersContainer>
