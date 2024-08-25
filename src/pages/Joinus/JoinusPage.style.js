@@ -90,6 +90,12 @@ S.MainTitle = styled.div`
   }
 `;
 
+S.SubtitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 S.MainSubtitle = styled.div`
   margin-bottom: 1.5rem;
 

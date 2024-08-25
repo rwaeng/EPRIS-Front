@@ -2,15 +2,19 @@ import { TextIconButton } from '../../components/common/CommonButtons/CommonButt
 import ProcessBox from '../../components/JoinusPage/ProcessBox';
 import NavigationBar from '../../components/common/NavigatonBar';
 import { S } from './JoinusPage.style';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 
 import downloadIcon from '../../assets/JoinusPage/download.svg';
-import posterExample from '../../assets/JoinusPage/poster_img.png';
 import Question from '../../components/JoinusPage/Question';
 import { useEffect, useState } from 'react';
 import { getRecruitment } from '../../api/recruitment';
 
 const JoinusPage = () => {
   const [recruitment, setRecruitment] = useState({});
+  const aniTitle = useScrollFadeIn();
+  const aniSubtitle = useScrollFadeIn();
+  const aniTimeline = useScrollFadeIn();
+  const aniPoster = useScrollFadeIn();
 
   useEffect(() => {
     const getRecruitmentInfo = async () => {
@@ -40,13 +44,16 @@ const JoinusPage = () => {
       <S.TitleContainer>
         <S.Ellipse31 />
         <S.Ellipse32 />
-        <S.MainTitle>Join EPRIS</S.MainTitle>
-        <S.MainSubtitle>지원 자격</S.MainSubtitle>
-        <S.MainDescription>
-          전공무관, 연속 2학기
-          <br />
-          활동 가능한 학부생
-        </S.MainDescription>
+        <S.MainTitle {...aniTitle}>Join EPRIS</S.MainTitle>
+        <S.SubtitleContainer {...aniSubtitle}>
+          <S.MainSubtitle>지원 자격</S.MainSubtitle>
+          <S.MainDescription>
+            전공무관, 연속 2학기
+            <br />
+            활동 가능한 학부생
+          </S.MainDescription>
+        </S.SubtitleContainer>
+
         <TextIconButton
           text='지원서 다운로드'
           icon={downloadIcon}
@@ -57,7 +64,7 @@ const JoinusPage = () => {
         <S.TimelineContainer>
           <S.Title>Timeline</S.Title>
           <S.Description>모집 일정</S.Description>
-          <S.ProcessContainer>
+          <S.ProcessContainer {...aniTimeline}>
             <ProcessBox title='1. 지원서 접수' desc={recruitment.deadline} />
             <ProcessBox title='2. 면접' desc={recruitment.interview} />
             <ProcessBox
@@ -70,7 +77,7 @@ const JoinusPage = () => {
               isLast={true}
             />
           </S.ProcessContainer>
-          <S.Poster src={recruitment.poster} />
+          <S.Poster src={recruitment.poster} {...aniPoster} />
         </S.TimelineContainer>
         <S.FAQContainer>
           <S.Title>FAQ</S.Title>

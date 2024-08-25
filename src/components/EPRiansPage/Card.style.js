@@ -9,7 +9,8 @@ S.Card = styled.div`
   align-items: center;
 
   width: 16.1875rem;
-  padding: 1.25rem 1.25rem 2.5rem 1.25rem;
+  height: 25.4375rem;
+  padding: 1.25rem 1.25rem 2.5rem;
   gap: 1.25rem;
 
   background-color: ${props => props.$bgColor || 'var(--grey500)'};
@@ -31,6 +32,13 @@ S.CardImage = styled.img`
 S.CardRole = styled.div`
   ${font.reg18}
   color: ${props => props.$color || 'var(--grey300)'}
+`;
+
+S.InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.62rem;
 `;
 
 S.CardName = styled.div`

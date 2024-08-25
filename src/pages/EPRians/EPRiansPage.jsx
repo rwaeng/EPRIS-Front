@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { ActingCard, AlumniCard } from '../../components/EPRiansPage/Card';
 import { getMembers, getMembersActive, getMembersExe } from '../../api/member';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import { getLogos } from '../../api/logo';
 
 const EPRiansPage = () => {
@@ -30,13 +31,18 @@ const EPRiansPage = () => {
 
   const [alumniList, setAlumniList] = useState([]); //수료회원 리스트
   const [pagedAlumniList, setPagedAlumniList] = useState([]); //한 페이지에 들어갈 수료회원 리스트
-
   const [currentAlumniIndex, setCurrentAlumniIndex] = useState(0);
   const [hasMoreAlumni, setHasMoreAlumni] = useState(true);
   const AlumniPerPage = 4;
 
   const isMobile = useMediaQuery({ query: '(max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+
+  const aniExecutive = useScrollFadeIn();
+  const aniLine = useScrollFadeIn();
+  const aniActing = useScrollFadeIn();
+  const aniAlumni = useScrollFadeIn();
+  const aniBrand = useScrollFadeIn();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -159,8 +165,8 @@ const EPRiansPage = () => {
         <S.Title $color='var(--grey100)'>Acting Members</S.Title>
         <S.Subtitle>활동 학회원</S.Subtitle>
 
-        <S.MemberContainer className='acting'>
-          {executiveList.map((mem, index) => (
+        <S.MemberContainer {...(isDesktop && aniExecutive)}>
+          {executiveList.map(mem => (
             <ActingCard
               key={mem.memberId}
               profImg={mem.profileUrl}
@@ -170,8 +176,11 @@ const EPRiansPage = () => {
               $color='var(--red)'
             />
           ))}
-          {isMobile &&
-            pagedActingList.map((mem, index) => (
+        </S.MemberContainer>
+
+        {isMobile && (
+          <S.MemberContainer>
+            {pagedActingList.map(mem => (
               <ActingCard
                 key={mem.memberId}
                 profImg={mem.profileUrl}
@@ -180,10 +189,13 @@ const EPRiansPage = () => {
                 info={mem.memberInfo}
               />
             ))}
+          </S.MemberContainer>
+        )}
 
-          <S.RowLine />
+        <S.RowLine {...aniLine} />
+        <S.MemberContainer {...(isDesktop && aniActing)}>
           {isDesktop &&
-            actingList.map((mem, index) => (
+            actingList.map(mem => (
               <ActingCard
                 key={mem.memberId}
                 profImg={mem.profileUrl}
@@ -209,7 +221,7 @@ const EPRiansPage = () => {
           </div>
           {isMobile && (
             <Dropdown
-              options={genList.slice(1)}
+              options={genList.slice(2)}
               setAlumniList={setAlumniList}
             />
           )}
@@ -224,14 +236,14 @@ const EPRiansPage = () => {
           </S.Description>
           {isDesktop && (
             <Dropdown
-              options={genList.slice(1)}
+              options={genList.slice(2)}
               setAlumniList={setAlumniList}
             />
           )}
         </S.DropdownContainer>
-        <S.MemberContainer $member='alumni'>
+        <S.MemberContainer $member='alumni' {...(isDesktop && aniAlumni)}>
           {isMobile &&
-            pagedAlumniList.map((mem, index) => (
+            pagedAlumniList.map(mem => (
               <AlumniCard
                 key={mem.memberId}
                 profImg={mem.profileUrl}
@@ -242,7 +254,7 @@ const EPRiansPage = () => {
             ))}
 
           {isDesktop &&
-            alumniList.map((mem, index) => (
+            alumniList.map(mem => (
               <AlumniCard
                 key={mem.memberId}
                 profImg={mem.profileUrl}
@@ -259,7 +271,7 @@ const EPRiansPage = () => {
             />
           )}
         </S.MemberContainer>
-        <S.BrandContainer>
+        <S.BrandContainer {...aniBrand}>
           {pagedBrandList.map((brand, index) => (
             <S.BrandCard key={index} src={brand.imageUrl} />
           ))}
