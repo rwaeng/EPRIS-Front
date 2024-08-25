@@ -2,7 +2,12 @@ import { S } from './ClassInfo2Page.style.js';
 import { useState, useEffect } from 'react';
 import CardComponent from '../../components/Admin/CardComponent';
 import AddIcon from '../../assets/Admin/plus.svg';
-import { getCards, createCard, updateCard } from '../../api/admin.js';
+import {
+  getCards,
+  createCard,
+  updateCard,
+  deleteCard,
+} from '../../api/admin.js';
 
 const ClassInfo2Page = () => {
   const [cards, setCards] = useState(null);
@@ -42,17 +47,15 @@ const ClassInfo2Page = () => {
       if (typeof cardId === 'number') {
         // 기존 카드 수정
         await updateCard(cardId, name, position, introduce, cardImg);
-        console.log('Card updated:', {
-          cardId,
-          name,
-          position,
-          introduce,
-          cardImg,
-        });
       } else {
         // 새 카드 생성
         await createCard(name, position, introduce, cardImg);
-        console.log('Card created:', { name, position, introduce, cardImg });
+        // UI에서 새 카드의 isNew를 false로 변경
+        setAddedCards(prevCards =>
+          prevCards.map(card =>
+            card.cardId === cardId ? { ...card, isNew: false } : card,
+          ),
+        );
       }
       // // 카드 목록을 다시 불러오기 위해 전체 카드 데이터를 업데이트
       // const updatedCards = await getCards();
@@ -60,6 +63,25 @@ const ClassInfo2Page = () => {
       // setAddedCards([]); // 새로 추가된 카드를 초기화
     } catch (error) {
       console.error('Error saving card:', error);
+    }
+  };
+  const handleDeleteCard = async (cardId, isNew) => {
+    try {
+      if (isNew) {
+        // UI에서만 삭제
+        setAddedCards(prevCards =>
+          prevCards.filter(card => card.cardId !== cardId),
+        );
+        console.log('Card deleted on UI');
+      } else {
+        // API 호출 후 UI에서 삭제
+        console.log(cardId);
+        await deleteCard(cardId);
+        setCards(prevCards => prevCards.filter(card => card.cardId !== cardId));
+        console.log('Card delete request sent');
+      }
+    } catch (error) {
+      console.error('Error deleting card:', error);
     }
   };
 
@@ -72,6 +94,7 @@ const ClassInfo2Page = () => {
             card={card}
             index={index}
             handleSaveCard={handleSaveCard}
+            handleDeleteCard={handleDeleteCard}
           />
         ))}
       {addedCards.length > 0 &&
@@ -82,6 +105,7 @@ const ClassInfo2Page = () => {
             index={cards.length + index}
             isNew={true}
             handleSaveCard={handleSaveCard}
+            handleDeleteCard={handleDeleteCard}
           />
         ))}
       <S.AddCardBtn onClick={handleAddCard}>
