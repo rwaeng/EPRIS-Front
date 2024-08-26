@@ -1,5 +1,5 @@
 import { S } from './MainPage.style.js';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import NavigationBar from '../../components/common/NavigatonBar';
 import Down from '../../assets/Main/arrow_down_circle.svg';
 import Logo from '../../assets/Main/logo.svg';
@@ -21,6 +21,7 @@ const MainPage = () => {
   const [classInfo, setClassInfo] = useState(null);
   const [recruitmentInfo, setRecruitmentInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const bodyRef = useRef(null);
   const animation = useScrollFadeIn();
   const animation1 = useScrollFadeIn();
   const animation2 = useScrollFadeIn();
@@ -58,6 +59,12 @@ const MainPage = () => {
     fetchData();
   }, []);
 
+  const handleScrollToBody = () => {
+    if (bodyRef.current) {
+      bodyRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   if (isLoading) {
     return <S.MainLayout></S.MainLayout>; // 로딩 중 표시
   }
@@ -72,10 +79,10 @@ const MainPage = () => {
           <S.SubWrapper {...animation10}>
             {`이화여자대학교 교내 유일 PR 학회\n EPRIS를 소개합니다`}
           </S.SubWrapper>
-          <S.DownBtn src={Down} {...animation11} />
+          <S.DownBtn src={Down} onClick={handleScrollToBody} {...animation11} />
         </S.HeadContainer>
       </S.TopContainer>
-      <S.BodyContainer>
+      <S.BodyContainer ref={bodyRef}>
         <S.ValueContainer {...animation}>
           <S.LogoWrapper src={Logo} />
           <S.TextContainer>
