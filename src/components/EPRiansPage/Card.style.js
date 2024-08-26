@@ -9,7 +9,8 @@ S.Card = styled.div`
   align-items: center;
 
   width: 16.1875rem;
-  padding: 1.25rem 1.25rem 2.5rem 1.25rem;
+  height: 25.4375rem;
+  padding: 1.25rem 1.25rem 2.5rem;
   gap: 1.25rem;
 
   background-color: ${props => props.$bgColor || 'var(--grey500)'};
@@ -20,15 +21,24 @@ S.Card = styled.div`
 `;
 
 S.CardImage = styled.img`
-  width: 100%;
+  width: 13.6875rem;
+  height: 13.6875rem;
   border-radius: 0.5rem;
 
-  background: lightgray 50% / cover no-repeat;
+  object-fit: contain;
+  background: lightgray 50%;
 `;
 
 S.CardRole = styled.div`
   ${font.reg18}
   color: ${props => props.$color || 'var(--grey300)'}
+`;
+
+S.InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.62rem;
 `;
 
 S.CardName = styled.div`

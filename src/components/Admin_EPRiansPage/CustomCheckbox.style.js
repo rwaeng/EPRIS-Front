@@ -7,6 +7,7 @@ export const S = {};
 S.Container = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 S.HiddenCheckbox = styled.input.attrs({ type: 'checkbox' })`
