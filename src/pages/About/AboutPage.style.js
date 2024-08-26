@@ -57,6 +57,9 @@ const S = {
       height: 15.95444rem;
       margin-bottom: 5rem;
     }
+    @media (min-width: 1280px) {
+      margin-bottom: 17.5rem;
+    }
   `,
   AboutTextContainer: styled.div`
     display: flex;
@@ -231,9 +234,7 @@ const S = {
     display: flex;
     gap: 1.75rem;
     @media (max-width: 1279px) {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
+      display: none;
     }
   `,
 
@@ -375,15 +376,17 @@ const M = {
       height: 19.8125rem;
     }
   `,
+
   CardContainer: styled.div`
     display: none;
-
+    gap: 1.75rem;
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
       width: 100%;
     }
   `,
+
   CardContentContainer: styled.div`
     display: none;
     @media (max-width: 1279px) {
