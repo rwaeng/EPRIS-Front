@@ -1,11 +1,13 @@
 import { S } from './Greetings.style.js';
 // import img from '../../assets/Main/img.svg';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn.js';
 
 const Greetings = ({ greetingCard }) => {
+  const animation = useScrollFadeIn();
   const { name, position, introduce, cardImg } = greetingCard;
   console.log(greetingCard);
   return (
-    <S.GreetingsLayout>
+    <S.GreetingsLayout {...animation}>
       <S.PhotoWrapper src={cardImg} />
       <S.MemberContainer>
         <S.NameText>{name}</S.NameText>
