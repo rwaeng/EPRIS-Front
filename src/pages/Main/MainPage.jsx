@@ -1,5 +1,6 @@
 import { S } from './MainPage.style.js';
 import { useEffect, useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavigationBar from '../../components/common/NavigatonBar';
 import Down from '../../assets/Main/arrow_down_circle.svg';
 import Logo from '../../assets/Main/logo.svg';
@@ -22,6 +23,7 @@ const MainPage = () => {
   const [recruitmentInfo, setRecruitmentInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const bodyRef = useRef(null);
+  const navigate = useNavigate();
   const animation = useScrollFadeIn();
   const animation1 = useScrollFadeIn();
   const animation2 = useScrollFadeIn();
@@ -63,6 +65,10 @@ const MainPage = () => {
     if (bodyRef.current) {
       bodyRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleJoinUsClick = () => {
+    navigate('/joinus');
   };
 
   if (isLoading) {
@@ -169,7 +175,12 @@ const MainPage = () => {
           </S.ValueContainer>
         </S.ContentContainer>
         <S.BottomContainer {...animation8}>
-          <TextIconButton text='Join us' icon={arrowIcon} border='80px' />
+          <TextIconButton
+            text='Join us'
+            icon={arrowIcon}
+            border='80px'
+            onClick={handleJoinUsClick}
+          />
           <S.AnnounceText>
             {recruitmentInfo ? recruitmentInfo.notice : ''}
           </S.AnnounceText>
