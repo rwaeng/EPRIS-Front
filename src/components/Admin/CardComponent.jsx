@@ -36,6 +36,11 @@ const CardComponent = ({
   }, [imgPreview]);
   const handleSave = async () => {
     try {
+      if (imgPreview.length === 0) {
+        alert('업로드된 사진이 없습니다.');
+        return;
+      }
+
       let imageUrl = imgPreview[0] || '';
       // 이미지가 변경되었을 때만 업로드 진행
       if (isLogoChanged && imgFile.length > 0) {
@@ -48,16 +53,19 @@ const CardComponent = ({
       } else {
         await handleSaveCard(card.cardId, name, position, text, imageUrl); // 카드 수정
       }
-
+      alert('저장되었습니다.');
       console.log('Card saved successfully');
     } catch (error) {
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       console.error('Error saving card:', error);
     }
   };
   const handleDelete = () => {
     try {
       handleDeleteCard(card.cardId, isNew); // 카드 삭제 요청
+      alert('삭제되었습니다.');
     } catch (error) {
+      alert('삭제하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       console.error('Error deleting card:', error);
     }
   };
@@ -92,6 +100,7 @@ const CardComponent = ({
         setImgPreview={setImgPreview}
         setImageUrlList={setImageUrlList}
         setIsChanged={setIsLogoChanged}
+        index={index}
       />
       <S.DeleteContainer onClick={handleDelete}>
         <S.DeleteText>삭제</S.DeleteText>

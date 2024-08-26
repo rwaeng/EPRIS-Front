@@ -13,6 +13,7 @@ export const UploadComponent = ({
   setImgPreview,
   setImageUrlList,
   setIsChanged,
+  index = null,
 }) => {
   // ratio : 정해진 사진의 비율을 텍스트로 전달
   // imageNum : 첨부해야하는 사진의 개수를 숫자로 전달
@@ -21,16 +22,19 @@ export const UploadComponent = ({
   // setImageUrlList : 이미지가 저장된 presigned url의 배열 state
   // setIsChanged : 이미지 업로드 or 삭제 시 변경되어 저장 버튼 활성화시키는 state
 
+  // 고유한 Input ID를 생성하기 위해 index를 사용
+  const inputId = index !== null ? `file-input-${index}` : 'file-input';
   useEffect(() => {
     // src가 비어있는 img 태그의 테두리 선을 안보이게 막음
-    document.querySelectorAll('.image').forEach(img => {
+    const imageClass = index !== null ? `.image-${index}` : '.image';
+    document.querySelectorAll(imageClass).forEach(img => {
       if (!img.src) {
         img.style.visibility = 'hidden';
       } else {
         img.style.visibility = 'visible';
       }
     });
-  }, [imgPreview]);
+  }, [imgPreview, index]);
 
   const handleImgUpload = e => {
     //사진 업로드 시 실행
@@ -57,22 +61,22 @@ export const UploadComponent = ({
 
   const handleDeleteImage = id => {
     //이미지 삭제 버튼 클릭 시 실행
-    setImgPreview(prevState => prevState.filter((_, index) => index !== id));
-    setImgFile(prevState => prevState.filter((_, index) => index !== id));
-    setImageUrlList(prevState => prevState.filter((_, index) => index !== id));
+    setImgPreview(prevState => prevState.filter((_, idx) => idx !== id));
+    setImgFile(prevState => prevState.filter((_, idx) => idx !== id));
+    setImageUrlList(prevState => prevState.filter((_, idx) => idx !== id));
     setIsChanged(true);
   };
 
   return (
     <S.Container>
       <S.Header>
-        <S.PlusArea htmlFor='file-input'>
+        <S.PlusArea htmlFor={inputId}>
           <S.Icon src={PlusIcon} />
         </S.PlusArea>
 
         <input
           type='file'
-          id='file-input'
+          id={inputId}
           onChange={handleImgUpload}
           style={{ display: 'none' }}
         />
@@ -84,22 +88,28 @@ export const UploadComponent = ({
       </S.Header>
       <S.ImageContainer>
         {imageNum
-          ? Array.from({ length: imageNum }).map((_, index) => (
-              <S.ImagePreview key={index}>
+          ? Array.from({ length: imageNum }).map((_, i) => (
+              <S.ImagePreview key={i}>
                 <S.XboxIcon
                   src={xBoxIcon}
-                  onClick={() => handleDeleteImage(index)}
+                  onClick={() => handleDeleteImage(i)}
                 />
-                <S.ImageBox className='image' src={imgPreview[index] || null} />
+                <S.ImageBox
+                  className={index !== null ? `image-${index}` : 'image'}
+                  src={imgPreview[i] || null}
+                />
               </S.ImagePreview>
             ))
-          : imgPreview.map((previewUrl, index) => (
-              <S.ImagePreview key={index}>
+          : imgPreview.map((previewUrl, i) => (
+              <S.ImagePreview key={i}>
                 <S.XboxIcon
                   src={xBoxIcon}
-                  onClick={() => handleDeleteImage(index)}
+                  onClick={() => handleDeleteImage(i)}
                 />
-                <S.ImageBox className='image' src={previewUrl || null} />
+                <S.ImageBox
+                  className={index !== null ? `image-${index}` : 'image'}
+                  src={previewUrl || null}
+                />
               </S.ImagePreview>
             ))}
       </S.ImageContainer>
