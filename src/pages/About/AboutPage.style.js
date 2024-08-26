@@ -15,6 +15,7 @@ import { ReactComponent as Logo } from '../../assets/logo/Logo.svg';
 import { ReactComponent as LeftArrow } from '../../assets/AboutPage/left.svg';
 import { ReactComponent as RightArrow } from '../../assets/AboutPage/right.svg';
 import backgroundImage from '../../assets/AboutPage/about_background_img.svg';
+import { flexCenter } from '../../styles/common';
 
 const S = {
   Layout: styled.div`
@@ -39,21 +40,22 @@ const S = {
     }
   `,
   BcakgroundImageContainer: styled.div`
+    ${flexCenter}
     position: relative;
+    max-width: 90rem;
+    max-height: 32rem;
+    margin: 0 auto;
     width: 100%;
-    height: auto;
-    padding-top: 35.56%;
-    margin-bottom: 17.5rem;
+    aspect-ratio: 3/2;
+
     background-image: url(${backgroundImage});
     background-size: cover;
-    background-position: center;
+    background-position: 80% 0%;
+
     @media (max-width: 1279px) {
-      width: 100%;
       max-width: 44.375rem;
+      height: 15.95444rem;
       margin-bottom: 5rem;
-    }
-    @media (min-width: 1440px) {
-      width: 1440px;
     }
   `,
   AboutTextContainer: styled.div`
@@ -154,8 +156,7 @@ const S = {
     ${bold24}
     color: var(--grey100);
     @media (max-width: 1279px) {
-      max-width: 44.375rem;
-      ${m_bold24}
+      display: none;
     }
   `,
   HistoryWrapper: styled.div`
@@ -442,6 +443,16 @@ const M = {
       box-sizing: border-box;
       border-radius: 1rem;
       background: #e3e6f0;
+    }
+  `,
+
+  NameWrapper: styled.div`
+    display: none;
+    color: var(--grey100);
+    @media (max-width: 1279px) {
+      display: flex;
+      max-width: 44.375rem;
+      ${m_bold24}
     }
   `,
 };
