@@ -3,6 +3,8 @@ import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { getProject } from '../../api/project.js';
 import { getAwards } from '../../api/award.js';
+import { getSession } from '../../api/session.js';
+import { getNetwork } from '../../api/network.js';
 import useScroll from '../../hooks/useScroll.js';
 import AwardCard from '../../components/activities/AwardCard.jsx';
 import ProjectCard from '../../components/activities/ProjectCard.jsx';
@@ -10,8 +12,6 @@ import ActivityCard from '../../components/activities/ActivityCard.jsx';
 import NavigationBar from '../../components/common/NavigatonBar.jsx';
 import CorporateCard from '../../components/activities/CorporateCard.jsx';
 import FloatingButton from '../../components/activities/FloatingButton.jsx';
-import { getSession } from '../../api/session.js';
-import { getNetwork } from '../../api/network.js';
 
 const ActivityPage = () => {
   const [projectList, setProjectList] = useState([]);
@@ -28,6 +28,7 @@ const ActivityPage = () => {
     query: '(min-width: 1280px)',
   });
 
+  const { state } = useScroll();
   const [clicked, setClicked] = useState('session');
   const sessionRef = useRef(null);
   const corporateRef = useRef(null);
@@ -38,7 +39,6 @@ const ActivityPage = () => {
     corporate: null,
     network: null,
   });
-  const { state } = useScroll();
 
   const onFocusSession = () => {
     sessionRef.current?.scrollIntoView({ behavior: 'smooth' });
