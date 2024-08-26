@@ -27,13 +27,8 @@ const AboutPage = () => {
 
   const currentCard = cardData[currentCardIndex];
 
-  const isDesktop = window.innerWidth >= 1280;
   const animationHistory = useScrollFadeIn();
   const animationText = useScrollFadeIn();
-  //const animationDepartment = departmentData.map(() => useScrollFadeIn());
-  //const desktopAnimation = isDesktop ? animation : { ref: animation.ref };
-  //const mobileAnimation = isDesktop ? { ref: animation.ref } : animation;
-
   const mAnimationName = useScrollFadeIn();
 
   return (
