@@ -5,11 +5,11 @@ import { useMediaQuery } from 'react-responsive';
 import { getLogos } from '../../api/logo';
 import { getMembers, getMembersActive, getMembersExe } from '../../api/member';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
-import Dropdown from '../../components/EPRiansPage/Dropdown';
+import Dropdown from '../../components/EPRians/Dropdown';
+import ViewMoreButton from '../../components/EPRians/ViewMoreButton';
+import { ActingCard, AlumniCard } from '../../components/EPRians/Card';
 import arrowDown from '../../assets/EPRiansPage/arrow_downward.svg';
 import arrowUp from '../../assets/EPRiansPage/arrow_upward.svg';
-import ViewMoreButton from '../../components/EPRiansPage/ViewMoreButton';
-import { ActingCard, AlumniCard } from '../../components/EPRiansPage/Card';
 
 const EPRiansPage = () => {
   const [brandList, setBrandList] = useState([]);

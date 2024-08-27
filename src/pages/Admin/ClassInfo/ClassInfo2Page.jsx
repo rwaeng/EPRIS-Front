@@ -1,6 +1,6 @@
 import { S } from './ClassInfo2Page.style.js';
 import { useState, useEffect } from 'react';
-import CardComponent from '../../../components/Admin/CardComponent';
+import CardComponent from '../../../components/ClassInfo-admin/CardComponent.jsx';
 import AddIcon from '../../../assets/Admin/plus.svg';
 import {
   getCards,

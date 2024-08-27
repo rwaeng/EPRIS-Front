@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { getRecruitment } from '../../api/recruitment';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons';
-import ProcessBox from '../../components/JoinusPage/ProcessBox';
+import ProcessBox from '../../components/Joinus/ProcessBox';
 import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
+import Question from '../../components/Joinus/Question';
 import downloadIcon from '../../assets/JoinusPage/download.svg';
-import Question from '../../components/JoinusPage/Question';
 
 const JoinusPage = () => {
   const [recruitment, setRecruitment] = useState({});

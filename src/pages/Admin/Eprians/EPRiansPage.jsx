@@ -10,7 +10,7 @@ import {
   TextIconButton,
 } from '../../../components/common/CommonButtons/CommonButtons';
 import plusIcon from '../../../assets/Admin_EPRiansPage/ps.svg';
-import MemberTable from '../../../components/Admin_EPRiansPage/MemberTable';
+import MemberTable from '../../../components/EPRians-admin/MemberTable';
 
 const EPRiansPage = () => {
   //INB
