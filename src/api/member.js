@@ -11,7 +11,16 @@ export const postMember = async data => {
 
 export const deleteMember = async memberId => {
   try {
-    const response = await authInstance.post(`/members/${memberId}`);
+    const response = await authInstance.delete(`/members/${memberId}`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteGeneration = async gen => {
+  try {
+    const response = await authInstance.delete(`/members?num=${gen}`);
     return response;
   } catch (error) {
     console.log(error);

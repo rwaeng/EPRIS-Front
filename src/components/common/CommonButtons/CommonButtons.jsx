@@ -1,4 +1,5 @@
 import { S } from './CommonButtons.style';
+import useScrollFadeIn from '../../../hooks/useScrollFadeIn';
 
 export const TextIconButton = ({
   text,
@@ -13,8 +14,15 @@ export const TextIconButton = ({
   // bgColor : 버튼의 배경색을 텍스트로 전달
   // border : 버튼의 border를 텍스트로 전달
 
+  const animation = useScrollFadeIn();
+
   return (
-    <S.JoinUsContainer $bgColor={bgColor} $border={border} {...props}>
+    <S.JoinUsContainer
+      $bgColor={bgColor}
+      $border={border}
+      {...props}
+      {...animation}
+    >
       <S.Span $color={color}>{text}</S.Span>
       <S.Icon src={icon} />
     </S.JoinUsContainer>

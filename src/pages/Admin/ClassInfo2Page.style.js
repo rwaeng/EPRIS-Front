@@ -18,6 +18,7 @@ const S = {
     gap: 0.625rem;
     border-radius: 5rem;
     border: 0.15rem solid var(--grey300);
+    cursor: pointer;
   `,
   BtnText: styled.div`
     color: var(--grey300);
