@@ -12,7 +12,7 @@ const S = {
   GreetingsLayout: styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 7.75rem;
     @media (max-width: 1279px) {
       flex-direction: column;

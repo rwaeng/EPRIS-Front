@@ -21,6 +21,7 @@ export const putPresignedURL = async (url, file) => {
   }
 };
 
+
 export const uploadImages = async imgFile => {
   return await Promise.all(
     imgFile.map(async file => {

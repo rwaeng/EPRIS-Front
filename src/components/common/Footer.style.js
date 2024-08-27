@@ -7,10 +7,10 @@ const S = {
     justify-content: space-between;
     align-items: flex-start;
 
-    padding: 2.5rem var(--XL, 10rem) 6.25rem var(--XL, 10rem);
+    padding: 2.5rem 10rem 6.25rem 10rem;
 
-    border-top: 1px solid var(--grey500, #30303b);
-    background: var(--black, #17171b);
+    border-top: 1px solid var(--grey500);
+    background: var(--black);
 
     @media (min-width: 750px) and (max-width: 1279px) {
       width: 44.375rem;
@@ -75,15 +75,20 @@ const S = {
       padding-top: 2rem;
     }
   `,
-  IconWrapper: styled.img`
-    width: var(--R, 3rem);
-    height: var(--R, 3rem);
+  IconWrapper: styled.a`
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
 
     cursor: pointer;
-
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
     @media (max-width: 1279px) {
-      width: var(--xs, 1.5rem);
-      height: var(--xs, 1.5rem);
+      width: 1.5rem;
+      height: 1.5rem;
     }
   `,
 };
