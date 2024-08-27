@@ -12,6 +12,8 @@ const authInstance = axios.create({
   withCredentials: true,
 });
 
+const adminUrl = process.env.REACT_APP_ADMIN_URL;
+
 authInstance.interceptors.response.use(
   response => response,
   async error => {
@@ -34,7 +36,7 @@ authInstance.interceptors.response.use(
           console.error(e);
           localStorage.removeItem('token');
           localStorage.removeItem('refresh');
-          window.location.replace('/admin');
+          window.location.replace(`${adminUrl}`);
           alert('로그인 유효기간이 만료 되었습니다. 다시 로그인해주세요.');
         }
       }

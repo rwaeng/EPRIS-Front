@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { postLogin } from '../../../api/login';
 
 const LoginPage = () => {
+  const adminUrl = process.env.REACT_APP_ADMIN_URL;
   const [password, setPassWord] = useState('');
 
   const createLogin = async () => {
@@ -10,7 +11,7 @@ const LoginPage = () => {
       const res = await postLogin(password);
       localStorage.setItem('token', res.accessToken);
       localStorage.setItem('refresh', res.refreshToken);
-      window.location.replace('/admin/info');
+      window.location.replace(`${adminUrl}/info`);
     } catch (e) {
       if (e.response) {
         alert(e.response.data.message);
