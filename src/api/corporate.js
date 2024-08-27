@@ -20,31 +20,3 @@ export const postCorporate = async (projectInfo, imageUrlList) => {
     throw error;
   }
 };
-
-export const getLogo = async () => {
-  try {
-    const response = await instance.get(`/corporate-logo`, {
-      params: { type: 'project' },
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const postLogo = async imageList => {
-  try {
-    const response = await authInstance.post(
-      '/corporate-logo',
-      { imageUrlList: imageList },
-      {
-        params: {
-          type: 'project',
-        },
-      },
-    );
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
