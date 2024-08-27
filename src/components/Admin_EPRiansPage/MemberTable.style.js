@@ -87,6 +87,14 @@ S.TFileInput = styled.label`
   gap: 0.25rem;
 `;
 
+S.TFileName = styled.div`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  max-width: 70%;
+`;
+
 S.TdContainer = styled.div`
   width: 100%;
   display: flex;
@@ -118,7 +126,9 @@ S.SaveButton = styled.button`
   align-items: center;
   border-radius: 5rem;
 
-  background: var(--red);
+  color: var(--black);
+  background-color: ${props =>
+    props.disabled ? 'var(--grey300)' : 'var(--red)'};
 `;
 
 S.ButtonTab = styled.div`

@@ -1,10 +1,30 @@
 import { S } from './Dropdown.style';
 import chevronDown from '../../assets/EPRiansPage/chevron-down.svg';
 import { useState, useEffect, useRef } from 'react';
+import { getMembersAlumni } from '../../api/member';
 
-const Dropdown = ({ className }) => {
+const Dropdown = ({ className, options, setAlumniList }) => {
+  const [gen, setGen] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    if (!gen) {
+      setGen(options[0]);
+    }
+  }, [options]);
+
+  useEffect(() => {
+    const getAlumniList = async () => {
+      try {
+        const res = await getMembersAlumni(gen);
+        setAlumniList(res);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getAlumniList();
+  }, [gen]);
 
   useEffect(() => {
     document.addEventListener('mousedown', handleClickOutside);
@@ -23,18 +43,28 @@ const Dropdown = ({ className }) => {
     }
   };
 
-  const options = ['37th', '36th', '35th', '34th', '33th', '32th', '31th'];
+  const handleClickGen = option => {
+    setGen(option);
+    setIsOpen(false);
+  };
 
   return (
     <S.Container ref={dropdownRef} className={className}>
       <S.DropdownButton onClick={handleDropdown}>
-        <S.Gen>37th</S.Gen>
+        <S.Gen>{gen}</S.Gen>
         <S.Icon src={chevronDown} />
       </S.DropdownButton>
       {isOpen && (
         <S.DropdownList>
           {options.map((op, index) => (
-            <S.DropdownItem key={index}>{op}</S.DropdownItem>
+            <S.DropdownItem
+              key={index}
+              onClick={() => {
+                handleClickGen(op);
+              }}
+            >
+              {op}
+            </S.DropdownItem>
           ))}
         </S.DropdownList>
       )}
