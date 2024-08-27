@@ -21,9 +21,6 @@ const ActivityPage = () => {
   const [trendData, setTrendData] = useState({});
   const [networkData, setNetworkData] = useState([]);
 
-  const isMedium = useMediaQuery({
-    query: '(min-width: 750px) and (max-width: 1279px)',
-  });
   const isBig = useMediaQuery({
     query: '(min-width: 1280px)',
   });
@@ -134,19 +131,12 @@ const ActivityPage = () => {
   }, []);
 
   return (
-    <>
+    <S.TotalLayout>
       <NavigationBar />
-      {!isMedium && (
-        <S.ImgContainer>
-          <S.H1>Activities</S.H1>
-        </S.ImgContainer>
-      )}
+      <S.ImgContainer>
+        <S.H1>Activities</S.H1>
+      </S.ImgContainer>
       <S.Layout>
-        {isMedium && (
-          <S.ImgContainer>
-            <S.H1>Activities</S.H1>
-          </S.ImgContainer>
-        )}
         <S.Container>
           <S.TitleContainer>
             <S.H2>Achievement</S.H2>
@@ -239,7 +229,7 @@ const ActivityPage = () => {
           </S.ContentContainer>
         </S.BottomContainer>
       </S.Layout>
-    </>
+    </S.TotalLayout>
   );
 };
 
