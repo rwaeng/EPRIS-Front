@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bold18, bold24, reg18 } from '../../styles/font';
+import { bold18, bold24, reg18 } from '../../../styles/font';
 
 const S = {
   Layout: styled.div`

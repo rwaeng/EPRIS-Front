@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { reg18 } from '../../styles/font';
-import { flexCenter } from '../../styles/common';
+import { reg18 } from '../../../styles/font';
+import { flexCenter } from '../../../styles/common';
 
 const S = {
   Layout: styled.div`

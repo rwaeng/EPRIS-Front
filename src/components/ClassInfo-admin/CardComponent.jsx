@@ -1,10 +1,10 @@
 import { S } from './CardComponent.style.js';
 import { useState, useEffect } from 'react';
-import useResizeTextarea from '../../hooks/useResizeTextarea';
+import useResizeTextarea from '../../hooks/useResizeTextarea.js';
 import deleteImg from '../../assets/Admin/ps.svg';
 import { UploadComponent } from '../common/UploadComponent/UploadComponent.jsx';
 import { TextButton } from '../common/CommonButtons/CommonButtons.jsx';
-import { uploadImages } from '../../api/fileUpload';
+import { uploadImages } from '../../api/fileUpload.js';
 
 const CardComponent = ({
   card,

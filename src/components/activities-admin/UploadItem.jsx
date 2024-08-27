@@ -2,7 +2,8 @@ import { S } from './AdminActivityItem.style';
 import { useEffect, useId, useRef, useState } from 'react';
 import { postSession } from '../../api/session';
 import { uploadImages } from '../../api/fileUpload';
-import { postCorporate, postLogo } from '../../api/corporate';
+import { postCorporate } from '../../api/corporate';
+import { postLogos } from '../../api/logo';
 import { postNetwork } from '../../api/network';
 import useResizeTextarea from '../../hooks/useResizeTextarea';
 import { TextButton } from '../common/CommonButtons/CommonButtons';
@@ -17,8 +18,8 @@ const UploadItem = ({
   ratio,
   imageNum,
   imageUrl = [],
+  index,
 }) => {
-  const id = useId();
   const prevItemValue = useRef(value);
   const [data, setData] = useState('');
   const [imgFile, setImgFile] = useState([]);
@@ -55,7 +56,7 @@ const UploadItem = ({
       return res;
     },
     imgOnly: async imageUrlList => {
-      const res = await postLogo(imageUrlList);
+      const res = await postLogos('project', imageUrlList);
       return res;
     },
   };
@@ -128,7 +129,7 @@ const UploadItem = ({
       <UploadComponent
         ratio={ratio}
         imageNum={imageNum}
-        upLoadItemId={id}
+        index={index}
         imgFile={imgFile}
         imgPreview={imgPreview}
         setImgFile={setImgFile}

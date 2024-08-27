@@ -34,7 +34,11 @@ export const TextButton = ({ isActive, text, ...props }) => {
   // inActive : 버튼의 활성화 여부를 boolean으로 전달
 
   return (
-    <S.UpdateContainer isActive={isActive} {...props}>
+    <S.UpdateContainer
+      isActive={isActive}
+      disabled={props.disabled ? props.disabled : !isActive}
+      {...props}
+    >
       <S.Text>{text}</S.Text>
     </S.UpdateContainer>
   );

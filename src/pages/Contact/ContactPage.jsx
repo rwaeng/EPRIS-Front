@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import NavigationBar from '../../components/common/NavigatonBar';
-import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import { S, M } from './ContactPage.style';
 import { getClassinfo } from '../../api/classinfo';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 
 const ContactPage = () => {
   const [toast, setToast] = useState('');

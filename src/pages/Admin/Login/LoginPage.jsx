@@ -1,6 +1,6 @@
 import { S } from './LoginPage.style';
 import { useState } from 'react';
-import { postLogin } from '../../api/login';
+import { postLogin } from '../../../api/login';
 
 const LoginPage = () => {
   const [password, setPassWord] = useState('');
@@ -17,8 +17,6 @@ const LoginPage = () => {
       }
     }
   };
-
-  const refreshLogin = () => {};
 
   return (
     <S.Layout>

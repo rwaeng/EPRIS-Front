@@ -1,10 +1,10 @@
 import { S } from './Footer.style.js';
 import { useEffect, useState } from 'react';
-import { ReactComponent as Logo } from '../../assets/Footer/logo_circle.svg';
-import Instagram from '../../assets/Footer/instagram.svg';
-import Mail from '../../assets/Footer/mail.svg';
-import Blog from '../../assets/Footer/blog.svg';
-import { getClassInfo } from '../../api/main.js';
+import { getClassInfo } from '../../../api/main.js';
+import { ReactComponent as Logo } from '../../../assets/Footer/logo_circle.svg';
+import Instagram from '../../../assets/Footer/instagram.svg';
+import Mail from '../../../assets/Footer/mail.svg';
+import Blog from '../../../assets/Footer/blog.svg';
 
 const Footer = () => {
   const [classInfo, setClassInfo] = useState(null);

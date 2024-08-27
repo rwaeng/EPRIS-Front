@@ -1,14 +1,10 @@
 import { useEffect, useState } from 'react';
-
-import InbAdmin from '../../components/common/InbAdmin';
-import NavigationBar from '../../components/common/NavigatonBar';
-
-import { TextButton } from '../../components/common/CommonButtons/CommonButtons';
-import { UploadComponent } from '../../components/common/UploadComponent/UploadComponent';
-import ClassInfo2Page from './ClassInfo2Page';
 import { S } from './ClassInfoPage.style';
-
-import { getClassinfo, updateClassinfo } from '../../api/classinfo';
+import { getClassinfo, updateClassinfo } from '../../../api/classinfo';
+import InbAdmin from '../../../components/common/Inb/InbAdmin';
+import { TextButton } from '../../../components/common/CommonButtons/CommonButtons';
+import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
+import ClassInfo2Page from './ClassInfo2Page';
 
 const ClassInfoPage = () => {
   const menuList = ['기수 정보', 'Greeting Card'];
@@ -55,11 +51,9 @@ const ClassInfoPage = () => {
 
   return (
     <S.Layout>
-      <NavigationBar />
       <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
       {clicked === '기수 정보' && (
         <>
-          {' '}
           <S.ClassInfoContainer>
             <S.InfoContainer>
               <S.InformationTypeWrapper>현 기수</S.InformationTypeWrapper>

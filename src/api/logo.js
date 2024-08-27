@@ -13,7 +13,7 @@ export const postLogos = async (type, urlList) => {
     );
     return response;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

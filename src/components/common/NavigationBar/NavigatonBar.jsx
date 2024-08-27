@@ -1,9 +1,10 @@
 import { S, M } from './NavigatonBar.style';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postLogout } from '../../api/login';
+import { postLogout } from '../../../api/login';
 
 const NavigationBar = ({ type }) => {
+  const adminUrl = process.env.REACT_APP_ADMIN_URL;
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -30,16 +31,16 @@ const NavigationBar = ({ type }) => {
         <S.Container>
           <S.LogoImg onClick={handleClickAdminLogo} alt='epris-logo' />
           <S.NavContainer>
-            <S.NavLink to='/admin/info' activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/info`} activeClassName='active'>
               기본정보
             </S.NavLink>
-            <S.NavLink to='/admin/eprians' activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/eprians`} activeClassName='active'>
               EPRians
             </S.NavLink>
-            <S.NavLink to='/admin/activities' activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/activities`} activeClassName='active'>
               Activities
             </S.NavLink>
-            <S.NavLink to='/admin/recruitment' activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/recruitment`} activeClassName='active'>
               Recruitment
             </S.NavLink>
           </S.NavContainer>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { S } from './AdminActivityItem.style';
-import { getCorporate, getLogo } from '../../api/corporate';
+import { getCorporate } from '../../api/corporate';
+import { getLogos } from '../../api/logo';
 import UploadItem from './UploadItem';
 
 const CorporateProject = () => {
@@ -20,7 +21,7 @@ const CorporateProject = () => {
 
   const readLogo = async () => {
     try {
-      const res = await getLogo();
+      const res = await getLogos('project');
       setLogo(res);
     } catch (e) {
       console.error(e);
@@ -43,13 +44,15 @@ const CorporateProject = () => {
         imageUrl={contentValue.imageList}
         setIsChanged={setIsChanged}
         isChanged={isChanged}
+        index={1}
       />
       <UploadItem
         title='Corporate Logo'
         type='imgOnly'
-        imageUrl={logo.imageList}
+        imageUrl={logo}
         setIsLogoChanged={setIsLogoChanged}
         isChanged={isLogoChanged}
+        index={2}
       />
     </S.Layout>
   );
