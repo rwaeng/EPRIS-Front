@@ -1,19 +1,16 @@
 import { useEffect, useState } from 'react';
-
-import NavigationBar from '../../components/common/NavigatonBar';
-import InbAdmin from '../../components/common/InbAdmin';
-import { UploadComponent } from '../../components/common/UploadComponent/UploadComponent';
+import { S } from './EPRiansPage.style';
+import { uploadImages } from '../../../api/fileUpload';
+import { getLogos, postLogos } from '../../../api/logo';
+import { deleteGeneration, getMembers } from '../../../api/member';
+import InbAdmin from '../../../components/common/Inb/InbAdmin';
+import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
 import {
   TextButton,
   TextIconButton,
-} from '../../components/common/CommonButtons/CommonButtons';
-import { S } from './EPRiansPage.style';
-
-import plusIcon from '../../assets/Admin_EPRiansPage/ps.svg';
-import MemberTable from '../../components/Admin_EPRiansPage/MemberTable';
-import { uploadImages } from '../../api/fileUpload';
-import { getLogos, postLogos } from '../../api/logo';
-import { deleteGeneration, getMembers } from '../../api/member';
+} from '../../../components/common/CommonButtons/CommonButtons';
+import plusIcon from '../../../assets/Admin_EPRiansPage/ps.svg';
+import MemberTable from '../../../components/Admin_EPRiansPage/MemberTable';
 
 const EPRiansPage = () => {
   //INB

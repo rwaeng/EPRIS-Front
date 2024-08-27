@@ -1,16 +1,15 @@
-import NavigationBar from '../../components/common/NavigatonBar';
 import { S } from './EPRiansPage.style';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
+import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { getLogos } from '../../api/logo';
+import { getMembers, getMembersActive, getMembersExe } from '../../api/member';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import Dropdown from '../../components/EPRiansPage/Dropdown';
-
 import arrowDown from '../../assets/EPRiansPage/arrow_downward.svg';
 import arrowUp from '../../assets/EPRiansPage/arrow_upward.svg';
 import ViewMoreButton from '../../components/EPRiansPage/ViewMoreButton';
-import { useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { ActingCard, AlumniCard } from '../../components/EPRiansPage/Card';
-import { getMembers, getMembersActive, getMembersExe } from '../../api/member';
-import useScrollFadeIn from '../../hooks/useScrollFadeIn';
-import { getLogos } from '../../api/logo';
 
 const EPRiansPage = () => {
   const [brandList, setBrandList] = useState([]);

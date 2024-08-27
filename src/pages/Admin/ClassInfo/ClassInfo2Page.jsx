@@ -1,13 +1,13 @@
 import { S } from './ClassInfo2Page.style.js';
 import { useState, useEffect } from 'react';
-import CardComponent from '../../components/Admin/CardComponent';
-import AddIcon from '../../assets/Admin/plus.svg';
+import CardComponent from '../../../components/Admin/CardComponent';
+import AddIcon from '../../../assets/Admin/plus.svg';
 import {
   getCards,
   createCard,
   updateCard,
   deleteCard,
-} from '../../api/admin.js';
+} from '../../../api/admin.js';
 
 const ClassInfo2Page = () => {
   const [cards, setCards] = useState(null);

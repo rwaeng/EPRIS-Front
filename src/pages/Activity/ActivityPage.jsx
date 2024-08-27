@@ -9,7 +9,7 @@ import useScroll from '../../hooks/useScroll.js';
 import AwardCard from '../../components/activities/AwardCard.jsx';
 import ProjectCard from '../../components/activities/ProjectCard.jsx';
 import ActivityCard from '../../components/activities/ActivityCard.jsx';
-import NavigationBar from '../../components/common/NavigatonBar.jsx';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar.jsx';
 import CorporateCard from '../../components/activities/CorporateCard.jsx';
 import FloatingButton from '../../components/activities/FloatingButton.jsx';
 

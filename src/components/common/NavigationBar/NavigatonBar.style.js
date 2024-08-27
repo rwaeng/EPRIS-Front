@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/logo/Logo.svg';
-import { ReactComponent as NavMobile } from '../../assets/NavBar/MobileNavMenu.svg';
-import { ReactComponent as NavMobileX } from '../../assets/NavBar/x.svg';
-import { bold18, m_bold18 } from '../../styles/font';
+import { ReactComponent as Logo } from '../../../assets/logo/Logo.svg';
+import { ReactComponent as NavMobile } from '../../../assets/NavBar/MobileNavMenu.svg';
+import { ReactComponent as NavMobileX } from '../../../assets/NavBar/x.svg';
+import { bold18, m_bold18 } from '../../../styles/font';
 
 const S = {
   Layout: styled.nav`

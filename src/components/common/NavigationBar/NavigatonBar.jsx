@@ -1,7 +1,7 @@
 import { S, M } from './NavigatonBar.style';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postLogout } from '../../api/login';
+import { postLogout } from '../../../api/login';
 
 const NavigationBar = ({ type }) => {
   const navigate = useNavigate();

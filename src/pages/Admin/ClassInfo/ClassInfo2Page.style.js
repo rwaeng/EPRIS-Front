@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bold24 } from '../../styles/font';
+import { bold24 } from '../../../styles/font';
 
 const S = {
   ClassInfoLayout: styled.div`

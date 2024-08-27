@@ -1,11 +1,11 @@
 import { S } from './ActivityPage.style';
 import { useState } from 'react';
-import InbAdmin from '../../components/common/InbAdmin';
-import ProjectList from '../../components/activities-admin/ProjectList';
-import AwardStatistics from '../../components/activities-admin/AwardStatistics';
-import SessionList from '../../components/activities-admin/SessionList';
-import CorporateProject from '../../components/activities-admin/CorporateProject';
-import Network from '../../components/activities-admin/Network';
+import InbAdmin from '../../../components/common/Inb/InbAdmin';
+import ProjectList from '../../../components/activities-admin/ProjectList';
+import AwardStatistics from '../../../components/activities-admin/AwardStatistics';
+import SessionList from '../../../components/activities-admin/SessionList';
+import CorporateProject from '../../../components/activities-admin/CorporateProject';
+import Network from '../../../components/activities-admin/Network';
 
 const ActivityPage = () => {
   const menuList = [

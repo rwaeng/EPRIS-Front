@@ -1,15 +1,15 @@
 import { Suspense, lazy } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
-import LoginPage from './pages/Admin/LoginPage';
-import AdminActivityPage from './pages/Admin/ActivityPage';
-import ClassInfoPage from './pages/Admin/ClassInfoPage';
-import AdminEPRiansPage from './pages/Admin/EPRiansPage';
-import RecruitmentPage from './pages/Admin/RecruitmentPage';
+import LoginPage from './pages/Admin/Login/LoginPage';
+import AdminActivityPage from './pages/Admin/Activity/ActivityPage';
+import ClassInfoPage from './pages/Admin/ClassInfo/ClassInfoPage';
+import AdminEPRiansPage from './pages/Admin/Eprians/EPRiansPage';
+import RecruitmentPage from './pages/Admin/Recruitment/RecruitmentPage';
 
-import PrivateRouter from './pages/PrivateRouter';
+import PrivateRouter from './router/PrivateRouter';
 
-const LayoutPage = lazy(() => import('./pages/LayoutPage'));
+const LayoutPage = lazy(() => import('./layout/LayoutPage'));
 const MainPage = lazy(() => import('./pages/Main/MainPage'));
 const AboutPage = lazy(() => import('./pages/About/AboutPage'));
 const ContactPage = lazy(() => import('./pages/Contact/ContactPage'));

@@ -1,7 +1,6 @@
-import React from 'react';
 import { useState } from 'react';
-import NavigationBar from '../../components/common/NavigatonBar';
 import { M, S } from './AboutPage.style';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
 import {
   CardContent,
   cardData,
