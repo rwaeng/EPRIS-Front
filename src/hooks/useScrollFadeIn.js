@@ -7,7 +7,7 @@ import { useCallback, useEffect, useRef } from 'react';
 const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
   const ref = useRef();
 
-  const handleScroll = useCallback(([entry]) => {
+  const handleScroll = ([entry]) => {
     const { current } = ref;
 
     if (entry.isIntersecting) {
@@ -21,7 +21,7 @@ const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
         element.transform = 'translate3d(0, 0, 0)';
       }
     }
-  }, []);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleScroll, { threshold });
