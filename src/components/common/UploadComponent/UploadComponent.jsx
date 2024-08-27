@@ -67,6 +67,10 @@ export const UploadComponent = ({
     setImgFile(prevState => prevState.filter((_, idx) => idx !== id));
     setImageUrlList(prevState => prevState.filter((_, idx) => idx !== id));
     setIsChanged(true);
+    // 이미지 삭제 후 동일한 이미지 재업로드 가능하도록
+    if (index) {
+      document.getElementById(`file-input-${index}`).value = '';
+    }
   };
 
   return (

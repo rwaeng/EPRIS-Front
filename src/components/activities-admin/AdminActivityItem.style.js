@@ -38,7 +38,7 @@ const S = {
     width: 100%;
 
     ${bold24}
-    color: var(--white);
+    color: ${({ $color }) => ($color ? $color : 'var(--white)')};
   `,
   Fieldset: styled.fieldset`
     display: flex;
@@ -54,6 +54,7 @@ const S = {
     color: var(--white);
   `,
   Input: styled.input`
+    width: 32.5rem;
     ${inputCommonStyle}
   `,
   FixedInput: styled.input`
@@ -62,6 +63,8 @@ const S = {
     width: 32.5rem;
   `,
   Textarea: styled.textarea`
+    width: 32.5rem;
+
     ${inputCommonStyle}
 
     resize: none;

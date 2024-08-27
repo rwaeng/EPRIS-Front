@@ -18,27 +18,22 @@ const ActivityPage = () => {
   const [clicked, setClicked] = useState(menuList[0]);
 
   const SubPage = () => {
-    switch (clicked) {
-      case 'Project List':
-        return <ProjectList />;
-      case 'Award & Statistics':
-        return <AwardStatistics />;
-      case 'Session':
-        return <SessionList />;
-      case 'Corporate Project':
-        return <CorporateProject />;
-      case 'Network':
-        return <Network />;
-      default:
-        return <ProjectList />;
-    }
+    return (
+      {
+        'Project List': <ProjectList />,
+        'Award & Statistics': <AwardStatistics />,
+        Session: <SessionList />,
+        'Corporate Project': <CorporateProject />,
+        Network: <Network />,
+      }[clicked] ?? ''
+    );
   };
 
   return (
     <S.Layout>
       <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
       <S.Container>
-        <SubPage />
+        <SubPage/>
       </S.Container>
     </S.Layout>
   );

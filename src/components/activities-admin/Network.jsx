@@ -1,26 +1,50 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { S } from './AdminActivityItem.style';
+import { getNetwork } from '../../api/network';
 import UploadItem from './UploadItem';
 
 const Network = () => {
-  const [eprianValue, setEprianValue] = useState('');
-  const [careerValue, setCareerValue] = useState('');
+  const [eprianValue, setEprianValue] = useState({});
+  const [careerValue, setCareerValue] = useState({});
+
+  const readNetwork = async () => {
+    try {
+      const res = await getNetwork();
+      if (res[0].networkType === 'NIGHT') {
+        setEprianValue(res[0]);
+        setCareerValue(res[1]);
+      } else {
+        setEprianValue(res[1]);
+        setCareerValue(res[0]);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    readNetwork();
+  }, []);
 
   return (
     <S.Layout>
       <UploadItem
+        type='network'
+        networkType='night'
         title='EPRian의 밤'
-        value={eprianValue}
-        setValue={setEprianValue}
+        value={eprianValue.networkInfo}
         ratio='4:3'
         imageNum='1'
+        imageUrl={[eprianValue.networkImg]}
       />
       <UploadItem
+        type='network'
+        networkType='lecture'
         title='Career Lecture'
-        value={careerValue}
-        setValue={setCareerValue}
+        value={careerValue.networkInfo}
         ratio='4:3'
         imageNum='1'
+        imageUrl={[careerValue.networkImg]}
       />
     </S.Layout>
   );

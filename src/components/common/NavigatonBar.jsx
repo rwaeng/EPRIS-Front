@@ -1,6 +1,7 @@
 import { S, M } from './NavigatonBar.style';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { postLogout } from '../../api/login';
 
 const NavigationBar = ({ type }) => {
   const navigate = useNavigate();
@@ -10,11 +11,24 @@ const NavigationBar = ({ type }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleClickAdminLogo = async () => {
+    try {
+      const res = await postLogout();
+      if (res) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refresh');
+        navigate('/', { replace: true });
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   return (
     <S.Layout>
       {type === 'admin' ? (
         <S.Container>
-          <S.LogoImg onClick={() => navigate('/')} />
+          <S.LogoImg onClick={handleClickAdminLogo} alt='epris-logo' />
           <S.NavContainer>
             <S.NavLink to='/admin/info' activeClassName='active'>
               기본정보
@@ -32,7 +46,7 @@ const NavigationBar = ({ type }) => {
         </S.Container>
       ) : (
         <S.Container>
-          <S.LogoImg onClick={() => navigate('/')} />
+          <S.LogoImg onClick={() => navigate('/')} alt='epris-logo' />
           <S.NavContainer>
             <S.NavLink to='/about' activeClassName='active'>
               About

@@ -12,12 +12,14 @@ const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
 
     if (entry.isIntersecting) {
       const element = current.style;
-      element.transitionProperty = 'opacity, transform';
-      element.transitionDuration = '1.2s';
-      element.transitionTimingFunction = 'cubic-bezier(0, 0, 1, 1)';
-      element.transitionDelay = '0s';
-      element.opacity = 1;
-      element.transform = 'translate3d(0, 0, 0)';
+      if (element) {
+        element.transitionProperty = 'opacity, transform';
+        element.transitionDuration = '1.2s';
+        element.transitionTimingFunction = 'cubic-bezier(0, 0, 1, 1)';
+        element.transitionDelay = '0s';
+        element.opacity = 1;
+        element.transform = 'translate3d(0, 0, 0)';
+      }
     }
   }, []);
 
