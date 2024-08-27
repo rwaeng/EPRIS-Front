@@ -128,7 +128,7 @@ const UploadItem = ({
       <UploadComponent
         ratio={ratio}
         imageNum={imageNum}
-        upLoadItemId={id}
+        index={id}
         imgFile={imgFile}
         imgPreview={imgPreview}
         setImgFile={setImgFile}
