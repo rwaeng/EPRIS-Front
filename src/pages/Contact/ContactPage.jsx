@@ -61,8 +61,8 @@ const ContactPage = () => {
       <NavigationBar />
       <S.Layout>
         <S.BackgroundImageContainer>
-          <S.Ellipse1 />
-          <S.Ellipse2 />
+          <S.Ellipse31 />
+          <S.Ellipse32 />
         </S.BackgroundImageContainer>
         <S.TitleContainer>
           <S.Title>Contact</S.Title>
