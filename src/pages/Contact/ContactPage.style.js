@@ -104,7 +104,7 @@ const S = {
       display: none;
     }
   `,
-  ContactCardContainer: styled.div`
+  ContactCardContainer: styled.button`
     display: flex;
     flex-direction: column;
     justify-content: center;
