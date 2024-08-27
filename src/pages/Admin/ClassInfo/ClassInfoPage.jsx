@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import { S } from './ClassInfoPage.style';
-
 import { getClassinfo, updateClassinfo } from '../../../api/classinfo';
-
 import InbAdmin from '../../../components/common/Inb/InbAdmin';
-import NavigationBar from '../../../components/common/NavigationBar/NavigatonBar';
-
 import { TextButton } from '../../../components/common/CommonButtons/CommonButtons';
 import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
 import ClassInfo2Page from './ClassInfo2Page';
@@ -55,7 +51,6 @@ const ClassInfoPage = () => {
 
   return (
     <S.Layout>
-      <NavigationBar />
       <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
       {clicked === '기수 정보' && (
         <>
