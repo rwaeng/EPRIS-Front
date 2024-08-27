@@ -7,9 +7,9 @@ import xBoxIcon from '../../../assets/commonComponents/xbox.svg';
 export const UploadComponent = ({
   ratio = null,
   imageNum = null,
-  imgFile,
+  imgFile = [],
   setImgFile,
-  imgPreview,
+  imgPreview = [],
   setImgPreview,
   setImageUrlList,
   setIsChanged,
