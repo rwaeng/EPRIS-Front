@@ -18,8 +18,6 @@ const LoginPage = () => {
     }
   };
 
-  const refreshLogin = () => {};
-
   return (
     <S.Layout>
       <S.LogoImg />

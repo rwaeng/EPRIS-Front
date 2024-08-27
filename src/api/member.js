@@ -5,7 +5,7 @@ export const postMember = async data => {
     const response = await authInstance.post(`/members`, data);
     return response;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -14,7 +14,7 @@ export const deleteMember = async memberId => {
     const response = await authInstance.delete(`/members/${memberId}`);
     return response;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -23,7 +23,7 @@ export const deleteGeneration = async gen => {
     const response = await authInstance.delete(`/members?num=${gen}`);
     return response;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -32,7 +32,7 @@ export const getMembers = async () => {
     const response = await instance.get(`/members/byAllNum`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -41,7 +41,7 @@ export const getMembersExe = async () => {
     const response = await instance.get(`/members/executives`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -50,7 +50,7 @@ export const getMembersActive = async () => {
     const response = await instance.get(`/members/isActive`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -59,6 +59,6 @@ export const getMembersAlumni = async gen => {
     const response = await instance.get(`/members/alumni?num=${gen}`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

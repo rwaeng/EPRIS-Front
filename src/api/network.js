@@ -23,7 +23,6 @@ export const postNetwork = async (type, networkInfo, imageUrl) => {
     );
     return response.data;
   } catch (error) {
-    console.log('실패')
     throw error;
   }
 };
