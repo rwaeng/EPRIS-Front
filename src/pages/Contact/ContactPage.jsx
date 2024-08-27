@@ -22,6 +22,10 @@ const ContactPage = () => {
       });
   };
 
+  const clickOpen = url => {
+    window.open(url, '_blank');
+  };
+
   const [classInfo, setClassInfo] = useState({
     num: '',
     phoneNum: '',
@@ -76,16 +80,16 @@ const ContactPage = () => {
             <S.Content>{classInfo.email}</S.Content>
           </S.ContactCardContainer>
           <S.ContactCardContainer
-            onClick={() => clickCopy(classInfo.instaLink)}
+            onClick={() => clickOpen(classInfo.instaLink)}
           >
             <S.InstagramIcon />
             <S.CopySubTitle>Instagram</S.CopySubTitle>
-            <S.Content>{classInfo.instaLink}</S.Content>
+            <S.Content>@epris_ewha</S.Content>
           </S.ContactCardContainer>
-          <S.ContactCardContainer onClick={() => clickCopy(classInfo.blogLink)}>
+          <S.ContactCardContainer onClick={() => clickOpen(classInfo.blogLink)}>
             <S.BlogIcon />
             <S.CopySubTitle>Blog</S.CopySubTitle>
-            <S.Content>{classInfo.blogLink}</S.Content>
+            <S.Content>ewhaepris</S.Content>
           </S.ContactCardContainer>
         </S.CardContainer>
         <M.CardContainer>
@@ -107,19 +111,19 @@ const ContactPage = () => {
           </S.ContactCardContainer>
           <S.ContactCardContainer
             {...mobileAnimation3}
-            onClick={() => clickCopy(classInfo.instaLink)}
+            onClick={() => clickOpen(classInfo.instaLink)}
           >
             <S.InstagramIcon />
             <S.CopySubTitle>Instagram</S.CopySubTitle>
-            <S.Content>{classInfo.instaLink}</S.Content>
+            <S.Content>@epris_ewha</S.Content>
           </S.ContactCardContainer>
           <S.ContactCardContainer
             {...mobileAnimation4}
-            onClick={() => clickCopy(classInfo.blogLink)}
+            onClick={() => clickOpen(classInfo.blogLink)}
           >
             <S.BlogIcon />
             <S.CopySubTitle>Blog</S.CopySubTitle>
-            <S.Content>{classInfo.blogLink}</S.Content>
+            <S.Content>ewhaepris</S.Content>
           </S.ContactCardContainer>
         </M.CardContainer>
         {toast && (
