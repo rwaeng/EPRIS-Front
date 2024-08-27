@@ -18,8 +18,8 @@ const UploadItem = ({
   ratio,
   imageNum,
   imageUrl = [],
+  index,
 }) => {
-  const id = useId();
   const prevItemValue = useRef(value);
   const [data, setData] = useState('');
   const [imgFile, setImgFile] = useState([]);
@@ -129,7 +129,7 @@ const UploadItem = ({
       <UploadComponent
         ratio={ratio}
         imageNum={imageNum}
-        index={id}
+        index={index}
         imgFile={imgFile}
         imgPreview={imgPreview}
         setImgFile={setImgFile}

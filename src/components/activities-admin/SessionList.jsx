@@ -39,6 +39,7 @@ const SessionList = () => {
         ratio='4:3'
         imageNum='4'
         imageUrl={prValue.imageList}
+        index={1}
       />
       <UploadItem
         key='issue'
@@ -49,6 +50,7 @@ const SessionList = () => {
         ratio='4:3'
         imageNum='4'
         imageUrl={issueValue.imageList}
+        index={2}
       />
       <UploadItem
         key='trend'
@@ -59,6 +61,7 @@ const SessionList = () => {
         ratio='4:3'
         imageNum='4'
         imageUrl={trendValue.imageList}
+        index={3}
       />
     </S.Layout>
   );

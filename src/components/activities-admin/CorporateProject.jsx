@@ -44,13 +44,15 @@ const CorporateProject = () => {
         imageUrl={contentValue.imageList}
         setIsChanged={setIsChanged}
         isChanged={isChanged}
+        index={1}
       />
       <UploadItem
         title='Corporate Logo'
         type='imgOnly'
-        imageUrl={logo.imageList}
+        imageUrl={logo}
         setIsLogoChanged={setIsLogoChanged}
         isChanged={isLogoChanged}
+        index={2}
       />
     </S.Layout>
   );
