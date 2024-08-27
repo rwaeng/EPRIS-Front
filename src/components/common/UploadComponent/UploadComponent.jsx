@@ -1,5 +1,6 @@
 import { S } from './UploadComponent.style';
 import { useEffect } from 'react';
+import { useEffect } from 'react';
 
 import PlusIcon from '../../../assets/commonComponents/plus.svg';
 import xBoxIcon from '../../../assets/commonComponents/xbox.svg';
@@ -39,21 +40,31 @@ export const UploadComponent = ({
   const handleImgUpload = e => {
     //사진 업로드 시 실행
     const currentImage = e.target.files; //선택한 이미지
+  const handleImgUpload = e => {
+    //사진 업로드 시 실행
+    const currentImage = e.target.files; //선택한 이미지
     let previewUrl = [...imgPreview];
+    let files = [...imgFile];
     let files = [...imgFile];
 
     if (currentImage.length > 0) {
       const currentUrl = URL.createObjectURL(currentImage[0]);
       previewUrl.push(currentUrl); //프리뷰 배열에 저장
       files.push(currentImage[0]); //파일 배열에 저장
+      previewUrl.push(currentUrl); //프리뷰 배열에 저장
+      files.push(currentImage[0]); //파일 배열에 저장
 
       if (imageNum && previewUrl.length > imageNum) {
         //imageNum보다 많은 수의 사진 업로드를 막음
+        //imageNum보다 많은 수의 사진 업로드를 막음
         previewUrl = previewUrl.slice(0, imageNum);
+        files = files.slice(0, imageNum);
         files = files.slice(0, imageNum);
       }
 
       setImgPreview(previewUrl);
+      setImgFile(files);
+      setIsChanged(true);
       setImgFile(files);
       setIsChanged(true);
     }
@@ -81,6 +92,10 @@ export const UploadComponent = ({
           style={{ display: 'none' }}
         />
         <S.Title>사진 업로드</S.Title>
+        <S.Ratio>{imageNum ? `(${ratio}, ${imageNum}장)` : ratio}</S.Ratio>
+        <S.FileName>
+          {imgFile.length > 0 && imgFile[imgFile.length - 1].name}
+        </S.FileName>
         <S.Ratio>{imageNum ? `(${ratio}, ${imageNum}장)` : ratio}</S.Ratio>
         <S.FileName>
           {imgFile.length > 0 && imgFile[imgFile.length - 1].name}
