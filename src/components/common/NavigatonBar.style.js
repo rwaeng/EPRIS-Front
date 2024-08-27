@@ -7,6 +7,7 @@ import { bold18, m_bold18 } from '../../styles/font';
 
 const S = {
   Layout: styled.nav`
+    position: relative;
     display: flex;
     flex-direction: column;
 
@@ -78,12 +79,19 @@ const M = {
   `,
   NavContainer: styled.div`
     display: none;
+
     cursor: pointer;
     @media (max-width: 1279px) {
       display: flex;
       flex-direction: column;
       align-items: start;
-      margin-top: 1rem;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 2000;
+      padding-left: 1.5rem;
+      background-color: var(--black);
     }
   `,
 };
