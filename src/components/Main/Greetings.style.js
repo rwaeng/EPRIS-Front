@@ -25,6 +25,8 @@ const S = {
     height: 21.5833rem;
     border-radius: 1rem;
     background: lightgray 50% / cover no-repeat;
+    object-fit: cover;
+    object-position: center;
     @media (max-width: 1279px) {
       width: 20.9375rem;
       height: 28.25rem;

@@ -11,8 +11,8 @@ import {
   getStatsInfo,
   getGreetingCards,
   getClassInfo,
-  getRecruitmentInfo,
 } from '../../api/main.js';
+import { getRecruitment } from '../../api/recruitment.js';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn.js';
 
 const MainPage = () => {
@@ -43,13 +43,12 @@ const MainPage = () => {
             getStatsInfo(),
             getGreetingCards(),
             getClassInfo(),
-            getRecruitmentInfo(),
+            getRecruitment(),
           ]);
-
         setData(statsData.data);
         setGreetingCards(greetingCardData.data);
         setClassInfo(classData.data);
-        setRecruitmentInfo(recruitmentData.data);
+        setRecruitmentInfo(recruitmentData);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -84,12 +83,17 @@ const MainPage = () => {
           <S.SubWrapper {...animation10}>
             {`이화여자대학교 교내 유일 PR 학회\n EPRIS를 소개합니다`}
           </S.SubWrapper>
-          <S.DownBtn src={Down} onClick={handleScrollToBody} {...animation11} />
+          <S.DownBtn
+            src={Down}
+            alt='Down'
+            onClick={handleScrollToBody}
+            {...animation11}
+          />
         </S.HeadContainer>
       </S.TopContainer>
       <S.BodyContainer ref={bodyRef}>
         <S.ValueContainer {...animation}>
-          <S.LogoWrapper src={Logo} />
+          <S.LogoWrapper src={Logo} alt='Logo' />
           <S.TextContainer>
             <S.LittleLogoWrapper>
               <S.Red>E</S.Red>
@@ -167,7 +171,11 @@ const MainPage = () => {
           <S.SubText>현 임원진</S.SubText>
           <S.ValueContainer>
             {classInfo && classInfo.adminImg ? (
-              <S.AdministratorPhoto src={classInfo.adminImg} {...animation7} />
+              <S.AdministratorPhoto
+                src={classInfo.adminImg}
+                alt='임원진 사진'
+                {...animation7}
+              />
             ) : (
               <div></div>
             )}
