@@ -28,21 +28,24 @@ const ClassInfoPage = () => {
 
   const [originalClassInfo, setOriginalClassInfo] = useState({});
 
-  useEffect(() => {
-    const getClassInfo = async () => {
-      try {
-        const res = await getClassinfo();
-        setClassInfo(res);
-        setOriginalClassInfo(res);
-        if (res.adminImg) {
-          setImgPreview([res.adminImg]);
-        }
-      } catch (error) {
-        console.error(error);
+  const getClassInfo = async () => {
+    try {
+      const res = await getClassinfo();
+      setClassInfo(res);
+      setOriginalClassInfo(res);
+      if (res.adminImg) {
+        setImgPreview([res.adminImg]);
       }
-    };
-    getClassInfo();
-  }, []);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (clicked === '기수 정보') {
+      getClassInfo();
+    }
+  }, [clicked]);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -56,13 +59,12 @@ const ClassInfoPage = () => {
   const checkIfChanged = updatedClassInfo => {
     const isDataChanged =
       JSON.stringify(updatedClassInfo) !== JSON.stringify(originalClassInfo);
-    const isImageChanged =
-      imgFile.length > 0 ||
-      (imgPreview.length === 0 && originalClassInfo.adminImg);
-    setIsChanged(isDataChanged || isImageChanged);
+
+    const isImageChanged = imgFile.length > 0 || imgPreview.length > 0;
+    setIsChanged(isDataChanged || (imgFile.length > 0 && isImageChanged));
   };
 
-  const handelClickUpdate = async () => {
+  const handleClickUpdate = async () => {
     if (imgFile.length === 0 && !classInfo.adminImg) {
       alert('업로드된 사진이 없습니다.');
       return;
@@ -70,6 +72,8 @@ const ClassInfoPage = () => {
     try {
       await updateClassinfo(classInfo);
       alert('저장되었습니다.');
+      setIsChanged(false);
+      getClassInfo();
     } catch (error) {
       console.error(error);
       alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
@@ -78,7 +82,7 @@ const ClassInfoPage = () => {
 
   useEffect(() => {
     checkIfChanged(classInfo);
-  }, [classInfo, imgFile]);
+  }, [classInfo, imgFile, imgPreview]);
 
   return (
     <S.Layout>
@@ -162,8 +166,8 @@ const ClassInfoPage = () => {
           <TextButton
             isActive={isChanged}
             text={'업데이트'}
-            onClick={handelClickUpdate}
-          ></TextButton>
+            onClick={handleClickUpdate}
+          />
         </>
       )}
       {clicked === 'Greeting Card' && <ClassInfo2Page />}
