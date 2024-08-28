@@ -5,7 +5,7 @@ export const getClassinfo = async () => {
     const response = await instance.get(`/class-info`);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -15,6 +15,6 @@ export const updateClassinfo = async classInfo => {
 
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

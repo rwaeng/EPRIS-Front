@@ -49,6 +49,8 @@ S.UpdateContainer = styled.button`
   border-radius: 5rem;
   background-color: ${({ isActive }) =>
     isActive ? 'var(--red)' : 'var(--grey300)'};
+
+  cursor: ${disabled => (disabled ? 'default' : 'pointer')};
 `;
 
 S.Text = styled.div`

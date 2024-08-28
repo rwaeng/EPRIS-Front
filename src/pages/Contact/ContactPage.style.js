@@ -101,14 +101,10 @@ const S = {
     margin-bottom: 10rem;
     z-index: 1;
     @media (max-width: 1279px) {
-      flex-direction: column;
-      align-items: center;
-      width: 20.9375rem;
-      margin-bottom: 4.69rem;
-      gap: 1.75rem;
+      display: none;
     }
   `,
-  ContactCardContainer: styled.div`
+  ContactCardContainer: styled.button`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -153,6 +149,9 @@ const S = {
     margin-bottom: 0.5rem;
   `,
   Content: styled.div`
+    display: flex;
+    justify-content: center;
+    width: 85%;
     ${bold18};
     color: var(--grey100);
   `,
@@ -191,4 +190,20 @@ const S = {
   `,
 };
 
-export { S };
+const M = {
+  CardContainer: styled.div`
+    display: none;
+    z-index: 1;
+    @media (max-width: 1279px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      width: 20.9375rem;
+      margin-bottom: 4.69rem;
+      gap: 1.75rem;
+    }
+  `,
+};
+
+export { S, M };

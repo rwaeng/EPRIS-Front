@@ -1,7 +1,7 @@
 import { S } from './MainPage.style.js';
 import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavigationBar from '../../components/common/NavigatonBar';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
 import Down from '../../assets/Main/arrow_down_circle.svg';
 import Logo from '../../assets/Main/logo.svg';
 import arrowIcon from '../../assets/Main/arrow_right.svg';

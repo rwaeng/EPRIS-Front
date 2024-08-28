@@ -1,13 +1,13 @@
-import React from 'react';
 import { useState } from 'react';
-import NavigationBar from '../../components/common/NavigatonBar';
 import { M, S } from './AboutPage.style';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
 import {
   CardContent,
-  DepartmentCardContent,
   cardData,
-  departmentData,
+  MCardContent,
 } from '../../components/About/CardContent';
+import { DepartmentCard } from '../../components/About/DepartmentCard';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 
 const AboutPage = () => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -26,6 +26,11 @@ const AboutPage = () => {
 
   const currentCard = cardData[currentCardIndex];
 
+  const animationHistory = useScrollFadeIn();
+  const animationText = useScrollFadeIn();
+  const mAnimationName = useScrollFadeIn();
+  const mAnimationHistory = useScrollFadeIn();
+
   return (
     <>
       <NavigationBar />
@@ -43,7 +48,7 @@ const AboutPage = () => {
           </S.AboutTextContainer>
         </S.BcakgroundImageContainer>
         <S.IntroductionContainer>
-          <S.AboutContainer>
+          <S.AboutContainer {...animationHistory}>
             <S.LogoWrapper />
             <S.AboutPRContainer>
               <S.NameWrapper>
@@ -51,13 +56,17 @@ const AboutPage = () => {
                 UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
                 <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
               </S.NameWrapper>
-              <S.HistoryWrapper>
-                EPRIS는
-                <S.RedText>EWHA PUBLIC RELATIONS IN STUDY</S.RedText>의 약자로,
-                2000년도에 신문방송대학원 과정의 석/박사 선배님들에 의해 창립된
-                커뮤니케이션·미디어학부 소속 교내 유일 PR 학회입니다. 학회원들은
-                매주 1회 정기모임에서 스터디와 PT를 통해 PR에 관하여 학습하고,
-                산학협력 프로젝트로 PR 관련 실무 경험까지 함께합니다.
+              <M.NameWrapper {...mAnimationName}>
+                <S.RedText>E</S.RedText>WHA&nbsp;<S.RedText>P</S.RedText>
+                UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
+                <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
+              </M.NameWrapper>
+              <S.HistoryWrapper {...mAnimationHistory}>
+                EPRIS는 <S.RedText>EWHA PUBLIC RELATIONS IN STUDY</S.RedText>의
+                약자로, 2000년도에 신문방송대학원 과정의 석/박사 선배님들에 의해
+                창립된 커뮤니케이션·미디어학부 소속 교내 유일 PR 학회입니다.
+                학회원들은 매주 1회 정기모임에서 스터디와 PT를 통해 PR에 관하여
+                학습하고, 산학협력 프로젝트로 PR 관련 실무 경험까지 함께합니다.
               </S.HistoryWrapper>
             </S.AboutPRContainer>
           </S.AboutContainer>
@@ -73,7 +82,12 @@ const AboutPage = () => {
                 <CardContent name='OB' subTitle='한 학기 수료 학회원' />
                 <CardContent name='Alumni' subTitle='수료 학회원' />
               </S.CardContainer>
-              <S.TextWrapper>
+              <M.CardContainer>
+                <MCardContent name='YB' subTitle='신입 학회원' />
+                <MCardContent name='OB' subTitle='한 학기 수료 학회원' />
+                <MCardContent name='Alumni' subTitle='수료 학회원' />
+              </M.CardContainer>
+              <S.TextWrapper {...animationText}>
                 {`EPRIS의 활동 멤버는 OB와 YB로 구성됩니다. 모든 학회원은 2학기 연속 활동을 원칙으로 합니다.
 
 EPRIS는 기획부, 운영부, 홍보부로 구성되어 운영됩니다. 각 부서는 부장과 부원들로 구성되며, 활동 멤버 전원은 하나의 부서에 소속되어 활동합니다.
@@ -119,21 +133,7 @@ EPRIS의 임원진은 회장, 기획부장, 운영부장, 홍보부장의 4인 �
                   <M.RightArrow onClick={handelNextClick} />
                 </M.CardButtonContainer>
               </M.CardContainer>
-              <S.Container>
-                {departmentData.map((department, index) => (
-                  <React.Fragment key={index}>
-                    <div style={{ height: '19.8125rem' }}>
-                      <S.Triangle marginLeft={department.marginLeft} />
-                      <DepartmentCardContent
-                        marginLeft={department.marginLeft}
-                        depname={department.depname}
-                        description={department.description}
-                        depdetails={department.depdetails}
-                      />{' '}
-                    </div>
-                  </React.Fragment>
-                ))}{' '}
-              </S.Container>
+              <DepartmentCard />
               <M.Container>
                 {currentCard.departmentname && (
                   <>

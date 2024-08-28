@@ -1,49 +1,82 @@
-import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons';
-import ProcessBox from '../../components/JoinusPage/ProcessBox';
-import NavigationBar from '../../components/common/NavigatonBar';
 import { S } from './JoinusPage.style';
-
+import { useEffect, useState } from 'react';
+import { getRecruitment } from '../../api/recruitment';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
+import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons';
+import ProcessBox from '../../components/Joinus/ProcessBox';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
+import Question from '../../components/Joinus/Question';
 import downloadIcon from '../../assets/JoinusPage/download.svg';
-import posterExample from '../../assets/JoinusPage/poster_img.png';
-import Question from '../../components/JoinusPage/Question';
 
 const JoinusPage = () => {
+  const [recruitment, setRecruitment] = useState({});
+  const aniTitle = useScrollFadeIn();
+  const aniSubtitle = useScrollFadeIn();
+  const aniTimeline = useScrollFadeIn();
+  const aniPoster = useScrollFadeIn();
+
+  useEffect(() => {
+    const getRecruitmentInfo = async () => {
+      try {
+        const res = await getRecruitment();
+        setRecruitment(res);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getRecruitmentInfo();
+  }, []);
+
+  const handleDownloadFile = () => {
+    const link = document.createElement('a');
+    link.href = recruitment.doc;
+    link.download = '';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <S.Layout>
       <NavigationBar />
       <S.TitleContainer>
         <S.Ellipse31 />
         <S.Ellipse32 />
-        <S.MainTitle>Join EPRIS</S.MainTitle>
-        <S.MainSubtitle>지원 자격</S.MainSubtitle>
-        <S.MainDescription>
-          전공무관, 연속 2학기
-          <br />
-          활동 가능한 학부생
-        </S.MainDescription>
-        <TextIconButton text='지원서 다운로드' icon={downloadIcon} />
+        <S.MainTitle {...aniTitle}>Join EPRIS</S.MainTitle>
+        <S.SubtitleContainer {...aniSubtitle}>
+          <S.MainSubtitle>지원 자격</S.MainSubtitle>
+          <S.MainDescription>
+            전공무관, 연속 2학기
+            <br />
+            활동 가능한 학부생
+          </S.MainDescription>
+        </S.SubtitleContainer>
+
+        <TextIconButton
+          text='지원서 다운로드'
+          icon={downloadIcon}
+          onClick={handleDownloadFile}
+        />
       </S.TitleContainer>
       <S.ContentContainer>
         <S.TimelineContainer>
           <S.Title>Timeline</S.Title>
           <S.Description>모집 일정</S.Description>
-          <S.ProcessContainer>
-            <ProcessBox
-              title='1. 지원서 접수'
-              desc={`0월 0일 00시\n접수마감`}
-            />
-            <ProcessBox title='2. 면접' desc={`00월 0일 ~ 0일\n대면 면접`} />
+          <S.ProcessContainer {...aniTimeline}>
+            <ProcessBox title='1. 지원서 접수' desc={recruitment.deadline} />
+            <ProcessBox title='2. 면접' desc={recruitment.interview} />
             <ProcessBox
               title='3. 합격자 발표'
-              desc={`0월 0일\n합격자 개별 통보`}
+              desc={recruitment.announcement}
             />
             <ProcessBox
               title='4. 오리엔테이션'
-              desc={`0월 0일 00시\n필수 참석`}
+              desc={recruitment.orientation}
               isLast={true}
             />
           </S.ProcessContainer>
-          <S.Poster src={posterExample} />
+          <S.Poster src={recruitment.poster} {...aniPoster} />
         </S.TimelineContainer>
         <S.FAQContainer>
           <S.Title>FAQ</S.Title>

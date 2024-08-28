@@ -1,3 +1,4 @@
+import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import { S } from '../../pages/About/AboutPage.style';
 
 export const cardData = [
@@ -71,6 +72,16 @@ SNS 채널 활성화 및 팔로워 유입 방안 고안`,
 export const CardContent = ({ name, subTitle }) => {
   return (
     <S.CardContentContainer>
+      <S.CardName>{name}</S.CardName>
+      <S.SubTitleKr>{subTitle}</S.SubTitleKr>
+    </S.CardContentContainer>
+  );
+};
+
+export const MCardContent = ({ name, subTitle }) => {
+  const animationCard = useScrollFadeIn();
+  return (
+    <S.CardContentContainer {...animationCard}>
       <S.CardName>{name}</S.CardName>
       <S.SubTitleKr>{subTitle}</S.SubTitleKr>
     </S.CardContentContainer>

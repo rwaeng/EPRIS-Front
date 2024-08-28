@@ -66,19 +66,19 @@ S.ActingContainer = styled.div`
   width: 90rem;
   box-sizing: border-box;
   padding: 10rem;
+  padding-bottom: 14.5rem;
 
   background-color: var(--black);
 
   @media (max-width: 1279px) {
     width: 100%;
-    padding: 5rem 1.25rem;
+    padding: 5rem 1.25rem 10rem;
   }
 `;
 
 S.Title = styled.div`
   ${font.bold36}
   color: ${props => props.$color};
-
   @media (max-width: 1279px) {
     ${font.m_bold36}
   }
@@ -91,6 +91,8 @@ S.Subtitle = styled.div`
   @media (max-width: 1279px) {
     ${font.m_reg18}
   }
+
+  margin-bottom: 1rem;
 `;
 
 S.AlumniContainer = styled.div`
@@ -125,10 +127,10 @@ S.DropdownContainer = styled.div`
   justify-content: space-between;
 
   width: 100%;
-  margin-top: 4rem;
+  margin-top: 3rem;
 
   @media (max-width: 1279px) {
-    margin-top: 2rem;
+    margin: 1rem 0;
   }
 `;
 
@@ -149,8 +151,8 @@ S.MemberContainer = styled.div`
   width: 70rem;
   gap: 1.75rem;
 
-  margin-top: ${props => (props.$member === 'alumni' ? '3rem' : '4rem')};
-  margin-bottom: ${props => (props.$member === 'alumni' ? '10rem' : '7.5rem')};
+  margin-top: 3rem;
+  margin-bottom: ${props => (props.$member === 'alumni' ? '10rem' : '3rem')};
 
   @media (max-width: 1279px) {
     width: 100%;
@@ -158,7 +160,9 @@ S.MemberContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    margin-bottom: 5rem;
+    gap: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
   }
 `;
 
@@ -166,8 +170,6 @@ S.RowLine = styled.div`
   width: 70rem;
   height: 0.0625rem;
   background-color: var(--grey500);
-
-  margin: 3rem 0;
 
   @media (max-width: 1279px) {
     display: none;
@@ -193,6 +195,7 @@ S.BrandContainer = styled.div`
     ); // 모바일에서는 자동으로 조정
     gap: 0.25rem;
 
+    margin-top: 5rem;
     margin-bottom: 1.5rem;
   }
 `;
