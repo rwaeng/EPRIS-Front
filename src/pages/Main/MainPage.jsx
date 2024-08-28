@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import NavigationBar from '../../components/common/NavigatonBar';
 import Down from '../../assets/Main/arrow_down_circle.svg';
 import Logo from '../../assets/Main/logo.svg';
-// import Admins from '../../assets/Main/adminImg.svg';
 import arrowIcon from '../../assets/Main/arrow_right.svg';
 import Greetings from '../../components/Main/Greetings.jsx';
 import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons.jsx';
@@ -12,8 +11,8 @@ import {
   getStatsInfo,
   getGreetingCards,
   getClassInfo,
-  getRecruitmentInfo,
 } from '../../api/main.js';
+import { getRecruitment } from '../../api/recruitment.js';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn.js';
 
 const MainPage = () => {
@@ -44,13 +43,12 @@ const MainPage = () => {
             getStatsInfo(),
             getGreetingCards(),
             getClassInfo(),
-            getRecruitmentInfo(),
+            getRecruitment(),
           ]);
-
         setData(statsData.data);
         setGreetingCards(greetingCardData.data);
         setClassInfo(classData.data);
-        setRecruitmentInfo(recruitmentData.data);
+        setRecruitmentInfo(recruitmentData);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
