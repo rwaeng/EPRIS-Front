@@ -26,14 +26,23 @@ const CardComponent = ({
   ); //프리뷰로 띄울 이미지 url
   const [imageUrlList, setImageUrlList] = useState([]); //백엔드에 보낼 presigned url
   const [isSaveEnabled, setIsSaveEnabled] = useState(false); // 저장 버튼 활성화 여부 상태
+
   useEffect(() => {
-    // 이미지가 없거나 삭제된 경우 저장 버튼 비활성화
-    if (imgPreview.length === 0) {
-      setIsSaveEnabled(false);
-    } else {
-      setIsSaveEnabled(true);
-    }
-  }, [imgPreview]);
+    const hasChanges =
+      name !== card.name ||
+      position !== card.position ||
+      text !== card.introduce ||
+      imgPreview[0] !== card.cardImg;
+
+    const isFormValid =
+      name.trim() !== '' &&
+      position.trim() !== '' &&
+      text.trim() !== '' &&
+      imgPreview.length > 0;
+
+    setIsSaveEnabled(hasChanges && isFormValid);
+  }, [name, position, text, imgPreview, card]);
+
   const handleSave = async () => {
     try {
       if (imgPreview.length === 0) {
