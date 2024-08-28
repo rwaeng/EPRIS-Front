@@ -41,7 +41,7 @@ const S = {
       ${m_bold18}
     }
   `,
-  Bold24: styled.span`
+  H3: styled.h3`
     ${bold24}
     color: var(--white);
 

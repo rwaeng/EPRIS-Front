@@ -14,19 +14,24 @@ const AwardStatistics = () => {
   const prevAwardsNum = useRef('');
   const { ref, onInput } = useResizeTextarea(awardsData);
 
+  // award & statistics 정보 저장
   const editAwardStatistics = async () => {
     try {
-      await putAwards(awardsData, projectNum, awardsNum);
-      prevAward.current = awardsData;
-      prevProjectNum.current = projectNum;
-      prevAwardsNum.current = awardsNum;
-      setIsActive(false);
-      alert('저장되었습니다');
+      const res = await putAwards(awardsData, projectNum, awardsNum);
+      if (res) {
+        prevAward.current = awardsData;
+        prevProjectNum.current = projectNum;
+        prevAwardsNum.current = awardsNum;
+        setIsActive(false);
+        alert('저장되었습니다');
+      }
     } catch (e) {
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       console.error(e);
     }
   };
 
+  // 데이터 fetching
   const readAwardStatistics = async () => {
     try {
       const res = await getAwards();
@@ -45,6 +50,7 @@ const AwardStatistics = () => {
     readAwardStatistics();
   }, []);
 
+  // 저장 버튼 활성화 여부 변경
   useEffect(() => {
     setIsActive(
       (awardsData && awardsData !== prevAward.current) ||

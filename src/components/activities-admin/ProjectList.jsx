@@ -48,7 +48,7 @@ const ProjectList = () => {
     setProjectList([...projectList, { projectId: 'new', year: '', info: '' }]);
   };
 
-  // 프로젝트 리스트 read
+  // 데이터 fetching
   const readProject = async () => {
     try {
       const res = await getProject();

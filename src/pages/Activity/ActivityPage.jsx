@@ -24,7 +24,6 @@ const ActivityPage = () => {
   const isBig = useMediaQuery({
     query: '(min-width: 1280px)',
   });
-
   const { state } = useScroll();
   const [clicked, setClicked] = useState('session');
   const sessionRef = useRef(null);
@@ -37,6 +36,10 @@ const ActivityPage = () => {
     network: null,
   });
 
+  // 플로팅 버튼 클릭 시 해당 카드 위치로 이동
+   const handleClickFloatingBtn = e => {
+     setClicked(e.target.id);
+   };
   const onFocusSession = () => {
     sessionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -46,11 +49,8 @@ const ActivityPage = () => {
   const onFocusNetwork = () => {
     networkRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  const handleClickFloatingBtn = e => {
-    setClicked(e.target.id);
-  };
-
+ 
+  // 플로팅 버튼을 위한 절대위치 계산
   const getAbsoluteLocation = element => {
     if (!element) return null;
 
@@ -80,6 +80,7 @@ const ActivityPage = () => {
     updateLocations();
   }, [isBig, state]);
 
+  // 데이터 fetching
   const readProject = async () => {
     try {
       const res = await getProject();
@@ -88,7 +89,6 @@ const ActivityPage = () => {
       console.error(e);
     }
   };
-
   const readAward = async () => {
     try {
       const res = await getAwards();
@@ -97,7 +97,6 @@ const ActivityPage = () => {
       console.error(e);
     }
   };
-
   const readSession = async () => {
     try {
       const res = await Promise.all(
@@ -113,7 +112,6 @@ const ActivityPage = () => {
       console.error(e);
     }
   };
-
   const readNetwork = async () => {
     try {
       const res = await getNetwork();
@@ -167,7 +165,7 @@ const ActivityPage = () => {
             <S.H2>Activities</S.H2>
             <S.Reg18>활동 내용</S.Reg18>
           </S.TitleContainer>
-          <S.ContentContainer>
+          <S.BtnAndCardContainer>
             <FloatingButton
               locations={locations}
               clicked={clicked}
@@ -226,7 +224,7 @@ const ActivityPage = () => {
                 />
               </S.NetworkCardWrapper>
             </S.CardContainer>
-          </S.ContentContainer>
+          </S.BtnAndCardContainer>
         </S.BottomContainer>
       </S.Layout>
     </S.TotalLayout>

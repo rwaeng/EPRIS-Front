@@ -19,6 +19,7 @@ const FloatingButton = ({
   const { state } = useScroll();
   const [position, setPosition] = useState('static');
 
+  // 스크롤 위치로 position 변경
   const handleScroll = throttle(() => {
     if (locations.session && window.scrollY + 32 >= locations.session) {
       setPosition('fixed');
@@ -33,6 +34,7 @@ const FloatingButton = ({
     }
   }, [state, isBig]);
 
+  // 스크롤 위치로 버튼 선택 항목 변경
   useEffect(() => {
     if (isBig) {
       if (window.scrollY < locations.corporate - 200) {

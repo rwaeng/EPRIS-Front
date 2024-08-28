@@ -8,6 +8,7 @@ const SessionList = () => {
   const [issueValue, setIssueValue] = useState({});
   const [trendValue, setTrendValue] = useState({});
 
+  // 데이터 fetching
   const readSession = async () => {
     try {
       const res = await Promise.all(

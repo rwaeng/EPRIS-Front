@@ -7,6 +7,7 @@ const Network = () => {
   const [eprianValue, setEprianValue] = useState({});
   const [careerValue, setCareerValue] = useState({});
 
+  // 데이터 fetching
   const readNetwork = async () => {
     try {
       const res = await getNetwork();

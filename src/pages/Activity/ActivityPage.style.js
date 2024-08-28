@@ -155,7 +155,7 @@ const S = {
       gap: 2rem;
     }
   `,
-  ContentContainer: styled.div`
+  BtnAndCardContainer: styled.div`
     display: flex;
     position: relative;
     justify-content: space-between;
@@ -167,7 +167,6 @@ const S = {
       gap: 2rem;
     }
   `,
-
   SessionCardWrapper: styled.div`
     display: flex;
     flex-direction: column;

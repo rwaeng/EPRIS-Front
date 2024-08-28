@@ -9,7 +9,7 @@ const ActivityCard = ({ smallTitle, title, info, imgList = [] }) => {
     <S.Layout {...animation}>
       <S.TitleContainer>
         <S.Bold18>{smallTitle}</S.Bold18>
-        <S.Bold24>{title}</S.Bold24>
+        <S.H3>{title}</S.H3>
       </S.TitleContainer>
       <S.Container>
         <S.InfoWrapper>{info}</S.InfoWrapper>
