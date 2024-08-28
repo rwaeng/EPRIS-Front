@@ -102,7 +102,7 @@ const S = {
     margin: 10rem 0rem;
     gap: 0.5rem;
     @media (max-width: 1279px) {
-      margin-bottom: 5rem;
+      margin: 5rem 0;
     }
   `,
   Title: styled.div`

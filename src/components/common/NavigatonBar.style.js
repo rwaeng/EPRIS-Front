@@ -14,13 +14,15 @@ const S = {
     padding: 1rem 10rem;
     width: calc(100% - 20rem);
 
-    @media (max-width: 749px) {
-      width: calc(100% - 2.5rem);
+    @media (max-width: 750px) {
+      width: 100%;
+      box-sizing: border-box;
       padding: 1rem 1.25rem;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
-      width: 44.375rem;
+      width: 100%;
       padding: 1rem 1.25rem;
+      box-sizing: border-box;
       margin: 0 auto;
     }
     @media (min-width: 1440px) {

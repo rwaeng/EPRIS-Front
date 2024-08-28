@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import InbAdmin from '../../components/common/InbAdmin';
-import NavigationBar from '../../components/common/NavigatonBar';
 
 import { TextButton } from '../../components/common/CommonButtons/CommonButtons';
 import { UploadComponent } from '../../components/common/UploadComponent/UploadComponent';
@@ -14,6 +13,11 @@ const ClassInfoPage = () => {
   const menuList = ['기수 정보', 'Greeting Card'];
   const [clicked, setClicked] = useState(menuList[0]);
 
+  const [imgFile, setImgFile] = useState([]);
+  const [imgPreview, setImgPreview] = useState([]);
+  const [imageUrlList, setImageUrlList] = useState([]);
+  const [isChanged, setIsChanged] = useState(false);
+
   const [classInfo, setClassInfo] = useState({
     num: '',
     phoneNum: '',
@@ -25,11 +29,17 @@ const ClassInfoPage = () => {
     adminImg: '',
   });
 
+  const [originalClassInfo, setOriginalClassInfo] = useState({});
+
   useEffect(() => {
     const getClassInfo = async () => {
       try {
         const res = await getClassinfo();
         setClassInfo(res);
+        setOriginalClassInfo(res);
+        if (res.adminImg) {
+          setImgPreview([res.adminImg]);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -43,19 +53,38 @@ const ClassInfoPage = () => {
       ...prevState,
       [name]: value,
     }));
+    checkIfChanged({ ...classInfo, [name]: value });
+  };
+
+  const checkIfChanged = updatedClassInfo => {
+    const isDataChanged =
+      JSON.stringify(updatedClassInfo) !== JSON.stringify(originalClassInfo);
+    const isImageChanged =
+      imgFile.length > 0 ||
+      (imgPreview.length === 0 && originalClassInfo.adminImg);
+    setIsChanged(isDataChanged || isImageChanged);
   };
 
   const handelClickUpdate = async () => {
+    if (imgFile.length === 0 && !classInfo.adminImg) {
+      alert('업로드된 사진이 없습니다.');
+      return;
+    }
     try {
       await updateClassinfo(classInfo);
+      alert('저장되었습니다.');
     } catch (error) {
       console.error(error);
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
+  useEffect(() => {
+    checkIfChanged(classInfo);
+  }, [classInfo, imgFile]);
+
   return (
     <S.Layout>
-      <NavigationBar />
       <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
       {clicked === '기수 정보' && (
         <>
@@ -122,11 +151,20 @@ const ClassInfoPage = () => {
               <S.InformationTypeWrapper>
                 Administrators Photo
               </S.InformationTypeWrapper>
-              <UploadComponent />
+              <UploadComponent
+                ratio='4:3'
+                imageNum={1}
+                imgFile={imgFile}
+                setImgFile={setImgFile}
+                imgPreview={imgPreview}
+                setImgPreview={setImgPreview}
+                setImageUrlList={setImageUrlList}
+                setIsChanged={setIsChanged}
+              />
             </S.InfoContainer>
           </S.ClassInfoContainer>
           <TextButton
-            isActive={true}
+            isActive={isChanged}
             text={'업데이트'}
             onClick={handelClickUpdate}
           ></TextButton>

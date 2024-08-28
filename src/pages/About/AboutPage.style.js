@@ -22,13 +22,13 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 
     @media (max-width: 749px) {
       width: 100%;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
-      width: calc(100% - 2.5rem);
-      padding: 1rem 1.25rem;
+      width: 46.875rem;
       margin: 0 auto;
     }
     @media (min-width: 1280px) {
@@ -53,7 +53,7 @@ const S = {
     background-position: 80% 0%;
 
     @media (max-width: 1279px) {
-      max-width: 44.375rem;
+      max-width: 46.875rem;
       height: 15.95444rem;
       margin-bottom: 5rem;
     }
@@ -105,7 +105,7 @@ const S = {
     width: 100%;
     padding: 0 10rem;
     box-sizing: border-box;
-    @media (max-width: 749px) {
+    @media (max-width: 1279px) {
       width: calc(100% - 2.5rem);
       padding: 1rem 1.25rem;
       box-sizing: border-box;
