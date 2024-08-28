@@ -4,6 +4,7 @@ import { S } from './Carousel.style';
 const Carousel = ({ type, children, pageLength, leftItem }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
+  console.log(pageLength, leftItem);
   const handleClickRightArrow = () => {
     if (currentPage < pageLength) {
       setCurrentPage(currentPage + 1);
@@ -21,7 +22,11 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
       <S.LeftButton $isVisible={currentPage} onClick={handleClickLeftArrow} />
       {type === 'small' ? (
         <S.ImgHidingContainer>
-          <S.ImgContainer $currentPage={currentPage} $leftItem={leftItem}>
+          <S.ImgContainer
+            $currentPage={currentPage}
+            $pageLength={pageLength}
+            $leftItem={leftItem}
+          >
             {children}
           </S.ImgContainer>
         </S.ImgHidingContainer>

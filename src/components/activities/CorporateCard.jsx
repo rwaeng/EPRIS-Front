@@ -5,15 +5,20 @@ import { getCorporate } from '../../api/corporate';
 import { getLogos } from '../../api/logo';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import Carousel from './Carousel';
+import { getClassinfo } from '../../api/classinfo';
 
 const CorporateCard = ({ $isVisible, id }, ref) => {
   const url =
     'https://www.digitaltoday.co.kr/news/articleView.html?idxno=524565';
   const isSmall = useMediaQuery({ query: '(max-width: 749px)' });
   const isMedium = useMediaQuery({
-    query: '(min-width: 750px) and (max-width: 1280px)',
+    query: '(min-width: 750px) and (max-width: 1279px)',
+  });
+  const isBetweenMediumLarge = useMediaQuery({
+    query: '(min-width: 1280px) and (max-width: 1439px)',
   });
   const animation = useScrollFadeIn({ initialOffset: '10%' });
+  const [newsUrl, setNewsUrl] = useState('');
   const [info, setInfo] = useState('');
   const [imgList, setImgList] = useState([]);
   const [projectImgList, setProjectImgList] = useState([]);
@@ -37,9 +42,20 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
     }
   };
 
+  // EPRian News 버튼에 연결될 url 주소 가져오기
+  const readNewsUrl = async () => {
+    try {
+      const res = await getClassinfo();
+      setNewsUrl(res.newsLink);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     readCorporate();
     readLogo();
+    readNewsUrl();
   }, []);
 
   return (
@@ -54,6 +70,8 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
               ? Math.ceil(imgList.length / 2)
               : isMedium
               ? Math.ceil(imgList.length / 4)
+              : isBetweenMediumLarge
+              ? Math.ceil(imgList.length / 6)
               : Math.ceil(imgList.length / 8)
           }
           leftItem={
@@ -61,6 +79,8 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
               ? Math.round((imgList.length % 2) / 2)
               : isMedium
               ? Math.round((imgList.length % 4) / 2)
+              : isBetweenMediumLarge
+              ? Math.round((imgList.length % 6) / 2)
               : Math.round((imgList.length % 8) / 2)
           }
         >
@@ -78,7 +98,7 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
             </S.BigImgWrapper>
           ))}
         </Carousel>
-        <S.Button onClick={() => window.open(url, '_blank')}>
+        <S.Button onClick={() => window.open(newsUrl, '_blank')}>
           EPRIS News <S.Arrow />
         </S.Button>
       </S.Container>
