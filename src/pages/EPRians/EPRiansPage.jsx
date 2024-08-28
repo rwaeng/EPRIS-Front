@@ -191,7 +191,7 @@ const EPRiansPage = () => {
                 info={mem.memberInfo}
               />
             ))}
-          {isMobile && (
+          {isMobile && executiveList.length > 0 && (
             <ViewMoreButton
               onClick={handleActingViewMore}
               text={hasMoreActing ? 'view more' : 'close'}

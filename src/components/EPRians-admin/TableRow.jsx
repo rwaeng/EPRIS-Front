@@ -96,6 +96,7 @@ const TableRow = ({ mem, setMemberList, num }) => {
       }
     } catch (err) {
       console.error(err);
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
