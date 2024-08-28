@@ -34,7 +34,7 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
     : isBetweenMediumLarge
     ? 6
     : 8;
-    
+
   // 페이지 수 계산
   const pageLength = calculatePageLength(imgList.length, itemsPerPage);
   // 마지막 페이지의 남은 아이템 수 계산
@@ -86,7 +86,7 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
         >
           {imgList.map(it => (
             <S.ImgWrapper key={it.imageId + 'img'}>
-              <S.Img src={it.imageUrl} />
+              <S.Img src={it.imageUrl} alt='logoImg' />
             </S.ImgWrapper>
           ))}
         </Carousel>
@@ -94,7 +94,7 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
         <Carousel pageLength={projectImgList.length}>
           {projectImgList.map(it => (
             <S.BigImgWrapper key={it.imageId}>
-              <S.BigImg src={it.imageUrl} />
+              <S.BigImg src={it.imageUrl} alt='projectImg' />
             </S.BigImgWrapper>
           ))}
         </Carousel>

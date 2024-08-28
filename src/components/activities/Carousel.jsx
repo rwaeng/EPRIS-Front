@@ -4,13 +4,11 @@ import { S } from './Carousel.style';
 const Carousel = ({ type, children, pageLength, leftItem }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
-  console.log(pageLength, leftItem);
   const handleClickRightArrow = () => {
     if (currentPage < pageLength) {
       setCurrentPage(currentPage + 1);
     }
   };
-
   const handleClickLeftArrow = () => {
     if (currentPage >= 0) {
       setCurrentPage(currentPage - 1);
