@@ -83,12 +83,17 @@ const MainPage = () => {
           <S.SubWrapper {...animation10}>
             {`이화여자대학교 교내 유일 PR 학회\n EPRIS를 소개합니다`}
           </S.SubWrapper>
-          <S.DownBtn src={Down} onClick={handleScrollToBody} {...animation11} />
+          <S.DownBtn
+            src={Down}
+            alt='Down'
+            onClick={handleScrollToBody}
+            {...animation11}
+          />
         </S.HeadContainer>
       </S.TopContainer>
       <S.BodyContainer ref={bodyRef}>
         <S.ValueContainer {...animation}>
-          <S.LogoWrapper src={Logo} />
+          <S.LogoWrapper src={Logo} alt='Logo' />
           <S.TextContainer>
             <S.LittleLogoWrapper>
               <S.Red>E</S.Red>
