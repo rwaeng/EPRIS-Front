@@ -171,7 +171,11 @@ const MainPage = () => {
           <S.SubText>현 임원진</S.SubText>
           <S.ValueContainer>
             {classInfo && classInfo.adminImg ? (
-              <S.AdministratorPhoto src={classInfo.adminImg} {...animation7} />
+              <S.AdministratorPhoto
+                src={classInfo.adminImg}
+                alt='임원진 사진'
+                {...animation7}
+              />
             ) : (
               <div></div>
             )}
