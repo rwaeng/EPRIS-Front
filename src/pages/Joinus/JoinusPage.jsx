@@ -1,5 +1,6 @@
 import { S } from './JoinusPage.style';
 import { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { getRecruitment } from '../../api/recruitment';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import { TextIconButton } from '../../components/common/CommonButtons/CommonButtons';
@@ -14,6 +15,7 @@ const JoinusPage = () => {
   const aniSubtitle = useScrollFadeIn();
   const aniTimeline = useScrollFadeIn();
   const aniPoster = useScrollFadeIn();
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   useEffect(() => {
     const getRecruitmentInfo = async () => {
@@ -63,7 +65,7 @@ const JoinusPage = () => {
         <S.TimelineContainer>
           <S.Title>Timeline</S.Title>
           <S.Description>모집 일정</S.Description>
-          <S.ProcessContainer {...aniTimeline}>
+          <S.ProcessContainer {...(isDesktop && aniTimeline)}>
             <ProcessBox title='1. 지원서 접수' desc={recruitment.deadline} />
             <ProcessBox title='2. 면접' desc={recruitment.interview} />
             <ProcessBox
@@ -76,7 +78,7 @@ const JoinusPage = () => {
               isLast={true}
             />
           </S.ProcessContainer>
-          <S.Poster src={recruitment.poster} {...aniPoster} />
+          <S.Poster src={recruitment.poster} {...aniPoster} alt='poster' />
         </S.TimelineContainer>
         <S.FAQContainer>
           <S.Title>FAQ</S.Title>

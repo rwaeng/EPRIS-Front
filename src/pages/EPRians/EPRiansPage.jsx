@@ -10,6 +10,7 @@ import ViewMoreButton from '../../components/EPRians/ViewMoreButton';
 import { ActingCard, AlumniCard } from '../../components/EPRians/Card';
 import arrowDown from '../../assets/EPRiansPage/arrow_downward.svg';
 import arrowUp from '../../assets/EPRiansPage/arrow_upward.svg';
+import { getClassinfo } from '../../api/classinfo';
 
 const EPRiansPage = () => {
   const [brandList, setBrandList] = useState([]);
@@ -34,25 +35,28 @@ const EPRiansPage = () => {
   const [hasMoreAlumni, setHasMoreAlumni] = useState(true);
   const AlumniPerPage = 4;
 
+  const [gen, setGen] = useState();
+
   const isMobile = useMediaQuery({ query: '(max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   const aniExecutive = useScrollFadeIn();
-  const aniLine = useScrollFadeIn();
   const aniActing = useScrollFadeIn();
   const aniAlumni = useScrollFadeIn();
   const aniBrand = useScrollFadeIn();
+  const aniLine = useScrollFadeIn();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // API 호출
-        const [memberRes, executiveRes, actingRes, brandRes] =
+        const [memberRes, executiveRes, actingRes, brandRes, classRes] =
           await Promise.all([
             getMembers(),
             getMembersExe(),
             getMembersActive(),
             getLogos(),
+            getClassinfo(),
           ]);
 
         const sortedGen = memberRes
@@ -68,6 +72,7 @@ const EPRiansPage = () => {
         setExecutiveList(executiveRes);
         setActingList(actingRes);
         setBrandList(brandRes);
+        setGen(classRes.num);
       } catch (err) {
         console.error(err);
       }
@@ -157,12 +162,11 @@ const EPRiansPage = () => {
       <NavigationBar />
       <S.TitleContainer>
         <S.MainTitle>EPRians</S.MainTitle>
-        <S.Gen>Now 37th</S.Gen>
+        <S.Gen>Now {gen}</S.Gen>
       </S.TitleContainer>
       <S.ActingContainer>
         <S.Title $color='var(--grey100)'>Acting Members</S.Title>
         <S.Subtitle>활동 학회원</S.Subtitle>
-
         <S.MemberContainer {...(isDesktop && aniExecutive)}>
           {executiveList.map(mem => (
             <ActingCard
@@ -175,25 +179,10 @@ const EPRiansPage = () => {
             />
           ))}
         </S.MemberContainer>
-
-        {isMobile && (
-          <S.MemberContainer>
-            {pagedActingList.map(mem => (
-              <ActingCard
-                key={mem.memberId}
-                profImg={mem.profileUrl}
-                role={mem.position}
-                name={mem.name}
-                info={mem.memberInfo}
-              />
-            ))}
-          </S.MemberContainer>
-        )}
-
         <S.RowLine {...aniLine} />
         <S.MemberContainer {...(isDesktop && aniActing)}>
-          {isDesktop &&
-            actingList.map(mem => (
+          {isMobile &&
+            pagedActingList.map(mem => (
               <ActingCard
                 key={mem.memberId}
                 profImg={mem.profileUrl}
@@ -209,6 +198,16 @@ const EPRiansPage = () => {
               icon={hasMoreActing ? arrowDown : arrowUp}
             />
           )}
+          {isDesktop &&
+            actingList.map(mem => (
+              <ActingCard
+                key={mem.memberId}
+                profImg={mem.profileUrl}
+                role={mem.position}
+                name={mem.name}
+                info={mem.memberInfo}
+              />
+            ))}
         </S.MemberContainer>
       </S.ActingContainer>
       <S.AlumniContainer>
@@ -271,7 +270,7 @@ const EPRiansPage = () => {
         </S.MemberContainer>
         <S.BrandContainer {...aniBrand}>
           {pagedBrandList.map((brand, index) => (
-            <S.BrandCard key={index} src={brand.imageUrl} />
+            <S.BrandCard key={index} src={brand.imageUrl} alt='brand' />
           ))}
         </S.BrandContainer>
         {brandList.length > 12 && (

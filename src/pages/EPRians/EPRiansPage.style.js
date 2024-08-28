@@ -172,7 +172,8 @@ S.RowLine = styled.div`
   background-color: var(--grey500);
 
   @media (max-width: 1279px) {
-    display: none;
+    visibility: hidden;
+    margin-top: 0.75rem;
   }
 `;
 
