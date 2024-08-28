@@ -28,7 +28,7 @@ const S = {
     @media (min-width: 750px) and (max-width: 1279px) {
       max-width: 750px;
       width: 46.875rem;
-      padding: 1rem 1.25rem;
+
       margin: 0 auto;
     }
     @media (min-width: 1440px) {
