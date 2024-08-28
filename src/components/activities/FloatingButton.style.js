@@ -11,9 +11,6 @@ const S = {
 
     height: ${props => (props.$height ? props.$height : '17rem')};
 
-    @media screen and (min-width: 750px) and (max-width: 1279px) {
-      width: 44.375rem;
-    }
     @media screen and (max-width: 1279px) {
       display: flex;
       position: static;
@@ -27,6 +24,7 @@ const S = {
     @media screen and (min-width: 1280px) {
       position: ${props => props.$position};
       top: 2rem;
+      width: 11.875rem;
     }
   `,
   Button: styled.button`

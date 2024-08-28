@@ -2,7 +2,6 @@ import { S } from './FloatingButton.style';
 import { useEffect, useState } from 'react';
 import { throttle } from 'lodash';
 import { useMediaQuery } from 'react-responsive';
-import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import useScroll from '../../hooks/useScroll';
 
 const FloatingButton = ({
@@ -17,7 +16,6 @@ const FloatingButton = ({
   const isBig = useMediaQuery({
     query: '(min-width: 1280px)',
   });
-  const animation = useScrollFadeIn();
   const { state } = useScroll();
   const [position, setPosition] = useState('static');
 
@@ -50,7 +48,7 @@ const FloatingButton = ({
   return (
     <div>
       {isBig && <S.FloatingButtonContainer $height='0' />}
-      <S.FloatingButtonContainer id='float' $position={position} {...animation}>
+      <S.FloatingButtonContainer id='float' $position={position}>
         <S.Button
           id='session'
           $isActive={clicked === 'session'}
