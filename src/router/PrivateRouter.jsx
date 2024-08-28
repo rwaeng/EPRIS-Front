@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import NavigationBar from '../components/common/NavigatonBar';
+import NavigationBar from '../components/common/NavigationBar/NavigatonBar';
 
 const PrivateRouter = () => {
+  const adminUrl = process.env.REACT_APP_ADMIN_URL;
   const token = !!localStorage.getItem('token');
-  
+
   if (token) {
     return (
       <>
@@ -13,7 +14,7 @@ const PrivateRouter = () => {
     );
   }
 
-  return <Navigate to='/admin' />;
+  return <Navigate to={adminUrl} />;
 };
 
 export default PrivateRouter;

@@ -35,17 +35,8 @@ export const putProject = async (projectID, year, info) => {
 
 export const deleteProject = async projectId => {
   try {
-    const response = await authInstance.delete(`/projects/${projectId}`);
+    await authInstance.delete(`/projects/${projectId}`);
   } catch (error) {
-    console.log(error)
     throw error;
-  }
-};
-
-export const readProject = async () => {
-  try {
-    const res = await getProject();
-  } catch (e) {
-    console.error(e);
   }
 };

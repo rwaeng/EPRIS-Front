@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { ReactComponent as Logo } from '../../assets/logo/Logo.svg';
-import { bold18, bold24 } from '../../styles/font';
+import { ReactComponent as Logo } from '../../../assets/logo/Logo.svg';
+import { bold18, bold24 } from '../../../styles/font';
 
 const S = {
   Layout: styled.div`

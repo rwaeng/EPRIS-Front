@@ -36,6 +36,7 @@ const Network = () => {
         ratio='4:3'
         imageNum='1'
         imageUrl={[eprianValue.networkImg]}
+        index={1}
       />
       <UploadItem
         type='network'
@@ -45,6 +46,7 @@ const Network = () => {
         ratio='4:3'
         imageNum='1'
         imageUrl={[careerValue.networkImg]}
+        index={2}
       />
     </S.Layout>
   );

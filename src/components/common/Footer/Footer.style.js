@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { bold18, m_bold18, reg14 } from '../../styles/font';
+import { bold18, m_bold18, reg14 } from '../../../styles/font';
 
 const S = {
   FooterLayout: styled.footer`

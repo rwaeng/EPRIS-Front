@@ -1,12 +1,10 @@
-import NavigationBar from '../../components/common/NavigatonBar';
-import { UploadComponent } from '../../components/common/UploadComponent/UploadComponent';
 import { S } from './RecruitmentPage.style';
-
-import { TextButton } from '../../components/common/CommonButtons/CommonButtons';
 import { useEffect, useState } from 'react';
-import { getRecruitment, putRecruitment } from '../../api/recruitment';
-import { postPresignedURL, putPresignedURL } from '../../api/fileUpload';
-import FileUploadComponent from '../../components/Admin_RecruitmentPage/FileUploadComponent';
+import { getRecruitment, putRecruitment } from '../../../api/recruitment';
+import { postPresignedURL, putPresignedURL } from '../../../api/fileUpload';
+import { TextButton } from '../../../components/common/CommonButtons/CommonButtons';
+import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
+import FileUploadComponent from '../../../components/Recruitment-admin/FileUploadComponent';
 
 const RecruitmentPage = () => {
   const [recruitment, setRecruitment] = useState({

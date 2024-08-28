@@ -1,7 +1,6 @@
-import React from 'react';
 import { useState } from 'react';
-import NavigationBar from '../../components/common/NavigatonBar';
 import { M, S } from './AboutPage.style';
+import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
 import {
   CardContent,
   cardData,
@@ -30,46 +29,47 @@ const AboutPage = () => {
   const animationHistory = useScrollFadeIn();
   const animationText = useScrollFadeIn();
   const mAnimationName = useScrollFadeIn();
+  const mAnimationHistory = useScrollFadeIn();
 
   return (
     <S.Layout>
       <NavigationBar />
-      <S.BcakgroundImageContainer>
-        <S.AboutTextContainer>
-          <S.Title>About</S.Title>
-          <S.BackgroundSubTitle>
-            "PR의 시각으로 세상을 보다."
-          </S.BackgroundSubTitle>
-          <S.IntroductionText>
-            다양한 실전경험을 바탕으로, PR을 통해 다양한 분야에서 리더십과
-            팔로워십을 발휘할 수 있는 인재를 양성합니다.
-          </S.IntroductionText>
-        </S.AboutTextContainer>
-      </S.BcakgroundImageContainer>
-      <S.IntroductionContainer>
-        <S.AboutContainer>
-          <S.LogoWrapper />
-          <S.AboutPRContainer>
-            <S.NameWrapper>
-              <S.RedText>E</S.RedText>WHA&nbsp;<S.RedText>P</S.RedText>
-              UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
-              <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
-            </S.NameWrapper>
-            <M.NameWrapper {...mAnimationName}>
-              <S.RedText>E</S.RedText>WHA&nbsp;<S.RedText>P</S.RedText>
-              UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
-              <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
-            </M.NameWrapper>
-            <S.HistoryWrapper {...animationHistory}>
-              EPRIS는
-              <S.RedText>EWHA PUBLIC RELATIONS IN STUDY</S.RedText>의 약자로,
-              2000년도에 신문방송대학원 과정의 석/박사 선배님들에 의해 창립된
-              커뮤니케이션·미디어학부 소속 교내 유일 PR 학회입니다. 학회원들은
-              매주 1회 정기모임에서 스터디와 PT를 통해 PR에 관하여 학습하고,
-              산학협력 프로젝트로 PR 관련 실무 경험까지 함께합니다.
-            </S.HistoryWrapper>
-          </S.AboutPRContainer>
-        </S.AboutContainer>
+      <S.Layout>
+        <S.BcakgroundImageContainer>
+          <S.AboutTextContainer>
+            <S.Title>About</S.Title>
+            <S.BackgroundSubTitle>
+              "PR의 시각으로 세상을 보다."
+            </S.BackgroundSubTitle>
+            <S.IntroductionText>
+              다양한 실전경험을 바탕으로, PR을 통해 다양한 분야에서 리더십과
+              팔로워십을 발휘할 수 있는 인재를 양성합니다.
+            </S.IntroductionText>
+          </S.AboutTextContainer>
+        </S.BcakgroundImageContainer>
+        <S.IntroductionContainer>
+          <S.AboutContainer {...animationHistory}>
+            <S.LogoWrapper />
+            <S.AboutPRContainer>
+              <S.NameWrapper>
+                <S.RedText>E</S.RedText>WHA&nbsp;<S.RedText>P</S.RedText>
+                UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
+                <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
+              </S.NameWrapper>
+              <M.NameWrapper {...mAnimationName}>
+                <S.RedText>E</S.RedText>WHA&nbsp;<S.RedText>P</S.RedText>
+                UBLIC&nbsp;<S.RedText>R</S.RedText>ELATIONS&nbsp;
+                <S.RedText>I</S.RedText>N&nbsp;<S.RedText>S</S.RedText>TUDY
+              </M.NameWrapper>
+              <S.HistoryWrapper {...mAnimationHistory}>
+                EPRIS는 <S.RedText>EWHA PUBLIC RELATIONS IN STUDY</S.RedText>의
+                약자로, 2000년도에 신문방송대학원 과정의 석/박사 선배님들에 의해
+                창립된 커뮤니케이션·미디어학부 소속 교내 유일 PR 학회입니다.
+                학회원들은 매주 1회 정기모임에서 스터디와 PT를 통해 PR에 관하여
+                학습하고, 산학협력 프로젝트로 PR 관련 실무 경험까지 함께합니다.
+              </S.HistoryWrapper>
+            </S.AboutPRContainer>
+          </S.AboutContainer>
 
         <S.SubTitleContainer>
           <S.SubTitleContentContainer>

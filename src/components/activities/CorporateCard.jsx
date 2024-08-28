@@ -1,9 +1,10 @@
 import { S } from './CorporateCard.style';
 import { forwardRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { getCorporate } from '../../api/corporate';
+import { getLogos } from '../../api/logo';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import Carousel from './Carousel';
-import { getCorporate, getLogo } from '../../api/corporate';
 
 const CorporateCard = ({ $isVisible, id }, ref) => {
   const url =
@@ -19,8 +20,8 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
 
   const readLogo = async () => {
     try {
-      const res = await getLogo();
-      setImgList(res.imageList);
+      const res = await getLogos('project');
+      setImgList(res);
     } catch (e) {
       console.error(e);
     }
