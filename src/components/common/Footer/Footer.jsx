@@ -12,7 +12,6 @@ const Footer = () => {
     const fetchClassInfo = async () => {
       try {
         const classData = await getClassInfo();
-        console.log('Fetched class data:', classData); // 디버깅용 로그
         setClassInfo(classData.data);
       } catch (error) {
         console.error('Error fetching data:', error);

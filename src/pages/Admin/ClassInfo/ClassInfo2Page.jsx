@@ -17,7 +17,6 @@ const ClassInfo2Page = () => {
     const fetchCards = async () => {
       try {
         const cardData = await getCards();
-        console.log('Fetched card data:', cardData); // 디버깅용 로그
         setCards(cardData.data);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -72,13 +71,10 @@ const ClassInfo2Page = () => {
         setAddedCards(prevCards =>
           prevCards.filter(card => card.cardId !== cardId),
         );
-        console.log('Card deleted on UI');
       } else {
         // API 호출 후 UI에서 삭제
-        console.log(cardId);
         await deleteCard(cardId);
         setCards(prevCards => prevCards.filter(card => card.cardId !== cardId));
-        console.log('Card delete request sent');
       }
     } catch (error) {
       console.error('Error deleting card:', error);

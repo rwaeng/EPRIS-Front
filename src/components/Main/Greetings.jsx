@@ -1,5 +1,4 @@
 import { S } from './Greetings.style.js';
-// import img from '../../assets/Main/img.svg';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn.js';
 
 const Greetings = ({ greetingCard }) => {
