@@ -77,7 +77,7 @@ export const UploadComponent = ({
     <S.Container>
       <S.Header>
         <S.PlusArea htmlFor={inputId}>
-          <S.Icon src={PlusIcon} />
+          <S.Icon src={PlusIcon} alt='플러스 아이콘' />
         </S.PlusArea>
 
         <input
@@ -105,10 +105,12 @@ export const UploadComponent = ({
                 <S.XboxIcon
                   src={xBoxIcon}
                   onClick={() => handleDeleteImage(i)}
+                  alt='삭제 아이콘'
                 />
                 <S.ImageBox
                   className={index !== null ? `image-${index}` : 'image'}
                   src={imgPreview[i] || null}
+                  alt='전송 이미지'
                 />
               </S.ImagePreview>
             ))
@@ -117,10 +119,12 @@ export const UploadComponent = ({
                 <S.XboxIcon
                   src={xBoxIcon}
                   onClick={() => handleDeleteImage(i)}
+                  alt='삭제 아이콘'
                 />
                 <S.ImageBox
                   className={index !== null ? `image-${index}` : 'image'}
                   src={previewUrl || null}
+                  alt='전송 이미지'
                 />
               </S.ImagePreview>
             ))}

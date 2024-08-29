@@ -24,7 +24,7 @@ export const TextIconButton = ({
       {...animation}
     >
       <S.Span $color={color}>{text}</S.Span>
-      <S.Icon src={icon} />
+      <S.Icon src={icon} alt='버튼 아이콘' />
     </S.JoinUsContainer>
   );
 };

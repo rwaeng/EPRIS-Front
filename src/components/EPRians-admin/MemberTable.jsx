@@ -85,11 +85,11 @@ const MemberTable = ({
       <S.ButtonTab>
         <S.RowButton onClick={() => handleDeleteTable(memberGen, info.num)}>
           <div>삭제</div>
-          <img src={deleteRowIcon} />
+          <img src={deleteRowIcon} alt='delete' />
         </S.RowButton>
         <S.RowButton onClick={handleAddRow}>
           <div>행 추가하기</div>
-          <img src={addRowIcon} />
+          <img src={addRowIcon} alt='add' />
         </S.RowButton>
       </S.ButtonTab>
     </S.Container>
