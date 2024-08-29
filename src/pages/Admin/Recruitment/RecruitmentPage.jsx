@@ -4,7 +4,7 @@ import { getRecruitment, putRecruitment } from '../../../api/recruitment';
 import { postPresignedURL, putPresignedURL } from '../../../api/fileUpload';
 import { TextButton } from '../../../components/common/CommonButtons/CommonButtons';
 import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
-import FileUploadComponent from '../../../components/Recruitment-admin/FileUploadComponent';
+import FileUploadComponent from '../../../components/Admin_RecruitmentPage/FileUploadComponent';
 
 const RecruitmentPage = () => {
   const [recruitment, setRecruitment] = useState({
