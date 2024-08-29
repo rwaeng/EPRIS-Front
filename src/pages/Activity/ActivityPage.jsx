@@ -1,4 +1,4 @@
-import { S } from '../Activity/ActivityPage.style';
+import { S } from '../Activity/ActivityPage.style.js';
 import { useEffect, useRef, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { getProject } from '../../api/project.js';
@@ -6,12 +6,12 @@ import { getAwards } from '../../api/award.js';
 import { getSession } from '../../api/session.js';
 import { getNetwork } from '../../api/network.js';
 import useScroll from '../../hooks/useScroll.js';
-import AwardCard from '../../components/Activities/AwardCard.jsx';
-import ProjectCard from '../../components/Activities/ProjectCard.jsx';
-import ActivityCard from '../../components/Activities/ActivityCard.jsx';
+import AwardCard from '../../components/activities/AwardCard.jsx';
+import ProjectCard from '../../components/activities/ProjectCard.jsx';
 import NavigationBar from '../../components/common/NavigationBar/NavigatonBar.jsx';
-import CorporateCard from '../../components/Activities/CorporateCard.jsx';
-import FloatingButton from '../../components/Activities/FloatingButton.jsx';
+import CorporateCard from '../../components/activities/CorporateCard.jsx';
+import FloatingButton from '../../components/activities/FloatingButton.jsx';
+import ActivityCard from '../../components/activities/ActivityCard.jsx';
 
 const ActivityPage = () => {
   const [projectList, setProjectList] = useState([]);
@@ -37,9 +37,9 @@ const ActivityPage = () => {
   });
 
   // 플로팅 버튼 클릭 시 해당 카드 위치로 이동
-   const handleClickFloatingBtn = e => {
-     setClicked(e.target.id);
-   };
+  const handleClickFloatingBtn = e => {
+    setClicked(e.target.id);
+  };
   const onFocusSession = () => {
     sessionRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -49,7 +49,7 @@ const ActivityPage = () => {
   const onFocusNetwork = () => {
     networkRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
- 
+
   // 플로팅 버튼을 위한 절대위치 계산
   const getAbsoluteLocation = element => {
     if (!element) return null;
