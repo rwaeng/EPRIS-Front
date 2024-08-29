@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 
 import LoginPage from './pages/Admin/Login/LoginPage';
 import AdminActivityPage from './pages/Admin/Activity/ActivityPage';
-import ClassInfoPage from './pages/Admin/ClassInfo/ClassInfoPage';
+import ClassInfoPage from './pages/Admin/ClassInfo/ClassInfoMainPage';
 import AdminEPRiansPage from './pages/Admin/Eprians/EPRiansPage';
 import RecruitmentPage from './pages/Admin/Recruitment/RecruitmentPage';
 
