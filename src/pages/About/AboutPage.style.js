@@ -278,7 +278,7 @@ const S = {
     flex-direction: column;
     max-width: 46.0625rem;
     width: 40.0625rem;
-    margin-left: ${props => props.marginLeft || '0'};
+    margin-left: ${props => props.$marginLeft || '0'};
     padding: 2.5rem 3rem;
     border: none;
     border-radius: 1rem;
@@ -343,7 +343,7 @@ const S = {
     margin-top: 1.4rem;
     margin-bottom: 0;
     margin-left: ${props =>
-      props.marginLeft ? `calc(3.425rem + ${props.marginLeft})` : '3.425rem'};
+      props.$marginLeft ? `calc(3.425rem + ${props.$marginLeft})` : '3.425rem'};
     border-left: 1.875rem solid transparent;
     border-right: 1.875rem solid transparent;
     border-bottom: 1.875rem solid #e3e6f0;

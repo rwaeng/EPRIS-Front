@@ -15,7 +15,7 @@ const ActivityCard = ({ smallTitle, title, info, imgList = [] }) => {
         <S.InfoWrapper>{info}</S.InfoWrapper>
         {smallTitle === 'Network' ? (
           <S.ImgWrapper>
-            <S.BigImg src={imgList} alt='networkImg' />
+            <S.BigImg src={imgList || []} alt='networkImg' />
           </S.ImgWrapper>
         ) : (
           <S.ImgContainer>
