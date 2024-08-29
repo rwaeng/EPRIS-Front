@@ -6,12 +6,14 @@ import { getAwards } from '../../api/award.js';
 import { getSession } from '../../api/session.js';
 import { getNetwork } from '../../api/network.js';
 import useScroll from '../../hooks/useScroll.js';
+
 import AwardCard from '../../components/activities/AwardCard.jsx';
 import ProjectCard from '../../components/activities/ProjectCard.jsx';
 import NavigationBar from '../../components/common/NavigationBar/NavigatonBar.jsx';
 import CorporateCard from '../../components/activities/CorporateCard.jsx';
 import FloatingButton from '../../components/activities/FloatingButton.jsx';
 import ActivityCard from '../../components/activities/ActivityCard.jsx';
+
 
 const ActivityPage = () => {
   const [projectList, setProjectList] = useState([]);

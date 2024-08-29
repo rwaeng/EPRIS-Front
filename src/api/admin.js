@@ -40,7 +40,6 @@ export const updateCard = async (
   cardImg,
 ) => {
   const data = { name, position, introduce, cardImg };
-  console.log('Request data for updateCard:', data); // 디버깅을 위한 데이터 로그
   try {
     const response = await authInstance.put(`/cards/${cardId}`, data);
     return response;

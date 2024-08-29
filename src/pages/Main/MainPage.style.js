@@ -11,8 +11,8 @@ import {
   m_bold36,
   m_reg18,
 } from '../../styles/font';
-import BackImg from '../../assets/Main/background_img.svg';
-import m_BackImg from '../../assets/Main/m_background_img.svg';
+import BackImg from '../../assets/Main/background_img.webp';
+import m_BackImg from '../../assets/Main/m_background_img.webp';
 
 const S = {
   MainLayout: styled.div`
@@ -39,8 +39,10 @@ const S = {
       ),
       linear-gradient(180deg, rgba(0, 0, 0, 0) 24.71%, rgba(0, 0, 0, 0.6) 100%),
       url(${BackImg}) no-repeat center center;
+    background-size: cover;
     @media (max-width: 375px) {
       background: url(${m_BackImg}) no-repeat center center;
+      background-size: cover;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
       margin: 0 auto;

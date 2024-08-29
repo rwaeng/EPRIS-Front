@@ -52,7 +52,7 @@ const Dropdown = ({ className, options, setAlumniList }) => {
     <S.Container ref={dropdownRef} className={className}>
       <S.DropdownButton onClick={handleDropdown}>
         <S.Gen>{gen}</S.Gen>
-        <S.Icon src={chevronDown} />
+        <S.Icon src={chevronDown} alt='arrow down' />
       </S.DropdownButton>
       {isOpen && (
         <S.DropdownList>

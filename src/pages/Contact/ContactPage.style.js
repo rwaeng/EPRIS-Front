@@ -12,8 +12,6 @@ import { ReactComponent as Mail } from '../../assets/ContactPage/mail.svg';
 import { ReactComponent as Instagram } from '../../assets/ContactPage/instagram.svg';
 import { ReactComponent as Blog } from '../../assets/ContactPage/blog.svg';
 import { ReactComponent as Toast } from '../../assets/ContactPage/Group 21.svg';
-import Ellipse31 from '../../assets/ContactPage/Ellipse31.svg';
-import Ellipse32 from '../../assets/ContactPage/Ellipse32.svg';
 
 const S = {
   Layout: styled.div`
@@ -29,45 +27,72 @@ const S = {
 
     @media (min-width: 750px) and (max-width: 1279px) {
       max-width: 750px;
-      width: 100%;
-      padding: 1rem 1.25rem;
+      width: 46.875rem;
+
       margin: 0 auto;
     }
     @media (min-width: 1440px) {
+      width: 90rem;
       margin: 0 auto;
     }
   `,
 
   BackgroundImageContainer: styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
     width: 100%;
-    height: 100%;
+
     z-index: 0;
     @media (max-width: 1279px) {
       display: none;
     }
   `,
 
-  Ellipse1: styled.div`
+  Ellipse31: styled.div`
+    width: 22.125rem;
+    height: 22.125rem;
+    border-radius: 22.125rem;
+    background: linear-gradient(
+      170deg,
+      rgba(238, 61, 89, 0.3) 7.62%,
+      rgba(141, 184, 250, 0.3) 104.96%
+    );
+
+    filter: blur(150px);
+
     position: absolute;
-    width: 35rem;
-    height: 35rem;
-    background-image: url(${Ellipse31});
-    background-repeat: no-repeat;
-    background-size: contain;
+    top: 8.12rem;
+    left: -4.56rem;
+
+    @media (max-width: 1279px) {
+      display: none;
+    }
   `,
 
-  Ellipse2: styled.div`
+  Ellipse32: styled.div`
+    width: 14.25rem;
+    height: 14.25rem;
+    transform: rotate(90deg);
+
+    background: linear-gradient(
+      180deg,
+      rgba(238, 61, 89, 0.3) 0%,
+      rgba(141, 184, 250, 0.3) 111.25%
+    );
+
+    filter: blur(100px);
+
     position: absolute;
-    bottom: 3rem;
-    right: -10rem;
-    width: 25rem;
-    height: 25rem;
-    background-image: url(${Ellipse32});
-    background-repeat: no-repeat;
-    background-size: contain;
+    top: 29.25rem;
+    right: -2.19rem;
+
+    @media (max-width: 1279px) {
+      display: none;
+    }
   `,
 
   TitleContainer: styled.div`
@@ -77,7 +102,7 @@ const S = {
     margin: 10rem 0rem;
     gap: 0.5rem;
     @media (max-width: 1279px) {
-      margin-bottom: 5rem;
+      margin: 5rem 0;
     }
   `,
   Title: styled.div`

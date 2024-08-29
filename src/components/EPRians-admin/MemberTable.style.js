@@ -129,6 +129,7 @@ S.SaveButton = styled.button`
   color: var(--black);
   background-color: ${props =>
     props.disabled ? 'var(--grey300)' : 'var(--red)'};
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
 `;
 
 S.ButtonTab = styled.div`

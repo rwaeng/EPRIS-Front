@@ -96,6 +96,7 @@ const TableRow = ({ mem, setMemberList, num }) => {
       }
     } catch (err) {
       console.error(err);
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
@@ -130,7 +131,7 @@ const TableRow = ({ mem, setMemberList, num }) => {
       </S.Td>
       <S.Td $right='1.75rem solid var(--black)'>
         <S.TFileInput htmlFor={`file-input-${member.memberId}`}>
-          <img src={plusIcon} />
+          <img src={plusIcon} alt='plus' />
           <S.TFileName>{fileName ? fileName : `사진 업로드`}</S.TFileName>
         </S.TFileInput>
         <input
