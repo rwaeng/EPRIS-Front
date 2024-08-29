@@ -19,7 +19,7 @@ export const DepartmentCard = () => {
       >
         <S.Triangle $marginLeft={departmentData[0].marginLeft} />
         <DepartmentCardContent
-          marginLeft={departmentData[0].marginLeft}
+          $marginLeft={departmentData[0].marginLeft}
           depname={departmentData[0].depname}
           description={departmentData[0].description}
           depdetails={departmentData[0].depdetails}
@@ -32,7 +32,7 @@ export const DepartmentCard = () => {
       >
         <S.Triangle $marginLeft={departmentData[1].marginLeft} />
         <DepartmentCardContent
-          $marginLeft={departmentData[1].marginLeft}
+          marginLeft={departmentData[1].marginLeft}
           depname={departmentData[1].depname}
           description={departmentData[1].description}
           depdetails={departmentData[1].depdetails}
@@ -45,7 +45,7 @@ export const DepartmentCard = () => {
       >
         <S.Triangle $marginLeft={departmentData[2].marginLeft} />
         <DepartmentCardContent
-          $marginLeft={departmentData[2].marginLeft}
+          marginLeft={departmentData[2].marginLeft}
           depname={departmentData[2].depname}
           description={departmentData[2].description}
           depdetails={departmentData[2].depdetails}
