@@ -10,6 +10,7 @@ const S = {
     gap: 3rem;
 
     padding: 3rem;
+    max-width: 52.0625rem;
 
     border-radius: 1rem;
     background-color: #e3e6f0;

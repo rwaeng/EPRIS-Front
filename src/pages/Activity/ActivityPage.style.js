@@ -25,6 +25,16 @@ const Container = styled.div`
 `;
 
 const S = {
+  TotalLayout: styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 750px) and (max-width: 1279px) {
+      width: 46.875rem;
+      margin: 0 auto;
+    }
+  `,
   ImgContainer: styled.div`
     ${flexCenter}
     position: relative;
@@ -39,9 +49,6 @@ const S = {
     background-size: cover;
     background-position: 80% 0%;
 
-    @media screen and (min-width: 750px) and (max-width: 1279px) {
-      margin-bottom: -5rem;
-    }
     @media (max-width: 1279px) {
       max-width: 46.875rem;
       height: 15.95444rem;
@@ -67,16 +74,14 @@ const S = {
 
     padding: 10rem 10rem 10rem 9.2312rem;
 
-    @media screen and (max-width: 749px) {
-      padding: 5rem 1.25rem 16.125rem 1.25rem;
-    }
     @media screen and (min-width: 750px) and (max-width: 1279px) {
       width: 44.375rem;
-      padding: 0 1.25rem 16.125rem 1.25rem;
+      padding: 5rem 1.25rem 16.125rem 1.25rem;
       margin: 0 auto;
     }
     @media screen and (max-width: 1279px) {
       gap: 10rem;
+      padding: 5rem 1.25rem 16.125rem 1.25rem;
     }
     @media screen and (min-width: 1440px) {
       width: 70rem;
@@ -150,7 +155,7 @@ const S = {
       gap: 2rem;
     }
   `,
-  ContentContainer: styled.div`
+  BtnAndCardContainer: styled.div`
     display: flex;
     position: relative;
     justify-content: space-between;
@@ -162,7 +167,6 @@ const S = {
       gap: 2rem;
     }
   `,
-
   SessionCardWrapper: styled.div`
     display: flex;
     flex-direction: column;

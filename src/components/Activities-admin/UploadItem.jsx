@@ -1,5 +1,5 @@
 import { S } from './AdminActivityItem.style';
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { postSession } from '../../api/session';
 import { uploadImages } from '../../api/fileUpload';
 import { postCorporate } from '../../api/corporate';

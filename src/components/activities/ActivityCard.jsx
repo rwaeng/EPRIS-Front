@@ -9,18 +9,18 @@ const ActivityCard = ({ smallTitle, title, info, imgList = [] }) => {
     <S.Layout {...animation}>
       <S.TitleContainer>
         <S.Bold18>{smallTitle}</S.Bold18>
-        <S.Bold24>{title}</S.Bold24>
+        <S.H3>{title}</S.H3>
       </S.TitleContainer>
       <S.Container>
         <S.InfoWrapper>{info}</S.InfoWrapper>
         {smallTitle === 'Network' ? (
           <S.ImgWrapper>
-            <S.BigImg src={imgList} />
+            <S.BigImg src={imgList} alt='networkImg' />
           </S.ImgWrapper>
         ) : (
           <S.ImgContainer>
             {imgList.map(it => (
-              <S.Img key={it.imageId} src={it.imageUrl} />
+              <S.Img key={it.imageId} src={it.imageUrl} alt='sessionImg' />
             ))}
           </S.ImgContainer>
         )}

@@ -28,7 +28,6 @@ const ProjectItem = ({
         res = await putProject(item.projectId, item.year, item.info);
       }
 
-      // if (res) {
       const newList = projectList.filter(
         it => it.projectId === 'new' && it.info !== item.info,
       );
@@ -36,14 +35,13 @@ const ProjectItem = ({
       prevItemValue.current = item;
       setIsActive(false);
       alert('저장되었습니다.');
-      // }
     } catch (e) {
       alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       console.error(e);
     }
   };
 
-  // 버튼 활성화 여부
+  // 버튼 활성화 여부 변경
   useEffect(() => {
     const isDifferent =
       prevItemValue.current.year !== item.year ||

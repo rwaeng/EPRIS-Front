@@ -41,7 +41,7 @@ const S = {
       ${m_bold18}
     }
   `,
-  Bold24: styled.span`
+  H3: styled.h3`
     ${bold24}
     color: var(--white);
 
@@ -75,7 +75,12 @@ const S = {
     }
   `,
   ImgWrapper: styled.div`
-    @media screen and (max-width: 749px) {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    width: 34rem;
+
+    @media screen and (max-width: 1279px) {
       position: relative;
 
       max-width: 33.125rem;
@@ -87,10 +92,11 @@ const S = {
   `,
   ImgContainer: styled.div`
     display: flex;
+    justify-content: flex-end;
     flex-wrap: wrap;
     gap: 0.25rem;
 
-    width: 32.75rem;
+    width: 33.75rem;
 
     @media screen and (max-width: 749px) {
       flex-direction: column;
@@ -112,7 +118,6 @@ const S = {
 
     width: 33.125rem;
     height: 21.62rem;
-    margin: 0 auto;
 
     object-fit: cover;
 
@@ -125,6 +130,9 @@ const S = {
 
       width: 100%;
       height: 100%;
+    }
+    @media screen and (max-width: 1279px) {
+      maring: 0 auto;
     }
   `,
 };

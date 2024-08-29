@@ -3,21 +3,44 @@ import { forwardRef, useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { getCorporate } from '../../api/corporate';
 import { getLogos } from '../../api/logo';
+import { getClassinfo } from '../../api/classinfo';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import Carousel from './Carousel';
 
 const CorporateCard = ({ $isVisible, id }, ref) => {
-  const url =
-    'https://www.digitaltoday.co.kr/news/articleView.html?idxno=524565';
   const isSmall = useMediaQuery({ query: '(max-width: 749px)' });
   const isMedium = useMediaQuery({
-    query: '(min-width: 750px) and (max-width: 1280px)',
+    query: '(min-width: 750px) and (max-width: 1279px)',
+  });
+  const isBetweenMediumLarge = useMediaQuery({
+    query: '(min-width: 1280px) and (max-width: 1439px)',
   });
   const animation = useScrollFadeIn({ initialOffset: '10%' });
+  const [newsUrl, setNewsUrl] = useState('');
   const [info, setInfo] = useState('');
   const [imgList, setImgList] = useState([]);
   const [projectImgList, setProjectImgList] = useState([]);
 
+  // 캐러셀 화면 이동에 필요한 변수 계산
+  const calculatePageLength = (imgListLength, itemsPerPage) =>
+    Math.ceil(imgListLength / itemsPerPage);
+  const calculateLeftItem = (imgListLength, itemsPerPage) =>
+    Math.round((imgListLength % itemsPerPage) / 2);
+
+  const itemsPerPage = isSmall
+    ? 2
+    : isMedium
+    ? 4
+    : isBetweenMediumLarge
+    ? 6
+    : 8;
+
+  // 페이지 수 계산
+  const pageLength = calculatePageLength(imgList.length, itemsPerPage);
+  // 마지막 페이지의 남은 아이템 수 계산
+  const leftItem = calculateLeftItem(imgList.length, itemsPerPage);
+
+  // 데이터 fetching
   const readLogo = async () => {
     try {
       const res = await getLogos('project');
@@ -26,7 +49,6 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
       console.error(e);
     }
   };
-
   const readCorporate = async () => {
     try {
       const res = await getCorporate();
@@ -36,10 +58,20 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
       console.error(e);
     }
   };
+  // EPRian News 버튼에 연결될 url 주소 가져오기
+  const readNewsUrl = async () => {
+    try {
+      const res = await getClassinfo();
+      setNewsUrl(res.newsLink);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   useEffect(() => {
     readCorporate();
     readLogo();
+    readNewsUrl();
   }, []);
 
   return (
@@ -49,24 +81,12 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
         <Carousel
           type='small'
           imgList={imgList}
-          pageLength={
-            isSmall
-              ? Math.ceil(imgList.length / 2)
-              : isMedium
-              ? Math.ceil(imgList.length / 4)
-              : Math.ceil(imgList.length / 8)
-          }
-          leftItem={
-            isSmall
-              ? Math.round((imgList.length % 2) / 2)
-              : isMedium
-              ? Math.round((imgList.length % 4) / 2)
-              : Math.round((imgList.length % 8) / 2)
-          }
+          pageLength={pageLength}
+          leftItem={leftItem}
         >
           {imgList.map(it => (
             <S.ImgWrapper key={it.imageId + 'img'}>
-              <S.Img src={it.imageUrl} />
+              <S.Img src={it.imageUrl} alt='logoImg' />
             </S.ImgWrapper>
           ))}
         </Carousel>
@@ -74,11 +94,11 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
         <Carousel pageLength={projectImgList.length}>
           {projectImgList.map(it => (
             <S.BigImgWrapper key={it.imageId}>
-              <S.BigImg src={it.imageUrl} />
+              <S.BigImg src={it.imageUrl} alt='projectImg' />
             </S.BigImgWrapper>
           ))}
         </Carousel>
-        <S.Button onClick={() => window.open(url, '_blank')}>
+        <S.Button onClick={() => window.open(newsUrl, '_blank')}>
           EPRIS News <S.Arrow />
         </S.Button>
       </S.Container>

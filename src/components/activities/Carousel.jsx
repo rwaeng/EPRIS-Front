@@ -9,7 +9,6 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
       setCurrentPage(currentPage + 1);
     }
   };
-
   const handleClickLeftArrow = () => {
     if (currentPage >= 0) {
       setCurrentPage(currentPage - 1);
@@ -21,7 +20,11 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
       <S.LeftButton $isVisible={currentPage} onClick={handleClickLeftArrow} />
       {type === 'small' ? (
         <S.ImgHidingContainer>
-          <S.ImgContainer $currentPage={currentPage} $leftItem={leftItem}>
+          <S.ImgContainer
+            $currentPage={currentPage}
+            $pageLength={pageLength}
+            $leftItem={leftItem}
+          >
             {children}
           </S.ImgContainer>
         </S.ImgHidingContainer>

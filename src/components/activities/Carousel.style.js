@@ -20,20 +20,24 @@ const S = {
     }
   `,
   LeftButton: styled(RightButton)`
+    width: 2.25rem;
+    height: 2.25rem;
     transform: rotate(180deg);
   `,
   RightButton,
   ImgHidingContainer: styled.div`
-    max-width: 46.0625rem;
+    max-width: 46.3125rem;
 
     overflow: hidden;
 
     @media screen and (max-width: 749px) {
       width: 10.6875rem;
     }
-
     @media screen and (min-width: 750px) and (max-width: 1279px) {
       width: 21.3rem;
+    }
+    @media screen and (min-width: 1280px) and (max-width: 1439px) {
+      width: 34.7rem;
     }
   `,
   ImgContainer: styled.div`
@@ -42,18 +46,30 @@ const S = {
     gap: 7px;
 
     height: 12.9375rem;
-
-    transform: ${({ $currentPage, $leftItem }) =>
-      `translateX(calc(${$currentPage} * -${$leftItem} * 25%))`};
-
+    
     transition: transform 0.3s ease-in-out;
-
+    
+    transform: ${({ $currentPage, $pageLength, $leftItem }) => {
+      return $pageLength - 1 === $currentPage
+        ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 25%))`
+        : `translateX(-${$currentPage}00%)`;
+    }};
     @media screen and (max-width: 749px) {
       transform: ${({ $currentPage }) => `translateX(-${$currentPage}00%)`};
     }
     @media screen and (min-width: 750px) and (max-width: 1279px) {
-      transform: ${({ $currentPage, $leftItem }) =>
-        `translateX(calc(${$currentPage} * -${$leftItem} * 50%))`};
+      transform: ${({ $currentPage, $pageLength, $leftItem }) => {
+        return $pageLength - 1 === $currentPage
+          ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} *50%))`
+          : `translateX(-${$currentPage}00%)`;
+      }};
+    }
+    @media screen and (min-width: 1280px) and (max-width: 1439px) {
+      transform: ${({ $currentPage, $pageLength, $leftItem }) => {
+        return $pageLength - 1 === $currentPage
+          ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 33.333%))`
+          : `translateX(-${$currentPage}00%)`;
+      }};
     }
   `,
   BigImgHidingContainer: styled.div`

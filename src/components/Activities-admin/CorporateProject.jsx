@@ -10,6 +10,7 @@ const CorporateProject = () => {
   const [isChanged, setIsChanged] = useState(false);
   const [isLogoChanged, setIsLogoChanged] = useState(false);
 
+  // 데이터 fetching
   const readCorporate = async () => {
     try {
       const res = await getCorporate();
@@ -18,7 +19,6 @@ const CorporateProject = () => {
       console.error(e);
     }
   };
-
   const readLogo = async () => {
     try {
       const res = await getLogos('project');
