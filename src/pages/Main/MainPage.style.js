@@ -45,6 +45,7 @@ const S = {
       background-size: cover;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
+      width: 46.875rem;
       margin: 0 auto;
     }
     @media (max-width: 1279px) {
