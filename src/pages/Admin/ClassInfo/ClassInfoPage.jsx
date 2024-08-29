@@ -7,8 +7,8 @@ import { UploadComponent } from '../../../components/common/UploadComponent/Uplo
 import ClassInfo2Page from './ClassInfo2Page';
 
 const ClassInfoPage = () => {
-  const menuList = ['기수 정보', 'Greeting Card'];
-  const [clicked, setClicked] = useState(menuList[0]);
+  // const menuList = ['기수 정보', 'Greeting Card'];
+  // const [clicked, setClicked] = useState(menuList[0]);
 
   const [imgFile, setImgFile] = useState([]);
   const [imgPreview, setImgPreview] = useState([]);
@@ -42,10 +42,8 @@ const ClassInfoPage = () => {
   };
 
   useEffect(() => {
-    if (clicked === '기수 정보') {
-      getClassInfo();
-    }
-  }, [clicked]);
+    getClassInfo();
+  }, []);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -70,10 +68,12 @@ const ClassInfoPage = () => {
       return;
     }
     try {
-      await updateClassinfo(classInfo);
-      alert('저장되었습니다.');
-      setIsChanged(false);
-      getClassInfo();
+      const res = await updateClassinfo(classInfo);
+      if (res) {
+        alert('저장되었습니다.');
+        setIsChanged(false);
+        getClassInfo();
+      }
     } catch (error) {
       console.error(error);
       alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
@@ -86,91 +86,83 @@ const ClassInfoPage = () => {
 
   return (
     <S.Layout>
-      <InbAdmin menuList={menuList} clicked={clicked} setClicked={setClicked} />
-      {clicked === '기수 정보' && (
-        <>
-          <S.ClassInfoContainer>
-            <S.InfoContainer>
-              <S.InformationTypeWrapper>현 기수</S.InformationTypeWrapper>
-              <S.InfoInput
-                name='num'
-                value={classInfo.num}
-                onChange={handleChange}
-              />
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InformationTypeWrapper>Contact</S.InformationTypeWrapper>
-              <S.ContactInfoInputContainer>
-                <S.InfoInput
-                  name='phoneNum'
-                  value={classInfo.phoneNum}
-                  onChange={handleChange}
-                />
-                <S.InfoInput
-                  name='phoneNumInfo'
-                  value={classInfo.phoneNumInfo}
-                  onChange={handleChange}
-                />
-              </S.ContactInfoInputContainer>
-              <S.PersonalInfoTypeContainer>
-                <S.PersonalInfoTypeWrapper>E-mail</S.PersonalInfoTypeWrapper>
-                <S.InfoInput
-                  name='email'
-                  value={classInfo.email}
-                  onChange={handleChange}
-                />
-              </S.PersonalInfoTypeContainer>
-              <S.PersonalInfoTypeContainer>
-                <S.PersonalInfoTypeWrapper>Instagram</S.PersonalInfoTypeWrapper>
-                <S.InfoInput
-                  name='instaLink'
-                  value={classInfo.instaLink}
-                  onChange={handleChange}
-                />
-              </S.PersonalInfoTypeContainer>
-              <S.PersonalInfoTypeContainer>
-                <S.PersonalInfoTypeWrapper>Blog</S.PersonalInfoTypeWrapper>
-                <S.InfoInput
-                  name='blogLink'
-                  value={classInfo.blogLink}
-                  onChange={handleChange}
-                />
-              </S.PersonalInfoTypeContainer>
-              <S.PersonalInfoTypeContainer>
-                <S.PersonalInfoTypeWrapper>
-                  EPRian News
-                </S.PersonalInfoTypeWrapper>
-                <S.InfoInput
-                  name='newsLink'
-                  value={classInfo.newsLink}
-                  onChange={handleChange}
-                />
-              </S.PersonalInfoTypeContainer>
-            </S.InfoContainer>
-            <S.InfoContainer>
-              <S.InformationTypeWrapper>
-                Administrators Photo
-              </S.InformationTypeWrapper>
-              <UploadComponent
-                ratio='4:3'
-                imageNum={1}
-                imgFile={imgFile}
-                setImgFile={setImgFile}
-                imgPreview={imgPreview}
-                setImgPreview={setImgPreview}
-                setImageUrlList={setImageUrlList}
-                setIsChanged={setIsChanged}
-              />
-            </S.InfoContainer>
-          </S.ClassInfoContainer>
-          <TextButton
-            isActive={isChanged}
-            text={'업데이트'}
-            onClick={handleClickUpdate}
+      <S.ClassInfoContainer>
+        <S.InfoContainer>
+          <S.InformationTypeWrapper>현 기수</S.InformationTypeWrapper>
+          <S.InfoInput
+            name='num'
+            value={classInfo.num}
+            onChange={handleChange}
           />
-        </>
-      )}
-      {clicked === 'Greeting Card' && <ClassInfo2Page />}
+        </S.InfoContainer>
+        <S.InfoContainer>
+          <S.InformationTypeWrapper>Contact</S.InformationTypeWrapper>
+          <S.ContactInfoInputContainer>
+            <S.InfoInput
+              name='phoneNum'
+              value={classInfo.phoneNum}
+              onChange={handleChange}
+            />
+            <S.InfoInput
+              name='phoneNumInfo'
+              value={classInfo.phoneNumInfo}
+              onChange={handleChange}
+            />
+          </S.ContactInfoInputContainer>
+          <S.PersonalInfoTypeContainer>
+            <S.PersonalInfoTypeWrapper>E-mail</S.PersonalInfoTypeWrapper>
+            <S.InfoInput
+              name='email'
+              value={classInfo.email}
+              onChange={handleChange}
+            />
+          </S.PersonalInfoTypeContainer>
+          <S.PersonalInfoTypeContainer>
+            <S.PersonalInfoTypeWrapper>Instagram</S.PersonalInfoTypeWrapper>
+            <S.InfoInput
+              name='instaLink'
+              value={classInfo.instaLink}
+              onChange={handleChange}
+            />
+          </S.PersonalInfoTypeContainer>
+          <S.PersonalInfoTypeContainer>
+            <S.PersonalInfoTypeWrapper>Blog</S.PersonalInfoTypeWrapper>
+            <S.InfoInput
+              name='blogLink'
+              value={classInfo.blogLink}
+              onChange={handleChange}
+            />
+          </S.PersonalInfoTypeContainer>
+          <S.PersonalInfoTypeContainer>
+            <S.PersonalInfoTypeWrapper>EPRian News</S.PersonalInfoTypeWrapper>
+            <S.InfoInput
+              name='newsLink'
+              value={classInfo.newsLink}
+              onChange={handleChange}
+            />
+          </S.PersonalInfoTypeContainer>
+        </S.InfoContainer>
+        <S.InfoContainer>
+          <S.InformationTypeWrapper>
+            Administrators Photo
+          </S.InformationTypeWrapper>
+          <UploadComponent
+            ratio='4:3'
+            imageNum={1}
+            imgFile={imgFile}
+            setImgFile={setImgFile}
+            imgPreview={imgPreview}
+            setImgPreview={setImgPreview}
+            setImageUrlList={setImageUrlList}
+            setIsChanged={setIsChanged}
+          />
+        </S.InfoContainer>
+      </S.ClassInfoContainer>
+      <TextButton
+        isActive={isChanged}
+        text={'업데이트'}
+        onClick={handleClickUpdate}
+      />
     </S.Layout>
   );
 };
