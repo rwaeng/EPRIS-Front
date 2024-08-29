@@ -31,16 +31,16 @@ const NavigationBar = ({ type }) => {
         <S.Container>
           <S.LogoImg onClick={handleClickAdminLogo} alt='epris-logo' />
           <S.NavContainer>
-            <S.NavLink to={`${adminUrl}/info`} activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/info`} activeclassname='active'>
               기본정보
             </S.NavLink>
-            <S.NavLink to={`${adminUrl}/eprians`} activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/eprians`} activeclassname='active'>
               EPRians
             </S.NavLink>
-            <S.NavLink to={`${adminUrl}/activities`} activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/activities`} activeclassname='active'>
               Activities
             </S.NavLink>
-            <S.NavLink to={`${adminUrl}/recruitment`} activeClassName='active'>
+            <S.NavLink to={`${adminUrl}/recruitment`} activeclassname='active'>
               Recruitment
             </S.NavLink>
           </S.NavContainer>
@@ -49,19 +49,19 @@ const NavigationBar = ({ type }) => {
         <S.Container>
           <S.LogoImg onClick={() => navigate('/')} alt='epris-logo' />
           <S.NavContainer>
-            <S.NavLink to='/about' activeClassName='active'>
+            <S.NavLink to='/about' activeclassname='active'>
               About
             </S.NavLink>
-            <S.NavLink to='/eprians' activeClassName='active'>
+            <S.NavLink to='/eprians' activeclassname='active'>
               EPRians
             </S.NavLink>
-            <S.NavLink to='/activities' activeClassName='active'>
+            <S.NavLink to='/activities' activeclassname='active'>
               Activities
             </S.NavLink>
-            <S.NavLink to='/joinus' activeClassName='active'>
+            <S.NavLink to='/joinus' activeclassname='active'>
               Join us
             </S.NavLink>
-            <S.NavLink to='/contact' activeClassName='active'>
+            <S.NavLink to='/contact' activeclassname='active'>
               Contact
             </S.NavLink>
           </S.NavContainer>
@@ -70,19 +70,19 @@ const NavigationBar = ({ type }) => {
       )}
       {isMenuOpen && (
         <M.NavContainer>
-          <S.NavLink to='/about' activeClassName='active'>
+          <S.NavLink to='/about' activeclassname='active'>
             About
           </S.NavLink>
-          <S.NavLink to='/eprians' activeClassName='active'>
+          <S.NavLink to='/eprians' activeclassname='active'>
             EPRians
           </S.NavLink>
-          <S.NavLink to='/activities' activeClassName='active'>
+          <S.NavLink to='/activities' activeclassname='active'>
             Activities
           </S.NavLink>
-          <S.NavLink to='/joinus' activeClassName='active'>
+          <S.NavLink to='/joinus' activeclassname='active'>
             Join us
           </S.NavLink>
-          <S.NavLink to='/contact' activeClassName='active'>
+          <S.NavLink to='/contact' activeclassname='active'>
             Contact
           </S.NavLink>
         </M.NavContainer>

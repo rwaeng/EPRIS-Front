@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react';
 import { S } from './ClassInfoPage.style';
 import { getClassinfo, updateClassinfo } from '../../../api/classinfo';
-import InbAdmin from '../../../components/common/Inb/InbAdmin';
 import { TextButton } from '../../../components/common/CommonButtons/CommonButtons';
 import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
-import ClassInfo2Page from './ClassInfo2Page';
 
 const ClassInfoPage = () => {
-  // const menuList = ['기수 정보', 'Greeting Card'];
-  // const [clicked, setClicked] = useState(menuList[0]);
-
   const [imgFile, setImgFile] = useState([]);
   const [imgPreview, setImgPreview] = useState([]);
   const [imageUrlList, setImageUrlList] = useState([]);

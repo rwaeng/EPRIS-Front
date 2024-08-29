@@ -17,9 +17,9 @@ export const DepartmentCard = () => {
         ref={animation1.ref}
         style={{ ...animation1.style, height: '19.8125rem' }}
       >
-        <S.Triangle marginLeft={departmentData[0].marginLeft} />
+        <S.Triangle $marginLeft={departmentData[0].marginLeft} />
         <DepartmentCardContent
-          marginLeft={departmentData[0].marginLeft}
+          $marginLeft={departmentData[0].marginLeft}
           depname={departmentData[0].depname}
           description={departmentData[0].description}
           depdetails={departmentData[0].depdetails}
@@ -30,7 +30,7 @@ export const DepartmentCard = () => {
         ref={animation2.ref}
         style={{ ...animation2.style, height: '19.8125rem' }}
       >
-        <S.Triangle marginLeft={departmentData[1].marginLeft} />
+        <S.Triangle $marginLeft={departmentData[1].marginLeft} />
         <DepartmentCardContent
           marginLeft={departmentData[1].marginLeft}
           depname={departmentData[1].depname}
@@ -43,7 +43,7 @@ export const DepartmentCard = () => {
         ref={animation3.ref}
         style={{ ...animation3.style, height: '19.8125rem' }}
       >
-        <S.Triangle marginLeft={departmentData[2].marginLeft} />
+        <S.Triangle $marginLeft={departmentData[2].marginLeft} />
         <DepartmentCardContent
           marginLeft={departmentData[2].marginLeft}
           depname={departmentData[2].depname}

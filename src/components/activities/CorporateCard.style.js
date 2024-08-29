@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { bold18, bold24, m_bold24, m_reg18, reg18 } from '../../styles/font';
 import { flexCenter } from '../../styles/common';
-import { ReactComponent as ArrowRight } from '../../assets/arrow_right.svg';
+import { ReactComponent as ArrowRight } from '../../assets/activity/right.svg';
 
 const S = {
   Layout: styled.div`
