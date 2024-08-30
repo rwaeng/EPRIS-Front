@@ -134,7 +134,7 @@ const S = {
     @media (max-width: 1279px) {
       margin-top: 3.25rem;
       padding-bottom: 0rem;
-      ${m_reg24};
+      ${m_reg18};
     }
     @media (min-width: 1280px) {
       max-width: 34.125rem;
