@@ -39,7 +39,6 @@ const S = {
     ${flexCenter}
     position: relative;
 
-    max-width: 90rem;
     max-height: 32rem;
     margin: 0 auto;
     width: 100%;
