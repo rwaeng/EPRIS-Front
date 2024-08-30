@@ -3,6 +3,7 @@ import { S } from './ClassInfoPage.style';
 import { getClassinfo, updateClassinfo } from '../../../api/classinfo';
 import { TextButton } from '../../../components/common/CommonButtons/CommonButtons';
 import { UploadComponent } from '../../../components/common/UploadComponent/UploadComponent';
+import { uploadImages } from '../../../api/fileUpload';
 
 const ClassInfoPage = () => {
   const [imgFile, setImgFile] = useState([]);
@@ -23,11 +24,35 @@ const ClassInfoPage = () => {
 
   const [originalClassInfo, setOriginalClassInfo] = useState({});
 
+  useEffect(() => {
+    const hasChanges =
+      classInfo.num !== originalClassInfo.num ||
+      classInfo.phoneNum !== originalClassInfo.phoneNum ||
+      classInfo.phoneNumInfo !== originalClassInfo.phoneNumInfo ||
+      classInfo.email != originalClassInfo.email ||
+      classInfo.instaLink !== originalClassInfo.instaLink ||
+      classInfo.blogLink !== originalClassInfo.blogLink ||
+      classInfo.newsLink !== originalClassInfo.newsLink ||
+      imgPreview[0] !== originalClassInfo.adminImg;
+
+    const isFormValid =
+      classInfo.num.trim() !== '' &&
+      classInfo.phoneNum.trim() !== '' &&
+      classInfo.phoneNumInfo.trim() !== '' &&
+      classInfo.email.trim() !== '' &&
+      classInfo.instaLink.trim() !== '' &&
+      classInfo.blogLink.trim() !== '' &&
+      classInfo.newsLink.trim() !== '' &&
+      imgPreview.length > 0;
+
+    setIsChanged(hasChanges && isFormValid);
+  }, [imgPreview, classInfo, originalClassInfo]);
+
   const getClassInfo = async () => {
     try {
       const res = await getClassinfo();
-      setClassInfo(res);
       setOriginalClassInfo(res);
+      setClassInfo(res);
       if (res.adminImg) {
         setImgPreview([res.adminImg]);
       }
@@ -46,27 +71,26 @@ const ClassInfoPage = () => {
       ...prevState,
       [name]: value,
     }));
-    checkIfChanged({ ...classInfo, [name]: value });
-  };
-
-  const checkIfChanged = updatedClassInfo => {
-    const isDataChanged =
-      JSON.stringify(updatedClassInfo) !== JSON.stringify(originalClassInfo);
-
-    const isImageChanged = imgFile.length > 0 || imgPreview.length > 0;
-    setIsChanged(isDataChanged || (imgFile.length > 0 && isImageChanged));
   };
 
   const handleClickUpdate = async () => {
-    if (imgFile.length === 0 && !classInfo.adminImg) {
-      alert('업로드된 사진이 없습니다.');
-      return;
-    }
     try {
+      if (imgPreview.length === 0 && !classInfo.adminImg) {
+        alert('업로드된 사진이 없습니다.');
+        return;
+      }
+
+      if (isChanged && imgFile.length > 0) {
+        const uploadedImages = await uploadImages(imgFile);
+        const imageUrl = uploadedImages[0].imageUrl;
+        classInfo.adminImg = imageUrl;
+      }
+
       const res = await updateClassinfo(classInfo);
       if (res) {
         alert('저장되었습니다.');
-        setIsChanged(false);
+        setOriginalClassInfo(classInfo);
+        setClassInfo(classInfo);
         getClassInfo();
       }
     } catch (error) {
@@ -74,10 +98,6 @@ const ClassInfoPage = () => {
       alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
-
-  useEffect(() => {
-    checkIfChanged(classInfo);
-  }, [classInfo, imgFile, imgPreview]);
 
   return (
     <S.Layout>
@@ -155,7 +175,7 @@ const ClassInfoPage = () => {
       </S.ClassInfoContainer>
       <TextButton
         isActive={isChanged}
-        text={'업데이트'}
+        text={'저장'}
         onClick={handleClickUpdate}
       />
     </S.Layout>
