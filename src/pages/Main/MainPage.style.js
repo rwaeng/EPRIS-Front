@@ -20,16 +20,12 @@ const S = {
     flex-direction: column;
     position: relative;
     @media (max-width: 1279px) {
-      max-width: 46.875rem;
-      margin: 0 auto;
-    }
-    @media (min-width: 1440px) {
       margin: 0 auto;
     }
   `,
-  TopContainer: styled.div`
+  BackContainer: styled.div`
     position: relative;
-
+    width: 100%;
     height: 64rem;
 
     background: linear-gradient(
@@ -45,12 +41,20 @@ const S = {
       background-size: cover;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
-      width: 46.875rem;
+      min-width: 46.875rem;
       margin: 0 auto;
     }
     @media (max-width: 1279px) {
-      max-width: 46.875rem;
       height: 50.75rem;
+    }
+    @media (min-width: 1440px) {
+      margin: 0 auto;
+    }
+  `,
+  TopContainer: styled.div`
+    @media (max-width: 1279px) {
+      max-width: 750px;
+      margin: 0 auto;
     }
     @media (min-width: 1440px) {
       margin: 0 auto;
@@ -107,6 +111,8 @@ const S = {
     max-width: 90rem;
     padding: 10rem;
     @media (max-width: 1279px) {
+      max-width: 750px;
+      margin: 0 auto;
       align-items: center;
       padding: 5rem 1.25rem 5rem 1.25rem;
     }
