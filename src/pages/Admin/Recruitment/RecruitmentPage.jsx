@@ -75,7 +75,11 @@ const RecruitmentPage = () => {
         field => field.trim() !== '',
       );
 
-      if (!allFieldsFilled) {
+      if (
+        !allFieldsFilled ||
+        updatedRecruitment.poster ||
+        updatedRecruitment.doc
+      ) {
         alert('모든 항목을 입력해주세요.');
         return;
       }
@@ -89,6 +93,7 @@ const RecruitmentPage = () => {
       }
     } catch (err) {
       console.error(err);
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 

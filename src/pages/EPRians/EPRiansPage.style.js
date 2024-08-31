@@ -21,8 +21,8 @@ S.TitleContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  width: 90rem;
-  height: 32rem;
+  width: 100vw;
+  height: 35.5vw;
 
   background-image: url(${backgroundImg});
   background-size: cover;
@@ -156,7 +156,7 @@ S.MemberContainer = styled.div`
 
   @media (max-width: 1279px) {
     width: 100%;
-    flex-direction: column;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
 
@@ -189,10 +189,11 @@ S.BrandContainer = styled.div`
 
   @media (max-width: 1279px) {
     width: 100%;
+    max-width: calc(7.5rem * 5);
 
     grid-template-columns: repeat(
       auto-fill,
-      10.25rem
+      7.5rem
     ); // 모바일에서는 자동으로 조정
     gap: 0.25rem;
 
@@ -213,4 +214,10 @@ S.BrandCard = styled.img`
   box-shadow: 0px 0px 32px 0px rgba(130, 130, 143, 0.1);
 
   object-fit: contain;
+
+  @media (max-width: 1279px) {
+    width: 7.5rem;
+    height: 4rem;
+    padding: 0.5rem;
+  }
 `;
