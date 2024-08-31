@@ -75,7 +75,7 @@ const UploadItem = ({
     }
 
     try {
-      let res;
+      let res = '';
       if (sessionType) {
         res = await saveHandlers.session(finalUrlList);
       } else if (type === 'network') {

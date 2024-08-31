@@ -14,16 +14,23 @@ const ProjectList = () => {
 
   // 프로젝트 묶음 삭제
   const handleDeleteItem = e => {
-    const { id } = e.target;
+    const confirmRes = window.confirm('정말 삭제하시겠습니까?');
+    if (!confirmRes) {
+      e.preventDefault();
+      return;
+    }
 
-    // id 확인 후 new이면 그냥 삭제
-    // 아니면 delete 요청
+    const { id } = e.target;
+    
     if (id && projectList[id].projectId === 'new') {
+      // id 확인 후 new이면 그냥 삭제
       const newList = projectList.filter(
         (it, idx) => it.projectId === 'new' && parseInt(id) !== idx,
       );
       sessionStorage.setItem('list', JSON.stringify(newList));
+      window.location.reload();
     } else {
+      // 아니면 delete 요청
       deleteProjectItem(Number(projectList[id].projectId));
     }
   };
@@ -36,6 +43,7 @@ const ProjectList = () => {
         alert('삭제되었습니다.');
         const newList = projectList.filter(it => it.projectId === 'new');
         sessionStorage.setItem('list', JSON.stringify(newList));
+        window.location.reload();
       }
     } catch (e) {
       alert('삭제하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
