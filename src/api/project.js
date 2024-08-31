@@ -35,7 +35,8 @@ export const putProject = async (projectID, year, info) => {
 
 export const deleteProject = async projectId => {
   try {
-    await authInstance.delete(`/projects/${projectId}`);
+    const response = await authInstance.delete(`/projects/${projectId}`);
+    return response.data;
   } catch (error) {
     throw error;
   }
