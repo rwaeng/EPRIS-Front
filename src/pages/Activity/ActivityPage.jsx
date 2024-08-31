@@ -13,7 +13,6 @@ import CorporateCard from '../../components/activities/CorporateCard.jsx';
 import FloatingButton from '../../components/activities/FloatingButton.jsx';
 import ActivityCard from '../../components/activities/ActivityCard.jsx';
 
-
 const ActivityPage = () => {
   const [projectList, setProjectList] = useState([]);
   const [awardsData, setAwardsData] = useState('');
