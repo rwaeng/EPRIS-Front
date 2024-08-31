@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as Right } from '../../assets/activity/right.svg';
+import { flexCenter } from '../../styles/common';
 
 const RightButton = styled(Right)`
   width: 2.25rem;
@@ -31,40 +32,33 @@ const S = {
     overflow: hidden;
 
     @media screen and (max-width: 749px) {
-      width: 10.6875rem;
+      width: 16.25rem;
     }
-    @media screen and (min-width: 750px) and (max-width: 1279px) {
-      width: 21.3rem;
-    }
-    @media screen and (min-width: 1280px) and (max-width: 1439px) {
+    @media screen and (min-width: 750px) and (max-width: 1439px) {
       width: 34.7rem;
     }
   `,
   ImgContainer: styled.div`
     display: flex;
     flex-flow: column wrap;
-    gap: 7px;
+    gap: 0.4375rem;
 
     height: 12.9375rem;
-    
+
     transition: transform 0.3s ease-in-out;
-    
+
     transform: ${({ $currentPage, $pageLength, $leftItem }) => {
       return $pageLength - 1 === $currentPage
         ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 25%))`
         : `translateX(-${$currentPage}00%)`;
     }};
     @media screen and (max-width: 749px) {
+      gap: 0.625rem;
+      height: 4rem;
+      padding: 0 0.3125rem;
       transform: ${({ $currentPage }) => `translateX(-${$currentPage}00%)`};
     }
-    @media screen and (min-width: 750px) and (max-width: 1279px) {
-      transform: ${({ $currentPage, $pageLength, $leftItem }) => {
-        return $pageLength - 1 === $currentPage
-          ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} *50%))`
-          : `translateX(-${$currentPage}00%)`;
-      }};
-    }
-    @media screen and (min-width: 1280px) and (max-width: 1439px) {
+    @media screen and (min-width: 750px) and (max-width: 1439px) {
       transform: ${({ $currentPage, $pageLength, $leftItem }) => {
         return $pageLength - 1 === $currentPage
           ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 33.333%))`
