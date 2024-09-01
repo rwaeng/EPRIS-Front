@@ -21,6 +21,7 @@ const useHorizontalScroll = () => {
   const handleWheel = e => {
     if (scrollRef.current) {
       scrollRef.current.scrollLeft += e.deltaY * 0.4;
+      scrollRef.current.scrollLeft += e.deltaX * 0.4;
       e.preventDefault();
     }
   };
