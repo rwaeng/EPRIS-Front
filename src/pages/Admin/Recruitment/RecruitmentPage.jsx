@@ -40,6 +40,15 @@ const RecruitmentPage = () => {
     getPrevInfo();
   }, []);
 
+  useEffect(() => {
+    if (imgPreview.length < 1 || !allFieldsFilled(recruitment)) {
+      setIsUpdated(false);
+    }
+  }, [recruitment, imgPreview]);
+
+  const allFieldsFilled = obj =>
+    Object.values(obj).every(field => field.trim() !== '');
+
   const handleChangeText = e => {
     const { name, value } = e.target;
     setRecruitment({ ...recruitment, [name]: value });
@@ -71,12 +80,8 @@ const RecruitmentPage = () => {
         updatedRecruitment.doc = fileUrl;
       }
 
-      const allFieldsFilled = Object.values(updatedRecruitment).every(
-        field => field.trim() !== '',
-      );
-
       if (
-        !allFieldsFilled ||
+        !allFieldsFilled(updatedRecruitment) ||
         updatedRecruitment.poster ||
         updatedRecruitment.doc
       ) {
