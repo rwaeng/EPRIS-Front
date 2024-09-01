@@ -57,79 +57,83 @@ const ContactPage = () => {
   const mobileAnimation4 = useScrollFadeIn();
 
   return (
-    <S.Layout>
+    <>
       <NavigationBar />
-      <S.BackgroundImageContainer>
-        <S.Ellipse31 />
-        <S.Ellipse32 />
-      </S.BackgroundImageContainer>
-      <S.TitleContainer>
-        <S.Title>Contact</S.Title>
-        <S.SubTitle>연락 정보</S.SubTitle>
-      </S.TitleContainer>
-      <S.CardContainer {...animation}>
-        <S.ContactCardContainer onClick={() => clickCopy(classInfo.phoneNum)}>
-          <S.PhoneIcon />
-          <S.CopySubTitle>{classInfo.phoneNumInfo}</S.CopySubTitle>
-          <S.Content>{classInfo.phoneNum}</S.Content>
-        </S.ContactCardContainer>
-        <S.ContactCardContainer onClick={() => clickCopy(classInfo.email)}>
-          <S.EmailIcon />
-          <S.CopySubTitle>E-mail</S.CopySubTitle>
-          <S.Content>{classInfo.email}</S.Content>
-        </S.ContactCardContainer>
-        <S.ContactCardContainer onClick={() => clickOpen(classInfo.instaLink)}>
-          <S.InstagramIcon />
-          <S.CopySubTitle>Instagram</S.CopySubTitle>
-          <S.Content>@epris_ewha</S.Content>
-        </S.ContactCardContainer>
-        <S.ContactCardContainer onClick={() => clickOpen(classInfo.blogLink)}>
-          <S.BlogIcon />
-          <S.CopySubTitle>Blog</S.CopySubTitle>
-          <S.Content>ewhaepris</S.Content>
-        </S.ContactCardContainer>
-      </S.CardContainer>
-      <M.CardContainer>
-        <S.ContactCardContainer
-          {...mobileAnimation1}
-          onClick={() => clickCopy(classInfo.phoneNum)}
-        >
-          <S.PhoneIcon />
-          <S.CopySubTitle>{classInfo.phoneNumInfo}</S.CopySubTitle>
-          <S.Content>{classInfo.phoneNum}</S.Content>
-        </S.ContactCardContainer>
-        <S.ContactCardContainer
-          {...mobileAnimation2}
-          onClick={() => clickCopy(classInfo.email)}
-        >
-          <S.EmailIcon />
-          <S.CopySubTitle>E-mail</S.CopySubTitle>
-          <S.Content>{classInfo.email}</S.Content>
-        </S.ContactCardContainer>
-        <S.ContactCardContainer
-          {...mobileAnimation3}
-          onClick={() => clickOpen(classInfo.instaLink)}
-        >
-          <S.InstagramIcon />
-          <S.CopySubTitle>Instagram</S.CopySubTitle>
-          <S.Content>@epris_ewha</S.Content>
-        </S.ContactCardContainer>
-        <S.ContactCardContainer
-          {...mobileAnimation4}
-          onClick={() => clickOpen(classInfo.blogLink)}
-        >
-          <S.BlogIcon />
-          <S.CopySubTitle>Blog</S.CopySubTitle>
-          <S.Content>ewhaepris</S.Content>
-        </S.ContactCardContainer>
-      </M.CardContainer>
-      {toast && (
-        <S.ToastContainer>
-          <S.ToastIcon />
-          <S.ToastText>{toast}</S.ToastText>
-        </S.ToastContainer>
-      )}
-    </S.Layout>
+      <S.Layout>
+        <S.BackgroundImageContainer>
+          <S.Ellipse31 />
+          <S.Ellipse32 />
+        </S.BackgroundImageContainer>
+        <S.TitleContainer>
+          <S.Title>Contact</S.Title>
+          <S.SubTitle>연락 정보</S.SubTitle>
+        </S.TitleContainer>
+        <S.CardContainer {...animation}>
+          <S.ContactCardContainer onClick={() => clickCopy(classInfo.phoneNum)}>
+            <S.PhoneIcon />
+            <S.CopySubTitle>{classInfo.phoneNumInfo}</S.CopySubTitle>
+            <S.Content>{classInfo.phoneNum}</S.Content>
+          </S.ContactCardContainer>
+          <S.ContactCardContainer onClick={() => clickCopy(classInfo.email)}>
+            <S.EmailIcon />
+            <S.CopySubTitle>E-mail</S.CopySubTitle>
+            <S.Content>{classInfo.email}</S.Content>
+          </S.ContactCardContainer>
+          <S.ContactCardContainer
+            onClick={() => clickOpen(classInfo.instaLink)}
+          >
+            <S.InstagramIcon />
+            <S.CopySubTitle>Instagram</S.CopySubTitle>
+            <S.Content>@epris_ewha</S.Content>
+          </S.ContactCardContainer>
+          <S.ContactCardContainer onClick={() => clickOpen(classInfo.blogLink)}>
+            <S.BlogIcon />
+            <S.CopySubTitle>Blog</S.CopySubTitle>
+            <S.Content>ewhaepris</S.Content>
+          </S.ContactCardContainer>
+        </S.CardContainer>
+        <M.CardContainer>
+          <S.ContactCardContainer
+            {...mobileAnimation1}
+            onClick={() => clickCopy(classInfo.phoneNum)}
+          >
+            <S.PhoneIcon />
+            <S.CopySubTitle>{classInfo.phoneNumInfo}</S.CopySubTitle>
+            <S.Content>{classInfo.phoneNum}</S.Content>
+          </S.ContactCardContainer>
+          <S.ContactCardContainer
+            {...mobileAnimation2}
+            onClick={() => clickCopy(classInfo.email)}
+          >
+            <S.EmailIcon />
+            <S.CopySubTitle>E-mail</S.CopySubTitle>
+            <S.Content>{classInfo.email}</S.Content>
+          </S.ContactCardContainer>
+          <S.ContactCardContainer
+            {...mobileAnimation3}
+            onClick={() => clickOpen(classInfo.instaLink)}
+          >
+            <S.InstagramIcon />
+            <S.CopySubTitle>Instagram</S.CopySubTitle>
+            <S.Content>@epris_ewha</S.Content>
+          </S.ContactCardContainer>
+          <S.ContactCardContainer
+            {...mobileAnimation4}
+            onClick={() => clickOpen(classInfo.blogLink)}
+          >
+            <S.BlogIcon />
+            <S.CopySubTitle>Blog</S.CopySubTitle>
+            <S.Content>ewhaepris</S.Content>
+          </S.ContactCardContainer>
+        </M.CardContainer>
+        {toast && (
+          <S.ToastContainer>
+            <S.ToastIcon />
+            <S.ToastText>{toast}</S.ToastText>
+          </S.ToastContainer>
+        )}
+      </S.Layout>
+    </>
   );
 };
 

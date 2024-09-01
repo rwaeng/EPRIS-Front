@@ -162,130 +162,132 @@ const EPRiansPage = () => {
   };
 
   return (
-    <S.Layout>
+    <>
       <NavigationBar />
-      <S.TitleContainer>
-        <S.MainTitle>EPRians</S.MainTitle>
-        <S.Gen>Now {gen}</S.Gen>
-      </S.TitleContainer>
-      <S.ActingContainer>
-        <S.Title $color='var(--grey100)'>Acting Members</S.Title>
-        <S.Subtitle>활동 학회원</S.Subtitle>
-        <S.MemberContainer {...(isDesktop && aniExecutive)}>
-          {executiveList.map(mem => (
-            <ActingCard
-              key={mem.memberId}
-              profImg={mem.profileUrl}
-              role={mem.position}
-              name={mem.name}
-              info={mem.memberInfo}
-              $color='var(--red)'
-            />
-          ))}
-        </S.MemberContainer>
-        <S.RowLine {...aniLine} />
-        <S.MemberContainer {...(isDesktop && aniActing)}>
-          {isMobile &&
-            pagedActingList.map(mem => (
+      <S.Layout>
+        <S.TitleContainer>
+          <S.MainTitle>EPRians</S.MainTitle>
+          <S.Gen>Now {gen}</S.Gen>
+        </S.TitleContainer>
+        <S.ActingContainer>
+          <S.Title $color='var(--grey100)'>Acting Members</S.Title>
+          <S.Subtitle>활동 학회원</S.Subtitle>
+          <S.MemberContainer {...(isDesktop && aniExecutive)}>
+            {executiveList.map(mem => (
               <ActingCard
                 key={mem.memberId}
                 profImg={mem.profileUrl}
                 role={mem.position}
                 name={mem.name}
                 info={mem.memberInfo}
+                $color='var(--red)'
               />
             ))}
-          {isMobile && executiveList.length > 0 && (
-            <ViewMoreButton
-              onClick={handleActingViewMore}
-              text={hasMoreActing ? 'view more' : 'close'}
-              icon={hasMoreActing ? arrowDown : arrowUp}
-            />
-          )}
-          {isDesktop &&
-            actingList.map(mem => (
-              <ActingCard
-                key={mem.memberId}
-                profImg={mem.profileUrl}
-                role={mem.position}
-                name={mem.name}
-                info={mem.memberInfo}
+          </S.MemberContainer>
+          <S.RowLine {...aniLine} />
+          <S.MemberContainer {...(isDesktop && aniActing)}>
+            {isMobile &&
+              pagedActingList.map(mem => (
+                <ActingCard
+                  key={mem.memberId}
+                  profImg={mem.profileUrl}
+                  role={mem.position}
+                  name={mem.name}
+                  info={mem.memberInfo}
+                />
+              ))}
+            {isMobile && executiveList.length > 0 && (
+              <ViewMoreButton
+                onClick={handleActingViewMore}
+                text={hasMoreActing ? 'view more' : 'close'}
+                icon={hasMoreActing ? arrowDown : arrowUp}
               />
-            ))}
-        </S.MemberContainer>
-      </S.ActingContainer>
-      <S.AlumniContainer>
-        <S.SubtitleContainer>
-          <div>
-            <S.Title $color='var(--black)'>Alumni</S.Title>
-            <S.Subtitle>수료 학회원</S.Subtitle>
-          </div>
-          {isMobile && (
-            <Dropdown
-              options={genList.slice(2)}
-              setAlumniList={setAlumniList}
-            />
-          )}
-        </S.SubtitleContainer>
-        <S.DropdownContainer>
-          <S.Description>
-            EPRIS가 배출한 선배님들은 학회 활동을 통해 축적한 역량을 대기업,
-            외국계, 학업/학계 등 다양한 분야에서 발휘하고 계십니다.
-            <br />
-            EPRIS Alumni는 EPRIS만이 가질 수 있는 강력한 경쟁력으로 학회원들의
-            소중한 길잡이가 되어줍니다.
-          </S.Description>
-          {isDesktop && (
-            <Dropdown
-              options={genList.slice(2)}
-              setAlumniList={setAlumniList}
-            />
-          )}
-        </S.DropdownContainer>
-        <S.MemberContainer $member='alumni' {...(isDesktop && aniAlumni)}>
-          {isMobile &&
-            pagedAlumniList.map(mem => (
-              <AlumniCard
-                key={mem.memberId}
-                profImg={mem.profileUrl}
-                role={mem.position}
-                name={mem.name}
-                info={mem.memberInfo}
+            )}
+            {isDesktop &&
+              actingList.map(mem => (
+                <ActingCard
+                  key={mem.memberId}
+                  profImg={mem.profileUrl}
+                  role={mem.position}
+                  name={mem.name}
+                  info={mem.memberInfo}
+                />
+              ))}
+          </S.MemberContainer>
+        </S.ActingContainer>
+        <S.AlumniContainer>
+          <S.SubtitleContainer>
+            <div>
+              <S.Title $color='var(--black)'>Alumni</S.Title>
+              <S.Subtitle>수료 학회원</S.Subtitle>
+            </div>
+            {isMobile && (
+              <Dropdown
+                options={genList.slice(2)}
+                setAlumniList={setAlumniList}
               />
-            ))}
+            )}
+          </S.SubtitleContainer>
+          <S.DropdownContainer>
+            <S.Description>
+              EPRIS가 배출한 선배님들은 학회 활동을 통해 축적한 역량을 대기업,
+              외국계, 학업/학계 등 다양한 분야에서 발휘하고 계십니다.
+              <br />
+              EPRIS Alumni는 EPRIS만이 가질 수 있는 강력한 경쟁력으로 학회원들의
+              소중한 길잡이가 되어줍니다.
+            </S.Description>
+            {isDesktop && (
+              <Dropdown
+                options={genList.slice(2)}
+                setAlumniList={setAlumniList}
+              />
+            )}
+          </S.DropdownContainer>
+          <S.MemberContainer $member='alumni' {...(isDesktop && aniAlumni)}>
+            {isMobile &&
+              pagedAlumniList.map(mem => (
+                <AlumniCard
+                  key={mem.memberId}
+                  profImg={mem.profileUrl}
+                  role={mem.position}
+                  name={mem.name}
+                  info={mem.memberInfo}
+                />
+              ))}
 
-          {isDesktop &&
-            alumniList.map(mem => (
-              <AlumniCard
-                key={mem.memberId}
-                profImg={mem.profileUrl}
-                role={mem.position}
-                name={mem.name}
-                info={mem.memberInfo}
+            {isDesktop &&
+              alumniList.map(mem => (
+                <AlumniCard
+                  key={mem.memberId}
+                  profImg={mem.profileUrl}
+                  role={mem.position}
+                  name={mem.name}
+                  info={mem.memberInfo}
+                />
+              ))}
+            {isMobile && alumniList.length > 4 && (
+              <ViewMoreButton
+                onClick={handleAlumniViewMore}
+                text={hasMoreAlumni ? 'view more' : 'close'}
+                icon={hasMoreAlumni ? arrowDown : arrowUp}
               />
+            )}
+          </S.MemberContainer>
+          <S.BrandContainer {...aniBrand}>
+            {pagedBrandList.map((brand, index) => (
+              <S.BrandCard key={index} src={brand.imageUrl} alt='brand' />
             ))}
-          {isMobile && alumniList.length > 4 && (
+          </S.BrandContainer>
+          {brandList.length > 12 && (
             <ViewMoreButton
-              onClick={handleAlumniViewMore}
-              text={hasMoreAlumni ? 'view more' : 'close'}
-              icon={hasMoreAlumni ? arrowDown : arrowUp}
+              onClick={handleBrandViewMore}
+              text={hasMoreBrands ? 'view more' : 'close'}
+              icon={hasMoreBrands ? arrowDown : arrowUp}
             />
           )}
-        </S.MemberContainer>
-        <S.BrandContainer {...aniBrand}>
-          {pagedBrandList.map((brand, index) => (
-            <S.BrandCard key={index} src={brand.imageUrl} alt='brand' />
-          ))}
-        </S.BrandContainer>
-        {brandList.length > 12 && (
-          <ViewMoreButton
-            onClick={handleBrandViewMore}
-            text={hasMoreBrands ? 'view more' : 'close'}
-            icon={hasMoreBrands ? arrowDown : arrowUp}
-          />
-        )}
-      </S.AlumniContainer>
-    </S.Layout>
+        </S.AlumniContainer>
+      </S.Layout>
+    </>
   );
 };
 
