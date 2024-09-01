@@ -75,8 +75,8 @@ const MainPage = () => {
   return (
     <S.MainLayout>
       <S.BackContainer>
+        <NavigationBar />
         <S.TopContainer>
-          <NavigationBar />
           <S.HeadContainer>
             <S.TitleWrapper
               {...animation9}
