@@ -17,7 +17,16 @@ const TableRow = ({ mem, setMemberList, num }) => {
     setMember(prev => ({ ...prev, num }));
   }, [num]);
 
-  const handleCheckbox = id => {
+  useEffect(() => {
+    // member의 상태가 변경될 때 isUpdated 상태를 업데이트
+    if (isObjEqual(mem, member)) {
+      setIsUpdated(false);
+    } else {
+      setIsUpdated(true);
+    }
+  }, [member]);
+
+  const handleCheckbox = () => {
     setMember({ ...member, isActive: !member.isActive });
     setIsUpdated(true);
   };
@@ -25,17 +34,42 @@ const TableRow = ({ mem, setMemberList, num }) => {
   const handleChangeText = e => {
     const { name, value } = e.target;
     setMember({ ...member, [name]: value });
-    setIsUpdated(true);
+  };
+
+  const isObjEqual = (obj1, obj2) => {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+
+    for (let key of keys1) {
+      if (obj1[key] !== obj2[key]) {
+        return false;
+      }
+    }
+
+    return true;
   };
 
   const handleDeleteRow = async id => {
     try {
-      const res = await deleteMember(id);
-      if (res.status === 200) {
-        alert('삭제되었습니다.');
-        setMemberList(prev => prev.filter(member => member.memberId !== id));
-      } else {
-        alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
+      const userConfirmed = window.confirm('정말 삭제하시겠습니까?');
+      if (userConfirmed) {
+        if (id > 0) {
+          const res = await deleteMember(id);
+          if (res.status === 200) {
+            alert('삭제되었습니다.');
+            setMemberList(prev =>
+              prev.filter(member => member.memberId !== id),
+            );
+          } else {
+            alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
+          }
+        } else {
+          setMemberList(prev => prev.filter(member => member.memberId !== id));
+        }
       }
     } catch (err) {
       console.error(err);
@@ -87,9 +121,18 @@ const TableRow = ({ mem, setMemberList, num }) => {
       }
 
       const res = await postMember(updatedMember);
+      const newId = res.data.memberId;
 
       if (res.status === 200) {
         alert('저장되었습니다.');
+        updatedMember.memberId = newId;
+
+        setMemberList(prev =>
+          prev.map(mem =>
+            mem.memberId === member.memberId ? updatedMember : mem,
+          ),
+        );
+
         setIsUpdated(false);
       } else {
         alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');

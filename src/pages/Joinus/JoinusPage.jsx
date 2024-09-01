@@ -1,5 +1,5 @@
 import { S } from './JoinusPage.style';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { getRecruitment } from '../../api/recruitment';
 import useScrollFadeIn from '../../hooks/useScrollFadeIn';
@@ -16,6 +16,7 @@ const JoinusPage = () => {
   const aniTimeline = useScrollFadeIn();
   const aniPoster = useScrollFadeIn();
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+  const scrollRef = useRef(null);
 
   useEffect(() => {
     const getRecruitmentInfo = async () => {
@@ -29,6 +30,26 @@ const JoinusPage = () => {
 
     getRecruitmentInfo();
   }, []);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!isDesktop && container) {
+      container.addEventListener('wheel', handleWheel);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [isDesktop]);
+
+  const handleWheel = e => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft += e.deltaY * 0.4;
+      e.preventDefault();
+    }
+  };
 
   const handleDownloadFile = () => {
     const link = document.createElement('a');
@@ -65,7 +86,7 @@ const JoinusPage = () => {
         <S.TimelineContainer>
           <S.Title>Timeline</S.Title>
           <S.Description>모집 일정</S.Description>
-          <S.ProcessContainer {...(isDesktop && aniTimeline)}>
+          <S.ProcessContainer ref={scrollRef} {...(isDesktop && aniTimeline)}>
             <ProcessBox title='1. 지원서 접수' desc={recruitment.deadline} />
             <ProcessBox title='2. 면접' desc={recruitment.interview} />
             <ProcessBox
@@ -78,8 +99,10 @@ const JoinusPage = () => {
               isLast={true}
             />
           </S.ProcessContainer>
+          <S.TimelineComment>가로로 스크롤해주세요</S.TimelineComment>
           <S.Poster src={recruitment.poster} {...aniPoster} alt='poster' />
         </S.TimelineContainer>
+
         <S.FAQContainer>
           <S.Title>FAQ</S.Title>
           <S.Description>자주 묻는 질문</S.Description>

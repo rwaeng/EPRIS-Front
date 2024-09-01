@@ -22,17 +22,13 @@ S.TitleContainer = styled.div`
 
   position: relative;
 
-  width: 100%;
+  width: 100vw;
   padding-top: 10rem;
   padding-bottom: 5.62rem;
 
   @media (max-width: 1279px) {
     padding-top: 5rem;
     padding-bottom: 3rem;
-  }
-
-  @media (min-width: 1440px) {
-    width: 90rem;
   }
 `;
 
@@ -53,7 +49,8 @@ S.Ellipse31 = styled.div`
   left: -4.56rem;
 
   @media (max-width: 1279px) {
-    display: none;
+    top: 8.67rem;
+    left: -12rem;
   }
 `;
 
@@ -75,7 +72,8 @@ S.Ellipse32 = styled.div`
   right: -2.19rem;
 
   @media (max-width: 1279px) {
-    display: none;
+    top: 29.79rem;
+    right: -7.13rem;
   }
 `;
 
@@ -148,6 +146,17 @@ S.TimelineContainer = styled.div`
   }
 `;
 
+S.TimelineComment = styled.div`
+  ${font.m_reg18}
+  color: var(--grey300);
+  margin-left: auto;
+  margin-bottom: 2.63rem;
+
+  @media (min-width: 1280px) {
+    display: none;
+  }
+`;
+
 S.Title = styled.div`
   ${font.bold36}
   color: var(--grey100);
@@ -176,9 +185,10 @@ S.ProcessContainer = styled.div`
   margin: 4rem 0;
 
   @media (max-width: 1279px) {
+    z-index: 5;
     overflow-x: scroll;
     margin-top: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
 
     &::-webkit-scrollbar {
       display: none;

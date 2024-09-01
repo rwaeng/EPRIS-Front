@@ -34,10 +34,6 @@ const S = {
     @media (min-width: 1280px) {
       padding-bottom: 10rem;
     }
-    @media (min-width: 1440px) {
-      width: 1440px;
-      margin: 0 auto;
-    }
   `,
   BackgroundImageContainer: styled.div`
     ${flexCenter}
@@ -107,6 +103,10 @@ const S = {
       width: calc(100% - 2.5rem);
       padding: 1rem 1.25rem;
       box-sizing: border-box;
+    }
+    @media (min-width: 1440px) {
+      width: 1440px;
+      margin: 0 auto;
     }
   `,
   AboutContainer: styled.div`
@@ -263,6 +263,9 @@ const S = {
   CardName: styled.div`
     ${bold24}
     color:var(--white);
+    @media (max-width: 1279px) {
+      ${m_bold24}
+    }
   `,
   DepartmentContainer: styled.div`
     display: flex;
@@ -369,6 +372,7 @@ const M = {
       display: flex;
       flex-direction: column;
       width: 100%;
+      padding-bottom: 5rem;
       margin-bottom: 5rem;
 
       height: 19.8125rem;
@@ -452,7 +456,7 @@ const M = {
     color: var(--grey100);
     @media (max-width: 1279px) {
       display: flex;
-      max-width: 44.375rem;
+      flex-wrap: wrap;
       ${m_bold24}
     }
   `,

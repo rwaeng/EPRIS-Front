@@ -70,7 +70,11 @@ const EPRiansPage = () => {
         // 데이터 설정
         setGenList(sortedGen);
         setExecutiveList(executiveRes);
-        setActingList(actingRes);
+        setActingList(
+          actingRes.sort((a, b) => {
+            return a.name.localeCompare(b.name);
+          }),
+        );
         setBrandList(brandRes);
         setGen(classRes.num);
       } catch (err) {
@@ -260,7 +264,7 @@ const EPRiansPage = () => {
                 info={mem.memberInfo}
               />
             ))}
-          {isMobile && (
+          {isMobile && alumniList.length > 4 && (
             <ViewMoreButton
               onClick={handleAlumniViewMore}
               text={hasMoreAlumni ? 'view more' : 'close'}
