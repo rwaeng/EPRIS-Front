@@ -36,8 +36,18 @@ const S = {
       linear-gradient(180deg, rgba(0, 0, 0, 0) 24.71%, rgba(0, 0, 0, 0.6) 100%),
       url(${BackImg}) no-repeat center center;
     background-size: cover;
-    @media (max-width: 375px) {
-      background: url(${m_BackImg}) no-repeat center center;
+    @media (max-width: 749px) {
+      background: linear-gradient(
+          180deg,
+          rgba(23, 23, 27, 0) 75.1%,
+          #17171b 96.49%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 24.71%,
+          rgba(0, 0, 0, 0.6) 100%
+        ),
+        url(${m_BackImg}) no-repeat center center;
       background-size: cover;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
@@ -57,6 +67,7 @@ const S = {
       margin: 0 auto;
     }
     @media (min-width: 1440px) {
+      width: 1440px;
       margin: 0 auto;
     }
   `,
