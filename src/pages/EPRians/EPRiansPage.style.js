@@ -28,7 +28,6 @@ S.TitleContainer = styled.div`
   background-size: cover;
 
   @media (max-width: 1279px) {
-    max-width: 46.875rem;
     height: 15.95444rem;
   }
 `;
@@ -44,10 +43,6 @@ S.MainTitle = styled.div`
     margin-bottom: 1rem;
   }
 `;
-
-S.Ellipse31 = styled.img``;
-
-S.Ellipse32 = styled.img``;
 
 S.Gen = styled.div`
   ${font.bold36}

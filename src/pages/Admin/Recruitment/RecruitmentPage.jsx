@@ -80,15 +80,13 @@ const RecruitmentPage = () => {
         updatedRecruitment.doc = fileUrl;
       }
 
-      if (
-        !allFieldsFilled(updatedRecruitment) ||
-        updatedRecruitment.poster ||
-        updatedRecruitment.doc
-      ) {
-        alert('모든 항목을 입력해주세요.');
+      if (!updatedRecruitment.poster) {
+        alert('포스터를 업로드해주세요.');
+        return;
+      } else if (!updatedRecruitment.doc) {
+        alert('파일을 업로드해주세요.');
         return;
       }
-
       const res = await putRecruitment(updatedRecruitment);
       if (res.status === 200) {
         alert('저장되었습니다.');
