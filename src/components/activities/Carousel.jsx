@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { S } from './Carousel.style';
 import { useMediaQuery } from 'react-responsive';
+import useHorizontalScroll from '../../hooks/useHorizontalScroll';
 
 const Carousel = ({ type, children, pageLength, leftItem }) => {
   const isSmall = useMediaQuery({ query: '(max-width: 749px)' });
+  const scrollRef = useHorizontalScroll();
   const [currentPage, setCurrentPage] = useState(0);
 
   const handleClickRightArrow = () => {
@@ -29,7 +31,7 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
       {type === 'small' ? (
         <>
           {isSmall && <S.GradientDiv $left={true} />}
-          <S.ImgHidingContainer>
+          <S.ImgHidingContainer ref={isSmall ? scrollRef : null}>
             <S.ImgContainer
               $currentPage={currentPage}
               $pageLength={pageLength}
