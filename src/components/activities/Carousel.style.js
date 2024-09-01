@@ -42,6 +42,8 @@ const S = {
       top: 5rem;
       left: 0;
       overflow: scroll;
+
+      width: 100%;
     }
     @media screen and (min-width: 750px) and (max-width: 1439px) {
       width: 34.7rem;
