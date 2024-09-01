@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { S } from './Carousel.style';
 import { useMediaQuery } from 'react-responsive';
 import useHorizontalScroll from '../../hooks/useHorizontalScroll';
@@ -19,6 +19,10 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
     }
   };
 
+  useEffect(() => {
+    console.log(isSmall)
+  }, [isSmall])
+
   return (
     <S.Layout>
       <S.LeftButton
@@ -31,7 +35,7 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
       {type === 'small' ? (
         <>
           {isSmall && <S.GradientDiv $left={true} />}
-          <S.ImgHidingContainer ref={isSmall ? scrollRef : null}>
+          <S.ImgHidingContainer ref={scrollRef}>
             <S.ImgContainer
               $currentPage={currentPage}
               $pageLength={pageLength}
