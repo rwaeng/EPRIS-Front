@@ -31,7 +31,7 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
       {type === 'small' ? (
         <>
           {isSmall && <S.GradientDiv $left={true} />}
-          <S.ImgHidingContainer ref={scrollRef}>
+          <S.ImgHidingContainer ref={isSmall ? scrollRef : null}>
             <S.ImgContainer
               $currentPage={currentPage}
               $pageLength={pageLength}
