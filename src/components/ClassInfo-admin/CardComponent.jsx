@@ -63,18 +63,29 @@ const CardComponent = ({
         await handleSaveCard(card.cardId, name, position, text, imageUrl); // 카드 수정
       }
       alert('저장되었습니다.');
+
+      card.name = name;
+      card.position = position;
+      card.introduce = text;
+      card.cardImg = imageUrl;
+
+      setIsSaveEnabled(false);
     } catch (error) {
       alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       console.error('Error saving card:', error);
     }
   };
   const handleDelete = () => {
-    try {
-      handleDeleteCard(card.cardId, isNew); // 카드 삭제 요청
-      alert('삭제되었습니다.');
-    } catch (error) {
-      alert('삭제하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
-      console.error('Error deleting card:', error);
+    const confirmDelete = window.confirm('정말 삭제하시겠습니까?');
+
+    if (confirmDelete) {
+      try {
+        handleDeleteCard(card.cardId, isNew); // 카드 삭제 요청
+        alert('삭제되었습니다.');
+      } catch (error) {
+        alert('삭제하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
+        console.error('Error deleting card:', error);
+      }
     }
   };
 

@@ -14,7 +14,7 @@ const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
       const element = current.style;
       if (element) {
         element.transitionProperty = 'opacity, transform';
-        element.transitionDuration = '1.2s';
+        element.transitionDuration = '1s';
         element.transitionTimingFunction = 'cubic-bezier(0, 0, 1, 1)';
         element.transitionDelay = '0s';
         element.opacity = 1;

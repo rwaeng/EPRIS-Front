@@ -1,4 +1,5 @@
 import { S } from './CommonButtons.style';
+import { useLocation } from 'react-router-dom';
 import useScrollFadeIn from '../../../hooks/useScrollFadeIn';
 
 export const TextIconButton = ({
@@ -14,6 +15,8 @@ export const TextIconButton = ({
   // bgColor : 버튼의 배경색을 텍스트로 전달
   // border : 버튼의 border를 텍스트로 전달
 
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/epris-admin');
   const animation = useScrollFadeIn();
 
   return (
@@ -21,7 +24,7 @@ export const TextIconButton = ({
       $bgColor={bgColor}
       $border={border}
       {...props}
-      {...animation}
+      {...(!isAdminRoute && animation)}
     >
       <S.Span $color={color}>{text}</S.Span>
       <S.Icon src={icon} alt='버튼 아이콘' />

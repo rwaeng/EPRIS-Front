@@ -10,10 +10,7 @@ import Carousel from './Carousel';
 const CorporateCard = ({ $isVisible, id }, ref) => {
   const isSmall = useMediaQuery({ query: '(max-width: 749px)' });
   const isMedium = useMediaQuery({
-    query: '(min-width: 750px) and (max-width: 1279px)',
-  });
-  const isBetweenMediumLarge = useMediaQuery({
-    query: '(min-width: 1280px) and (max-width: 1439px)',
+    query: '(min-width: 750px) and (max-width: 1439px)',
   });
   const animation = useScrollFadeIn({ initialOffset: '10%' });
   const [newsUrl, setNewsUrl] = useState('');
@@ -30,8 +27,6 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
   const itemsPerPage = isSmall
     ? 2
     : isMedium
-    ? 4
-    : isBetweenMediumLarge
     ? 6
     : 8;
 

@@ -19,6 +19,7 @@ S.Container = styled.button`
 
   @media (max-width: 1279px) {
     margin: 0;
+    width: 100%;
   }
 `;
 

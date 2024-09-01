@@ -8,69 +8,88 @@ const RightButton = styled(Right)`
   visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
 
   cursor: pointer;
+
+  @media screen and (max-width: 749px) {
+    width: 1.5rem;
+  }
 `;
 const S = {
   Layout: styled.div`
     display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 0.75rem;
 
-    @media screen and (max-width: 1279px) {
+    @media screen and (max-width: 749px) {
       gap: 0;
     }
   `,
   LeftButton: styled(RightButton)`
-    width: 2.25rem;
-    height: 2.25rem;
     transform: rotate(180deg);
   `,
   RightButton,
   ImgHidingContainer: styled.div`
+    display: flex;
     max-width: 46.3125rem;
 
     overflow: hidden;
 
+    &::-webkit-scrollbar {
+      display: none;
+    }
     @media screen and (max-width: 749px) {
-      width: 10.6875rem;
+      position: absolute;
+      top: 5rem;
+      left: 0;
+      overflow: scroll;
     }
-    @media screen and (min-width: 750px) and (max-width: 1279px) {
-      width: 21.3rem;
-    }
-    @media screen and (min-width: 1280px) and (max-width: 1439px) {
+    @media screen and (min-width: 750px) and (max-width: 1439px) {
       width: 34.7rem;
     }
+  `,
+  GradientDiv: styled.div`
+    position: absolute;
+    top: 4.25rem;
+    ${props => (props.$left ? 'left: 0' : 'right: 0')};
+    z-index: 1000;
+
+    width: 3.75rem;
+    height: 5.5rem;
+
+    background: linear-gradient(90deg, rgba(227, 230, 240, 0) 0%, #e3e6f0 100%);
+    transform: ${props => props.$left && 'rotate(180deg)'};
   `,
   ImgContainer: styled.div`
     display: flex;
     flex-flow: column wrap;
-    gap: 7px;
+    gap: 0.4375rem;
 
     height: 12.9375rem;
-    
+
     transition: transform 0.3s ease-in-out;
-    
+
     transform: ${({ $currentPage, $pageLength, $leftItem }) => {
       return $pageLength - 1 === $currentPage
         ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 25%))`
         : `translateX(-${$currentPage}00%)`;
     }};
     @media screen and (max-width: 749px) {
+      gap: 0.625rem;
+      width: calc(100% + 1rem);
+      height: 4rem;
       transform: ${({ $currentPage }) => `translateX(-${$currentPage}00%)`};
     }
-    @media screen and (min-width: 750px) and (max-width: 1279px) {
-      transform: ${({ $currentPage, $pageLength, $leftItem }) => {
-        return $pageLength - 1 === $currentPage
-          ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} *50%))`
-          : `translateX(-${$currentPage}00%)`;
-      }};
-    }
-    @media screen and (min-width: 1280px) and (max-width: 1439px) {
+    @media screen and (min-width: 750px) and (max-width: 1439px) {
       transform: ${({ $currentPage, $pageLength, $leftItem }) => {
         return $pageLength - 1 === $currentPage
           ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 33.333%))`
           : `translateX(-${$currentPage}00%)`;
       }};
     }
+  `,
+  BlankDiv: styled.div`
+    width: 1rem;
+    height: 4rem;
   `,
   BigImgHidingContainer: styled.div`
     max-width: 46.0625rem;
