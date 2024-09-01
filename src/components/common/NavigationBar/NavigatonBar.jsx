@@ -39,7 +39,7 @@ const NavigationBar = ({ type }) => {
   };
 
   return (
-    <S.Layout isMenuOpen={isMenuOpen}>
+    <S.Layout $isMenuOpen={isMenuOpen}>
       <S.Container>
         <S.LogoImg
           onClick={
@@ -49,7 +49,7 @@ const NavigationBar = ({ type }) => {
         />
         <S.NavContainer>
           {(type === 'admin' ? adminMenu : menu).map(it => (
-            <S.NavLink to={it.to} activeclassname='active'>
+            <S.NavLink key={it.name} to={it.to} activeclassname='active'>
               {it.name}
             </S.NavLink>
           ))}
@@ -59,7 +59,7 @@ const NavigationBar = ({ type }) => {
       {isMenuOpen && (
         <M.NavContainer>
           {(type === 'admin' ? adminMenu : menu).map(it => (
-            <S.NavLink to={it.to} activeclassname='active'>
+            <S.NavLink key={it.to} to={it.to} activeclassname='active'>
               {it.name}
             </S.NavLink>
           ))}

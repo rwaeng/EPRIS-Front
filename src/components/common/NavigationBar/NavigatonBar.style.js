@@ -12,8 +12,8 @@ const S = {
     flex-direction: column;
     padding: 1rem 10rem;
     width: calc(100% - 20rem);
-    background-color: ${({ isMenuOpen }) =>
-      isMenuOpen ? 'var(--black)' : 'none'};
+    background-color: ${({ $isMenuOpen }) =>
+      $isMenuOpen ? 'var(--black)' : 'none'};
 
     @media (max-width: 750px) {
       width: 100%;
