@@ -54,7 +54,7 @@ const S = {
 
     @media screen and (max-width: 749px) {
       width: 5.5rem;
-      height: 4.125rem;
+      height: 4rem;
     }
   `,
   InfoWrapper: styled.p`
@@ -65,6 +65,7 @@ const S = {
     white-space: pre-line;
     @media screen and (max-width: 1279px) {
       width: auto;
+      margin-top: 0.85rem;
 
       ${m_reg18}
     }
