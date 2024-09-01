@@ -8,6 +8,7 @@ import ProcessBox from '../../components/Joinus/ProcessBox';
 import NavigationBar from '../../components/common/NavigationBar/NavigatonBar';
 import Question from '../../components/Joinus/Question';
 import downloadIcon from '../../assets/JoinusPage/download.svg';
+import useHorizontalScroll from '../../hooks/useHorizontalScroll';
 
 const JoinusPage = () => {
   const [recruitment, setRecruitment] = useState({});
@@ -16,8 +17,8 @@ const JoinusPage = () => {
   const aniTimeline = useScrollFadeIn();
   const aniPoster = useScrollFadeIn();
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
-  const scrollRef = useRef(null);
-
+  const scrollRef = useHorizontalScroll();
+  
   useEffect(() => {
     const getRecruitmentInfo = async () => {
       try {
