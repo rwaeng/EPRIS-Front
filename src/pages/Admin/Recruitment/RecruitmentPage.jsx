@@ -40,6 +40,15 @@ const RecruitmentPage = () => {
     getPrevInfo();
   }, []);
 
+  useEffect(() => {
+    if (imgPreview.length < 1 || !allFieldsFilled(recruitment)) {
+      setIsUpdated(false);
+    }
+  }, [recruitment, imgPreview]);
+
+  const allFieldsFilled = obj =>
+    Object.values(obj).every(field => field.trim() !== '');
+
   const handleChangeText = e => {
     const { name, value } = e.target;
     setRecruitment({ ...recruitment, [name]: value });
@@ -71,15 +80,13 @@ const RecruitmentPage = () => {
         updatedRecruitment.doc = fileUrl;
       }
 
-      const allFieldsFilled = Object.values(updatedRecruitment).every(
-        field => field.trim() !== '',
-      );
-
-      if (!allFieldsFilled) {
-        alert('모든 항목을 입력해주세요.');
+      if (!updatedRecruitment.poster) {
+        alert('포스터를 업로드해주세요.');
+        return;
+      } else if (!updatedRecruitment.doc) {
+        alert('파일을 업로드해주세요.');
         return;
       }
-
       const res = await putRecruitment(updatedRecruitment);
       if (res.status === 200) {
         alert('저장되었습니다.');
@@ -89,6 +96,7 @@ const RecruitmentPage = () => {
       }
     } catch (err) {
       console.error(err);
+      alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
     }
   };
 
