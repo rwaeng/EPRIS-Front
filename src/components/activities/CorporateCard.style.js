@@ -42,14 +42,19 @@ const S = {
 
     border-radius: 0.75rem;
     background-color: var(--white);
+
+    @media screen and (max-width: 749px) {
+      padding: 0 1rem;
+    }
   `,
   Img: styled.img`
     width: 9.1875rem;
     height: 4.25rem;
-    object-fit: cover;
+    object-fit: contain;
 
-    @media screen and (max-width: 1279px) {
-      width: 8.25rem;
+    @media screen and (max-width: 749px) {
+      width: 5.5rem;
+      height: 4rem;
     }
   `,
   InfoWrapper: styled.p`
@@ -60,6 +65,7 @@ const S = {
     white-space: pre-line;
     @media screen and (max-width: 1279px) {
       width: auto;
+      margin-top: 0.85rem;
 
       ${m_reg18}
     }

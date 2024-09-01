@@ -21,20 +21,23 @@ const ProjectItem = ({
   // 저장 클릭 시 실행
   const handleSaveItem = async () => {
     try {
-      let res;
+      let res = '';
       if (item.projectId === 'new') {
         res = await postProject(item.year, item.info);
       } else {
         res = await putProject(item.projectId, item.year, item.info);
       }
 
-      const newList = projectList.filter(
-        it => it.projectId === 'new' && it.info !== item.info,
-      );
-      sessionStorage.setItem('list', JSON.stringify(newList));
-      prevItemValue.current = item;
-      setIsActive(false);
-      alert('저장되었습니다.');
+      if (res) {
+        alert('저장되었습니다.');
+        const newList = projectList.filter(
+          it => it.projectId === 'new' && it.info !== item.info,
+        );
+        sessionStorage.setItem('list', JSON.stringify(newList));
+        prevItemValue.current = item;
+        setIsActive(false);
+        window.location.reload();
+      }
     } catch (e) {
       alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
       console.error(e);
@@ -75,11 +78,11 @@ const ProjectItem = ({
         onChange={e => setItem({ ...item, info: e.target.value })}
         onInput={onInput}
       />
-      <S.Button id={num - 1} type='submit' onClick={onClick}>
+      <S.Button id={num - 1} type='button' onClick={onClick}>
         삭제 <Delete onClick={onClick} id={num - 1} />
       </S.Button>
       <TextButton
-        type='submit'
+        type='button'
         text='저장'
         onClick={handleSaveItem}
         isActive={isActive}

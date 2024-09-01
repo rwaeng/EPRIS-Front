@@ -5,6 +5,19 @@ import { postLogout } from '../../../api/login';
 
 const NavigationBar = ({ type }) => {
   const adminUrl = process.env.REACT_APP_ADMIN_URL;
+  const adminMenu = [
+    { name: '기본정보', to: `${adminUrl}/info` },
+    { name: 'EPRians', to: `${adminUrl}/eprians` },
+    { name: 'Activities', to: `${adminUrl}/activities` },
+    { name: 'Recruitment', to: `${adminUrl}/recruitment` },
+  ];
+  const menu = [
+    { name: 'About', to: `/about` },
+    { name: 'EPRians', to: `/eprians` },
+    { name: 'Activities', to: `/activities` },
+    { name: 'Join us', to: `/joinus` },
+    { name: 'Contact', to: `/contact` },
+  ];
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -26,65 +39,30 @@ const NavigationBar = ({ type }) => {
   };
 
   return (
-    <S.Layout isMenuOpen={isMenuOpen}>
-      {type === 'admin' ? (
-        <S.Container>
-          <S.LogoImg onClick={handleClickAdminLogo} alt='epris-logo' />
-          <S.NavContainer>
-            <S.NavLink to={`${adminUrl}/info`} activeclassname='active'>
-              기본정보
+    <S.Layout $isMenuOpen={isMenuOpen}>
+      <S.Container>
+        <S.LogoImg
+          onClick={
+            type === 'admin' ? handleClickAdminLogo : () => navigate('/')
+          }
+          alt='epris-logo'
+        />
+        <S.NavContainer>
+          {(type === 'admin' ? adminMenu : menu).map(it => (
+            <S.NavLink key={it.name} to={it.to} activeclassname='active'>
+              {it.name}
             </S.NavLink>
-            <S.NavLink to={`${adminUrl}/eprians`} activeclassname='active'>
-              EPRians
-            </S.NavLink>
-            <S.NavLink to={`${adminUrl}/activities`} activeclassname='active'>
-              Activities
-            </S.NavLink>
-            <S.NavLink to={`${adminUrl}/recruitment`} activeclassname='active'>
-              Recruitment
-            </S.NavLink>
-          </S.NavContainer>
-        </S.Container>
-      ) : (
-        <S.Container>
-          <S.LogoImg onClick={() => navigate('/')} alt='epris-logo' />
-          <S.NavContainer>
-            <S.NavLink to='/about' activeclassname='active'>
-              About
-            </S.NavLink>
-            <S.NavLink to='/eprians' activeclassname='active'>
-              EPRians
-            </S.NavLink>
-            <S.NavLink to='/activities' activeclassname='active'>
-              Activities
-            </S.NavLink>
-            <S.NavLink to='/joinus' activeclassname='active'>
-              Join us
-            </S.NavLink>
-            <S.NavLink to='/contact' activeclassname='active'>
-              Contact
-            </S.NavLink>
-          </S.NavContainer>
-          <M.NavMenu $isMenuOpen={isMenuOpen} onClick={clickMenu} />
-        </S.Container>
-      )}
+          ))}
+        </S.NavContainer>
+        <M.NavMenu $isMenuOpen={isMenuOpen} onClick={clickMenu} />
+      </S.Container>
       {isMenuOpen && (
         <M.NavContainer>
-          <S.NavLink to='/about' activeclassname='active'>
-            About
-          </S.NavLink>
-          <S.NavLink to='/eprians' activeclassname='active'>
-            EPRians
-          </S.NavLink>
-          <S.NavLink to='/activities' activeclassname='active'>
-            Activities
-          </S.NavLink>
-          <S.NavLink to='/joinus' activeclassname='active'>
-            Join us
-          </S.NavLink>
-          <S.NavLink to='/contact' activeclassname='active'>
-            Contact
-          </S.NavLink>
+          {(type === 'admin' ? adminMenu : menu).map(it => (
+            <S.NavLink key={it.to} to={it.to} activeclassname='active'>
+              {it.name}
+            </S.NavLink>
+          ))}
         </M.NavContainer>
       )}
     </S.Layout>

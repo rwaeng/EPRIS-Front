@@ -62,7 +62,7 @@ const AwardStatistics = () => {
   return (
     <S.Layout>
       <S.Form>
-        <S.H2>수상 내역</S.H2>
+        <S.H2>수상 이력</S.H2>
         <S.Textarea
           ref={ref}
           value={awardsData}
@@ -80,7 +80,7 @@ const AwardStatistics = () => {
           />
         </S.Fieldset>
         <S.Fieldset>
-          <S.Label>수상내역</S.Label>
+          <S.Label>수상 이력</S.Label>
           <S.FixedInput
             value={awardsNum}
             onChange={e => setAwardsNum(e.target.value)}

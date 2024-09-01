@@ -35,10 +35,9 @@ const S = {
       padding-bottom: 10rem;
     }
   `,
-  BcakgroundImageContainer: styled.div`
+  BackgroundImageContainer: styled.div`
     ${flexCenter}
     position: relative;
-    width: 100%;
     max-height: 32rem;
     margin: 0 auto;
     width: 100%;
@@ -49,7 +48,6 @@ const S = {
     background-position: 80% 0%;
 
     @media (max-width: 1279px) {
-      max-width: 46.875rem;
       height: 15.95444rem;
       margin-bottom: 5rem;
     }
