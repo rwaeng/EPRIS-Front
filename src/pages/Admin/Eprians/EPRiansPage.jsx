@@ -50,16 +50,19 @@ const EPRiansPage = () => {
 
   const handleDeleteTable = async (gen, num) => {
     try {
-      if (num < 1) {
-        setMemberTable(prev => prev.filter(table => table.num !== num));
-      } else {
-        const res = await deleteGeneration(gen);
-
-        if (res.status === 200) {
-          alert('삭제되었습니다.');
-          setMemberTable(prev => prev.filter(table => table.num !== gen));
+      const userConfirmed = window.confirm('정말 삭제하시겠습니까?');
+      if (userConfirmed) {
+        if (num < 1) {
+          setMemberTable(prev => prev.filter(table => table.num !== num));
         } else {
-          alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
+          const res = await deleteGeneration(gen);
+
+          if (res.status === 200) {
+            alert('삭제되었습니다.');
+            setMemberTable(prev => prev.filter(table => table.num !== gen));
+          } else {
+            alert('저장하는 동안 오류가 발생했습니다. 다시 시도해주세요.');
+          }
         }
       }
     } catch (err) {
@@ -89,7 +92,15 @@ const EPRiansPage = () => {
     };
 
     getPrevImages();
-  }, []);
+    setImgFile([]);
+    setIsLogoChanged(false);
+  }, [clicked]);
+
+  useEffect(() => {
+    if (imgPreview.length < 1) {
+      setIsLogoChanged(false);
+    }
+  }, [imgPreview]);
 
   const createLogos = async finalUrlList => {
     try {
@@ -149,7 +160,7 @@ const EPRiansPage = () => {
           <S.UploadComponentWrapper>
             <UploadComponent
               imageNum={null}
-              ratio='5:3'
+              ratio='(5:3)'
               imgFile={imgFile}
               setImgFile={setImgFile}
               imgPreview={imgPreview}
