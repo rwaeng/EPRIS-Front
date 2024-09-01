@@ -20,16 +20,12 @@ const S = {
     flex-direction: column;
     position: relative;
     @media (max-width: 1279px) {
-      max-width: 46.875rem;
-      margin: 0 auto;
-    }
-    @media (min-width: 1440px) {
       margin: 0 auto;
     }
   `,
-  TopContainer: styled.div`
+  BackContainer: styled.div`
     position: relative;
-
+    width: 100%;
     height: 64rem;
 
     background: linear-gradient(
@@ -40,19 +36,38 @@ const S = {
       linear-gradient(180deg, rgba(0, 0, 0, 0) 24.71%, rgba(0, 0, 0, 0.6) 100%),
       url(${BackImg}) no-repeat center center;
     background-size: cover;
-    @media (max-width: 375px) {
-      background: url(${m_BackImg}) no-repeat center center;
+    @media (max-width: 749px) {
+      background: linear-gradient(
+          180deg,
+          rgba(23, 23, 27, 0) 75.1%,
+          #17171b 96.49%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 24.71%,
+          rgba(0, 0, 0, 0.6) 100%
+        ),
+        url(${m_BackImg}) no-repeat center center;
       background-size: cover;
     }
     @media (min-width: 750px) and (max-width: 1279px) {
-      width: 46.875rem;
+      min-width: 46.875rem;
       margin: 0 auto;
     }
     @media (max-width: 1279px) {
-      max-width: 46.875rem;
       height: 50.75rem;
     }
     @media (min-width: 1440px) {
+      margin: 0 auto;
+    }
+  `,
+  TopContainer: styled.div`
+    @media (max-width: 1279px) {
+      max-width: 750px;
+      margin: 0 auto;
+    }
+    @media (min-width: 1440px) {
+      width: 1440px;
       margin: 0 auto;
     }
   `,
@@ -107,6 +122,8 @@ const S = {
     max-width: 90rem;
     padding: 10rem;
     @media (max-width: 1279px) {
+      max-width: 750px;
+      margin: 0 auto;
       align-items: center;
       padding: 5rem 1.25rem 5rem 1.25rem;
     }
@@ -134,7 +151,7 @@ const S = {
     @media (max-width: 1279px) {
       margin-top: 3.25rem;
       padding-bottom: 0rem;
-      ${m_reg24};
+      ${m_reg18};
     }
     @media (min-width: 1280px) {
       max-width: 34.125rem;

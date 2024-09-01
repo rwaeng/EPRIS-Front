@@ -28,8 +28,8 @@ const S = {
     object-fit: cover;
     object-position: center;
     @media (max-width: 1279px) {
-      width: 20.9375rem;
-      height: 28.25rem;
+      width: 9.8125rem;
+      height: 13.2311rem;
     }
   `,
   MemberContainer: styled.div`
