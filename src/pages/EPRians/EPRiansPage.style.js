@@ -22,7 +22,7 @@ S.TitleContainer = styled.div`
   justify-content: center;
 
   width: 100vw;
-  height: 35.5vw;
+  height: 32rem;
 
   background-image: url(${backgroundImg});
   background-size: cover;

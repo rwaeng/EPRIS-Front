@@ -96,6 +96,12 @@ const EPRiansPage = () => {
     setIsLogoChanged(false);
   }, [clicked]);
 
+  useEffect(() => {
+    if (imgPreview.length < 1) {
+      setIsLogoChanged(false);
+    }
+  }, [imgPreview]);
+
   const createLogos = async finalUrlList => {
     try {
       const res = await postLogos('alumni', finalUrlList);
@@ -154,7 +160,7 @@ const EPRiansPage = () => {
           <S.UploadComponentWrapper>
             <UploadComponent
               imageNum={null}
-              ratio='5:3'
+              ratio='(5:3)'
               imgFile={imgFile}
               setImgFile={setImgFile}
               imgPreview={imgPreview}
