@@ -29,11 +29,6 @@ const S = {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    @media (min-width: 750px) and (max-width: 1279px) {
-      width: 46.875rem;
-      margin: 0 auto;
-    }
   `,
   ImgContainer: styled.div`
     ${flexCenter}
@@ -49,7 +44,6 @@ const S = {
     background-position: 80% 0%;
 
     @media (max-width: 1279px) {
-      max-width: 46.875rem;
       height: 15.95444rem;
     }
   `,
