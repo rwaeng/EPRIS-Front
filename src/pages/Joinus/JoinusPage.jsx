@@ -32,26 +32,6 @@ const JoinusPage = () => {
     getRecruitmentInfo();
   }, []);
 
-  useEffect(() => {
-    const container = scrollRef.current;
-    if (!isDesktop && container) {
-      container.addEventListener('wheel', handleWheel);
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener('wheel', handleWheel);
-      }
-    };
-  }, [isDesktop]);
-
-  const handleWheel = e => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft += e.deltaY * 0.4;
-      e.preventDefault();
-    }
-  };
-
   const handleDownloadFile = () => {
     const link = document.createElement('a');
     link.href = recruitment.doc;
