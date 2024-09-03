@@ -90,6 +90,11 @@ S.Subtitle = styled.div`
   margin-bottom: 1rem;
 `;
 
+S.AlumniBackground = styled.div`
+  width: 100vw;
+  background-color: var(--white);
+`;
+
 S.AlumniContainer = styled.div`
   display: flex;
   flex-direction: column;
