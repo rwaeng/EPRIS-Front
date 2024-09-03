@@ -19,10 +19,6 @@ const Carousel = ({ type, children, pageLength, leftItem }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(isSmall)
-  }, [isSmall])
-
   return (
     <S.Layout>
       <S.LeftButton
