@@ -5,11 +5,13 @@ const RightButton = styled(Right)`
   width: 2.25rem;
   height: 2.25rem;
 
-  visibility: ${({ $isVisible }) => ($isVisible ? 'visible' : 'hidden')};
+  visibility: ${({ $isVisible, $donotDisplay }) =>
+    $isVisible && !$donotDisplay ? 'visible' : 'hidden'};
 
   cursor: pointer;
 
   @media screen and (max-width: 749px) {
+    display: ${({ $donotDisplay }) => ($donotDisplay ? 'none' : 'block')};
     width: 1.5rem;
   }
 `;
@@ -83,7 +85,7 @@ const S = {
     }
     @media screen and (min-width: 750px) and (max-width: 1439px) {
       transform: ${({ $currentPage, $pageLength, $leftItem }) => {
-        return $pageLength - 1 === $currentPage
+        return $pageLength - 1 === $currentPage && $leftItem
           ? `translateX(calc(-${$currentPage - 1}00% - ${$leftItem} * 33.333%))`
           : `translateX(-${$currentPage}00%)`;
       }};

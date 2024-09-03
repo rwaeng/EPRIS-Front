@@ -49,7 +49,6 @@ const CorporateProject = () => {
       <UploadItem
         title='Corporate Logo'
         type='imgOnly'
-        ratio='(4:3)'
         imageUrl={logo}
         setIsLogoChanged={setIsLogoChanged}
         isChanged={isLogoChanged}

@@ -160,7 +160,6 @@ const EPRiansPage = () => {
           <S.UploadComponentWrapper>
             <UploadComponent
               imageNum={null}
-              ratio='(5:3)'
               imgFile={imgFile}
               setImgFile={setImgFile}
               imgPreview={imgPreview}

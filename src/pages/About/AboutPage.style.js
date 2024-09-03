@@ -127,11 +127,12 @@ const S = {
     height: 100%;
     max-height: 7.97rem;
     box-sizing: border-box;
-
+    margin-right: 3rem;
     @media (max-width: 1279px) {
       box-sizing: border-box;
       padding: 0 1.5rem;
       margin-left: 0;
+      margin-right: 0;
       margin-bottom: 5rem;
     }
   `,
