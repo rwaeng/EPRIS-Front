@@ -1,6 +1,5 @@
 import { S } from './CorporateCard.style';
 import { forwardRef, useEffect, useState } from 'react';
-import { useMediaQuery } from 'react-responsive';
 import { getCorporate } from '../../api/corporate';
 import { getLogos } from '../../api/logo';
 import { getClassinfo } from '../../api/classinfo';
@@ -8,32 +7,11 @@ import useScrollFadeIn from '../../hooks/useScrollFadeIn';
 import Carousel from './Carousel';
 
 const CorporateCard = ({ $isVisible, id }, ref) => {
-  const isSmall = useMediaQuery({ query: '(max-width: 749px)' });
-  const isMedium = useMediaQuery({
-    query: '(min-width: 750px) and (max-width: 1439px)',
-  });
   const animation = useScrollFadeIn({ initialOffset: '10%' });
   const [newsUrl, setNewsUrl] = useState('');
   const [info, setInfo] = useState('');
   const [imgList, setImgList] = useState([]);
   const [projectImgList, setProjectImgList] = useState([]);
-
-  // 캐러셀 화면 이동에 필요한 변수 계산
-  const calculatePageLength = (imgListLength, itemsPerPage) =>
-    Math.ceil(imgListLength / itemsPerPage);
-  const calculateLeftItem = (imgListLength, itemsPerPage) =>
-    Math.round((imgListLength % itemsPerPage) / 2);
-
-  const itemsPerPage = isSmall
-    ? 2
-    : isMedium
-    ? 6
-    : 8;
-
-  // 페이지 수 계산
-  const pageLength = calculatePageLength(imgList.length, itemsPerPage);
-  // 마지막 페이지의 남은 아이템 수 계산
-  const leftItem = calculateLeftItem(imgList.length, itemsPerPage);
 
   // 데이터 fetching
   const readLogo = async () => {
@@ -73,12 +51,7 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
     <S.Layout id={id} $isVisible={$isVisible} {...animation}>
       <S.TitleWrapper ref={ref}>Corporate Project</S.TitleWrapper>
       <S.Container>
-        <Carousel
-          type='small'
-          imgList={imgList}
-          pageLength={pageLength}
-          leftItem={leftItem}
-        >
+        <Carousel type='small' imgList={imgList}>
           {imgList.map(it => (
             <S.ImgWrapper key={it.imageId + 'img'}>
               <S.Img src={it.imageUrl} alt='logoImg' />
@@ -86,7 +59,7 @@ const CorporateCard = ({ $isVisible, id }, ref) => {
           ))}
         </Carousel>
         <S.InfoWrapper>{info}</S.InfoWrapper>
-        <Carousel pageLength={projectImgList.length}>
+        <Carousel imgList={projectImgList}>
           {projectImgList.map(it => (
             <S.BigImgWrapper key={it.imageId}>
               <S.BigImg src={it.imageUrl} alt='projectImg' />

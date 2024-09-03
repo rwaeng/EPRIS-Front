@@ -1,13 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
-const useHorizontalScroll = () => {
+const useHorizontalScroll = type => {
   const scrollRef = useRef();
+  const isMobile = useMediaQuery({ query: '(max-width: 749px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   useEffect(() => {
     const container = scrollRef.current;
-    if (!isDesktop && container) {
+
+    if (type && isMobile && container) {
+      container.addEventListener('wheel', handleWheel);
+    } else if (!type && !isDesktop && container) {
       container.addEventListener('wheel', handleWheel);
     }
 
@@ -16,7 +20,7 @@ const useHorizontalScroll = () => {
         container.removeEventListener('wheel', handleWheel);
       }
     };
-  }, [isDesktop]);
+  }, [isMobile, isDesktop]);
 
   const handleWheel = e => {
     if (scrollRef.current) {
