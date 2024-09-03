@@ -63,9 +63,11 @@ const S = {
     ${reg18}
     color: var(--black);
     white-space: pre-line;
+    @media screen and (max-width: 749px) {
+      margin-top: 3rem;
+    }
     @media screen and (max-width: 1279px) {
       width: auto;
-      margin-top: 0.85rem;
 
       ${m_reg18}
     }
