@@ -3,7 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 
 const useHorizontalScroll = () => {
   const scrollRef = useRef();
-  const isDesktop = useMediaQuery({ query: 'min-width: 1280px' });
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
   useEffect(() => {
     const container = scrollRef.current;
