@@ -64,9 +64,9 @@ const AboutPage = () => {
               <S.HistoryWrapper {...mAnimationHistory}>
                 EPRIS는 <S.RedText>EWHA PUBLIC RELATIONS IN STUDY</S.RedText>의
                 약자로, 2000년도에 신문방송대학원 과정의 석/박사 선배님들에 의해
-                창립된 커뮤니케이션·미디어학부 소속 교내 유일 PR 학회입니다.
-                학회원들은 매주 1회 정기모임에서 스터디와 PT를 통해 PR에 관하여
-                학습하고, 산학협력 프로젝트로 PR 관련 실무 경험까지 함께합니다.
+                창립된 커뮤니케이션·미디어학부 소속 PR 학회입니다. 학회원들은
+                매주 1회 정기모임에서 스터디와 PT를 통해 PR에 관하여 학습하고,
+                산학협력 프로젝트로 PR 관련 실무 경험까지 함께합니다.
               </S.HistoryWrapper>
             </S.AboutPRContainer>
           </S.AboutContainer>
