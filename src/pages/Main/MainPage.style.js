@@ -214,6 +214,7 @@ const S = {
     gap: 1.5rem;
     box-sizing: border-box;
     flex: 1 0 0;
+    cursor: pointer;
     @media (max-width: 1279px) {
       width: 100%;
     }

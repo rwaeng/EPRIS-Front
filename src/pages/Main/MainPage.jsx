@@ -69,6 +69,10 @@ const MainPage = () => {
     navigate('/joinus');
   };
 
+  const handleActivitiesClick = () => {
+    navigate('/activities');
+  };
+
   if (isLoading) {
     return <S.MainLayout></S.MainLayout>; // 로딩 중 표시
   }
@@ -82,7 +86,7 @@ const MainPage = () => {
               {...animation9}
             >{`PR의 시각으로 \n세상을 보다`}</S.TitleWrapper>
             <S.SubWrapper {...animation10}>
-              {`이화여자대학교 교내 유일 PR 학회\n EPRIS를 소개합니다`}
+              {`이화여자대학교 PR 학회\n EPRIS를 소개합니다`}
             </S.SubWrapper>
             <S.DownBtn
               src={Down}
@@ -102,20 +106,29 @@ const MainPage = () => {
               WHA <S.Red>P</S.Red>UBLIC <S.Red>R</S.Red>ELATIONS
               <S.Red> I</S.Red>N <S.Red>S</S.Red>TUDY
             </S.LittleLogoWrapper>
-            {`EPRIS는 2000년부터 시작된 교내 유일 PR학회로서 실전 경험을 바탕으로, PR을 통해 다양한 분야에서 리더십과 팔로워십을 발휘할 수 있는 인재를 양성합니다.\n\n더 넓은 시각으로 세상을 변화시킬 첫걸음, \nEPRIS와 함께하세요.`}
+            {`EPRIS는 2000년부터 시작된 PR학회로서 실전 경험을 바탕으로, PR을 통해 다양한 분야에서 리더십과 팔로워십을 발휘할 수 있는 인재를 양성합니다.\n\n더 넓은 시각으로 세상을 변화시킬 첫걸음, \nEPRIS와 함께하세요.`}
           </S.TextContainer>
         </S.ValueContainer>
         <S.ContentContainer>
           <S.ValueContainer>
-            <S.BlackBoxContainer {...animation1}>
+            <S.BlackBoxContainer
+              onClick={handleActivitiesClick}
+              {...animation1}
+            >
               <S.BlackTitle>설립년도</S.BlackTitle>
               <S.BlackText>2000년</S.BlackText>
             </S.BlackBoxContainer>
-            <S.BlackBoxContainer {...animation2}>
+            <S.BlackBoxContainer
+              onClick={handleActivitiesClick}
+              {...animation2}
+            >
               <S.BlackTitle>산학프로젝트</S.BlackTitle>
               <S.BlackText>{data ? `${data.projectNum}개` : 'N/A'}</S.BlackText>
             </S.BlackBoxContainer>
-            <S.BlackBoxContainer {...animation3}>
+            <S.BlackBoxContainer
+              onClick={handleActivitiesClick}
+              {...animation3}
+            >
               <S.BlackTitle>수상이력</S.BlackTitle>
               <S.BlackText>{data ? `${data.awardsNum}회` : 'N/A'}</S.BlackText>
             </S.BlackBoxContainer>

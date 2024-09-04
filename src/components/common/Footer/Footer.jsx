@@ -30,7 +30,7 @@ const Footer = () => {
         </S.LogoWrapper>
 
         <S.InfoContainer>
-          <S.NameWrapper>{`이화여자대학교 유일 PR 학회\nEPRIS`}</S.NameWrapper>
+          <S.NameWrapper>{`이화여자대학교 PR 학회\nEPRIS`}</S.NameWrapper>
           <S.InfoWrapper>
             {`Copyright 2024. EPRIS. All rights reserved.\nDeveloped by EFUB 4th as a collaborative project.`}
           </S.InfoWrapper>
