@@ -69,6 +69,10 @@ const MainPage = () => {
     navigate('/joinus');
   };
 
+  const handleActivitiesClick = () => {
+    navigate('/activities');
+  };
+
   if (isLoading) {
     return <S.MainLayout></S.MainLayout>; // 로딩 중 표시
   }
@@ -107,15 +111,24 @@ const MainPage = () => {
         </S.ValueContainer>
         <S.ContentContainer>
           <S.ValueContainer>
-            <S.BlackBoxContainer {...animation1}>
+            <S.BlackBoxContainer
+              onClick={handleActivitiesClick}
+              {...animation1}
+            >
               <S.BlackTitle>설립년도</S.BlackTitle>
               <S.BlackText>2000년</S.BlackText>
             </S.BlackBoxContainer>
-            <S.BlackBoxContainer {...animation2}>
+            <S.BlackBoxContainer
+              onClick={handleActivitiesClick}
+              {...animation2}
+            >
               <S.BlackTitle>산학프로젝트</S.BlackTitle>
               <S.BlackText>{data ? `${data.projectNum}개` : 'N/A'}</S.BlackText>
             </S.BlackBoxContainer>
-            <S.BlackBoxContainer {...animation3}>
+            <S.BlackBoxContainer
+              onClick={handleActivitiesClick}
+              {...animation3}
+            >
               <S.BlackTitle>수상이력</S.BlackTitle>
               <S.BlackText>{data ? `${data.awardsNum}회` : 'N/A'}</S.BlackText>
             </S.BlackBoxContainer>
