@@ -26,6 +26,9 @@ const AboutPage = () => {
 
   const currentCard = cardData[currentCardIndex];
 
+  const animationTitle = useScrollFadeIn({
+    translate: 'translate(-50%, -50%)',
+  });
   const animationHistory = useScrollFadeIn();
   const animationText = useScrollFadeIn();
   const mAnimationName = useScrollFadeIn();
@@ -35,7 +38,7 @@ const AboutPage = () => {
     <>
       <NavigationBar />
       <S.BackgroundImageContainer>
-        <S.AboutTextContainer>
+        <S.AboutTextContainer {...animationTitle}>
           <S.Title>About</S.Title>
           <S.BackgroundSubTitle>
             "PR의 시각으로 세상을 보다."

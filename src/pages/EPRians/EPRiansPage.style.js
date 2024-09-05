@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as font from '../../styles/font';
+import { flexCenter } from '../../styles/common';
 import backgroundImg from '../../assets/EPRiansPage/background_img.svg';
 
 export const S = {};
@@ -30,6 +31,11 @@ S.TitleContainer = styled.div`
   @media (max-width: 1279px) {
     height: 15.95444rem;
   }
+`;
+
+S.AniTitleContainer = styled.div`
+  ${flexCenter}
+  flex-direction: column;
 `;
 
 S.MainTitle = styled.div`

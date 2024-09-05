@@ -4,7 +4,11 @@ import { useEffect, useRef } from 'react';
 //  const animation = useScrollFadeIn();
 //  <S.Container {...animation}></S.Container>
 
-const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
+const useScrollFadeIn = ({
+  threshold = 0.0,
+  initialOffset = '30%',
+  translate = '',
+} = {}) => {
   const ref = useRef();
 
   const handleScroll = ([entry]) => {
@@ -18,7 +22,7 @@ const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
         element.transitionTimingFunction = 'cubic-bezier(0, 0, 1, 1)';
         element.transitionDelay = '0s';
         element.opacity = 1;
-        element.transform = 'translate3d(0, 0, 0)';
+        element.transform = `${translate} translate3d(0, 0, 0)`;
       }
     }
   };
@@ -40,7 +44,7 @@ const useScrollFadeIn = ({ threshold = 0.0, initialOffset = '30%' } = {}) => {
     ref: ref,
     style: {
       opacity: 0,
-      transform: `translate3d(0, ${initialOffset}, 0)`,
+      transform: `${translate} translate3d(0, ${initialOffset}, 0)`,
     },
   };
 };
