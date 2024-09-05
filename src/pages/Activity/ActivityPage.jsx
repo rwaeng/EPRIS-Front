@@ -6,6 +6,7 @@ import { getAwards } from '../../api/award.js';
 import { getSession } from '../../api/session.js';
 import { getNetwork } from '../../api/network.js';
 import useScroll from '../../hooks/useScroll.js';
+import useScrollFadeIn from '../../hooks/useScrollFadeIn.js';
 import AwardCard from '../../components/activities/AwardCard.jsx';
 import ProjectCard from '../../components/activities/ProjectCard.jsx';
 import NavigationBar from '../../components/common/NavigationBar/NavigatonBar.jsx';
@@ -14,6 +15,7 @@ import FloatingButton from '../../components/activities/FloatingButton.jsx';
 import ActivityCard from '../../components/activities/ActivityCard.jsx';
 
 const ActivityPage = () => {
+  const animation = useScrollFadeIn({ translate: 'translate(-50%, -50%)' });
   const [projectList, setProjectList] = useState([]);
   const [awardsData, setAwardsData] = useState('');
   const [prData, setPrData] = useState({});
@@ -132,7 +134,7 @@ const ActivityPage = () => {
     <S.TotalLayout>
       <NavigationBar />
       <S.ImgContainer>
-        <S.H1>Activities</S.H1>
+        <S.H1 {...animation}>Activities</S.H1>
       </S.ImgContainer>
       <S.Layout>
         <S.Container>
