@@ -146,17 +146,6 @@ S.TimelineContainer = styled.div`
   }
 `;
 
-S.TimelineComment = styled.div`
-  ${font.m_reg18}
-  color: var(--grey300);
-  margin-left: auto;
-  margin-bottom: 2.63rem;
-
-  @media (min-width: 1280px) {
-    display: none;
-  }
-`;
-
 S.Title = styled.div`
   ${font.bold36}
   color: var(--grey100);
@@ -185,14 +174,10 @@ S.ProcessContainer = styled.div`
   margin: 4rem 0;
 
   @media (max-width: 1279px) {
-    z-index: 5;
-    overflow-x: scroll;
+    flex-direction: column;
+    justify-content: baseline;
     margin-top: 2rem;
-    margin-bottom: 1rem;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    margin-bottom: 10rem;
   }
 `;
 
