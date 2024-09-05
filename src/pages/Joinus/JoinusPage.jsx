@@ -17,7 +17,6 @@ const JoinusPage = () => {
   const aniTimeline = useScrollFadeIn();
   const aniPoster = useScrollFadeIn();
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
-  const scrollRef = useHorizontalScroll();
 
   useEffect(() => {
     const getRecruitmentInfo = async () => {
@@ -68,7 +67,7 @@ const JoinusPage = () => {
           <S.TimelineContainer>
             <S.Title>Timeline</S.Title>
             <S.Description>모집 일정</S.Description>
-            <S.ProcessContainer ref={scrollRef} {...(isDesktop && aniTimeline)}>
+            <S.ProcessContainer {...(isDesktop && aniTimeline)}>
               <ProcessBox title='1. 지원서 접수' desc={recruitment.deadline} />
               <ProcessBox title='2. 면접' desc={recruitment.interview} />
               <ProcessBox
@@ -81,7 +80,6 @@ const JoinusPage = () => {
                 isLast={true}
               />
             </S.ProcessContainer>
-            <S.TimelineComment>가로로 스크롤해주세요</S.TimelineComment>
             <S.Poster src={recruitment.poster} {...aniPoster} alt='poster' />
           </S.TimelineContainer>
 
