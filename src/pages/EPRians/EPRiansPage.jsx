@@ -40,6 +40,7 @@ const EPRiansPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 1279px)' });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
 
+  const aniTitle = useScrollFadeIn();
   const aniExecutive = useScrollFadeIn();
   const aniActing = useScrollFadeIn();
   const aniAlumni = useScrollFadeIn();
@@ -166,8 +167,10 @@ const EPRiansPage = () => {
       <NavigationBar />
       <S.Layout>
         <S.TitleContainer>
-          <S.MainTitle>EPRians</S.MainTitle>
-          <S.Gen>Now {gen}</S.Gen>
+          <S.AniTitleContainer {...aniTitle}>
+            <S.MainTitle>EPRians</S.MainTitle>
+            <S.Gen>Now {gen}</S.Gen>
+          </S.AniTitleContainer>
         </S.TitleContainer>
         <S.ActingContainer>
           <S.Title $color='var(--grey100)'>Acting Members</S.Title>

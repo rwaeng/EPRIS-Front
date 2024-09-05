@@ -49,6 +49,7 @@ const ContactPage = () => {
     getInfo();
   }, []);
 
+  const animationTitle = useScrollFadeIn();
   const animation = useScrollFadeIn();
 
   const mobileAnimation1 = useScrollFadeIn();
@@ -64,7 +65,7 @@ const ContactPage = () => {
           <S.Ellipse31 />
           <S.Ellipse32 />
         </S.BackgroundImageContainer>
-        <S.TitleContainer>
+        <S.TitleContainer {...animationTitle}>
           <S.Title>Contact</S.Title>
           <S.SubTitle>연락 정보</S.SubTitle>
         </S.TitleContainer>
