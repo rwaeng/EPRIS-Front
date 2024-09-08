@@ -18,11 +18,7 @@ const Dropdown = ({ className, options, setAlumniList }) => {
     const getAlumniList = async () => {
       try {
         const res = await getMembersAlumni(gen);
-        setAlumniList(
-          res.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-          }),
-        );
+        setAlumniList(res);
       } catch (err) {
         console.error(err);
       }

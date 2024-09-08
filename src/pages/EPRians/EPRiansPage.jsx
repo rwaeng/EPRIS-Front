@@ -68,14 +68,14 @@ const EPRiansPage = () => {
             return numB - numA; // 내림차순 정렬
           });
 
+        const sortedActingRes = actingRes.sort((a, b) => {
+          return parseInt(a.num) - parseInt(b.num); //기수 빠른 순 정렬
+        });
+
         // 데이터 설정
         setGenList(sortedGen);
         setExecutiveList(executiveRes);
-        setActingList(
-          actingRes.sort((a, b) => {
-            return a.name.localeCompare(b.name);
-          }),
-        );
+        setActingList(sortedActingRes);
         setBrandList(brandRes);
         setGen(classRes.num);
       } catch (err) {
